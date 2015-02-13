@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+		<title>ASA Databse</title>
+    </head>
+	<body>
+
+        <h1 align="left"><img src="arda.png" alt="logo" style="margin-right: 23px;margin-left: 20px;
+            margin-bottom:-13px;width:100px;height:60px">Autism Resource Database Alaska</h1>
+        
+
+        <ul class="tabs">
+        <li>
+          <input type="radio" checked name="tabs" id="tab1">
+          <label for="tab1">Resource Browser</label>
+          <div id="tab-content1" class="tab-content animated fadeIn">
+              <form align="left">
+            <input type="text" placeholder="Enter Query..." class="search" required>
+            <input type="button" value="Search Database" class="button">
+        </form>
+        <!--<form class="checkboxes">
+            <input type="checkbox" name="gender" value="male">Male
+            <input type="checkbox" name="gender" value="female">Female
+            <input type="checkbox" name="detail" value="aspberger">Aspberger's
+            <input type="checkbox" name="detail" value="non-verbal">Non-Verbal
+            <input type="checkbox" name="detail" value="sleep">Sleep
+            <input type="checkbox" name="detail" value="nutrition">Nutrition
+        </form>
+        -->
+
+		<table align="center">
+			<tr>
+				<th>Title</th>
+				<th>Type</th>
+				<th>Item Number</th>
+				<th>Status</th>
+                <th>Details</th>
+			</tr>
+			<tr>
+				<td>The Spark: A Mother's Nurturing Genius</td>
+				<td>Book</td>
+				<td>1</td>
+				<td>Checked-In</td>
+                <td></td>
+			</tr>
+			<tr class="even">
+				<td>The Effects of Autism</td>
+				<td>Article</td>
+				<td>2</td>
+				<td>Available</td>
+                <td></td>
+			</tr>
+			<tr>
+				<td>Understanding Autism</td>
+				<td>therapy</td>
+				<td>3</td>
+				<td>MWF 1:00-3:00 p.m.</td>
+                <td></td>
+			</tr>
+			<tr class="even">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+                <td></td>
+			</tr>
+		</table>
+	</body>
+    <footer>
+        <h5 align="center">Admin Sign In</h5>
+    </footer>
+          </div>
+        </li>
+        <li>
+          <input type="radio" name="tabs" id="tab2">
+          <label for="tab2">Check-In/Check-Out</label>
+          <div id="tab-content2" class="tab-content animated fadeIn">
+          </div>
+        </li>
+        <li>
+          <input type="radio" name="tabs" id="tab3">
+          <label for="tab3">Add Resource</label>
+          <div id="tab-content3" class="tab-content animated fadeIn">
+          </div>
+        </li>
+</ul>
+</html>
