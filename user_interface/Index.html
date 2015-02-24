@@ -9,80 +9,112 @@
         <h1 align="left"><img src="arda.png" alt="logo" style="margin-right: 23px;margin-left: 20px;
             margin-bottom:-13px;width:100px;height:60px">Autism Resource Database Alaska</h1>
         
-
         <ul class="tabs">
-        <li>
-          <input type="radio" checked name="tabs" id="tab1">
-          <label for="tab1">Resource Browser</label>
-          <div id="tab-content1" class="tab-content animated fadeIn">
-              <form align="left">
-            <input type="text" placeholder="Enter Query..." class="search" required>
-            <input type="button" value="Search Database" class="button">
-        </form>
-        <!--<form class="checkboxes">
-            <input type="checkbox" name="gender" value="male">Male
-            <input type="checkbox" name="gender" value="female">Female
-            <input type="checkbox" name="detail" value="aspberger">Aspberger's
-            <input type="checkbox" name="detail" value="non-verbal">Non-Verbal
-            <input type="checkbox" name="detail" value="sleep">Sleep
-            <input type="checkbox" name="detail" value="nutrition">Nutrition
-        </form>
-        -->
+            <li>
+                <input type="radio" checked name="tabs" id="tab1">
+                <label for="tab1">Resource Browser</label>
+                <div id="tab-content1" class="tab-content animated fadeIn">
+                <form align="left">
+                    <input type="text" placeholder="Enter Query..." class="search" required>
+                    <input type="button" value="Search Database" class="button">
+                </form>
 
-		<table align="center">
-			<tr>
-				<th>Title</th>
-				<th>Type</th>
-				<th>Item Number</th>
-				<th>Status</th>
-                <th>Details</th>
-			</tr>
-			<tr>
-				<td>The Spark: A Mother's Nurturing Genius</td>
-				<td>Book</td>
-				<td>1</td>
-				<td>Checked-In</td>
-                <td></td>
-			</tr>
-			<tr class="even">
-				<td>The Effects of Autism</td>
-				<td>Article</td>
-				<td>2</td>
-				<td>Available</td>
-                <td></td>
-			</tr>
-			<tr>
-				<td>Understanding Autism</td>
-				<td>Therapy</td>
-				<td>3</td>
-				<td>MWF 1:00-3:00 p.m.</td>
-                <td></td>
-			</tr>
-			<tr class="even">
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-                <td></td>
-			</tr>
-		</table>
-	</body>
-    <footer>
-        <h5 align="center">Admin Sign In</h5>
-    </footer>
-          </div>
+            <!--<form class="checkboxes">
+                    <input type="checkbox" name="gender" value="male">Male
+                    <input type="checkbox" name="gender" value="female">Female
+                    <input type="checkbox" name="detail" value="aspberger">Aspberger's
+                    <input type="checkbox" name="detail" value="non-verbal">Non-Verbal
+                    <input type="checkbox" name="detail" value="sleep">Sleep
+                    <input type="checkbox" name="detail" value="nutrition">Nutrition
+                </form>-->
+
+                <table align="center">
+                    <tr>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Item Number</th>
+                        <th>Status</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>The Spark: A Mother's Nurturing Genius</td>
+                        <td>Book</td>
+                        <td>1</td>
+                        <td>Checked-In</td>
+                        <td></td>
+                    </tr>
+                    <tr class="even">
+                        <td>The Effects of Autism</td>
+                        <td>Article</td>
+                        <td>2</td>
+                        <td>Available</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Understanding Autism</td>
+                        <td>Therapy</td>
+                        <td>3</td>
+                        <td>MWF 1:00-3:00 p.m.</td>
+                        <td></td>
+                    </tr>
+                    <tr class="even">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            
+                <footer>
+                    <h5 align="center">Admin Sign In</h5>
+                </footer>
+            </div>
         </li>
         <li>
           <input type="radio" name="tabs" id="tab2">
           <label for="tab2">Check-In/Check-Out</label>
-          <div id="tab-content2" class="tab-content animated fadeIn">
+          <div id="tab-content2" class="tab-content animated fadeIn" style="font-family: Arial, Verdana, sans-serif;">
+             <form style="width: 100%">
+                 Title: <input type="text" class="title" style="margin-left: 60px; width: 715px;margin-top:50px;"><br>
+                 Type: <input type="checkbox" class="type" value="book" style="margin-left: 55px;margin-top:50px;">Book
+                 <input type="checkbox" class="type" value="dvd">DVD
+                 <input type="checkbox" class="type" value="online">Online
+                 <input type="checkbox" class="type" value="therapy">Therapy
+                 <input type="checkbox" class="type" value="event">Event<br>
+                 Description: <input type="text" class="description" style="width: 740px; height: 200px;margin-top:50px;"><br>
+                 Tags: <input type="checkbox" name="gender" value="male" style="margin-left: 55px;margin-top:50px;">Male
+                 <input type="checkbox" name="gender" value="female">Female
+                 <input type="checkbox" name="detail" value="aspberger">Aspberger's
+                 <input type="checkbox" name="detail" value="non-verbal">Non-Verbal
+                 <input type="checkbox" name="detail" value="sleep">Sleep
+                 <input type="checkbox" name="detail" value="nutrition">Nutrition
+                 
+             </form> 
           </div>
         </li>
         <li>
           <input type="radio" name="tabs" id="tab3">
           <label for="tab3">Add Resource</label>
           <div id="tab-content3" class="tab-content animated fadeIn">
+                <form style="width: 100%">
+                   
+                Contact Information: 
+                <input type="text" placeholder="First Name" class="title" style="margin-left: 60px; width: 242px;margin-top:50px;">
+                <input type="text" placeholder="Last Name"  class="title" style="margin-left: 60px; width: 242px;margin-top:50px;"><br>
+                <input type="text" placeholder="Phone Number" class="title" style="margin-left: 247px; width: 242px;margin-top:50px;">
+                <input type="text" class="title" placeholder="Email" style="margin-left: 60px; width: 242px;margin-top:50px;"><br>
+                Address: <input type="text" class="title" placeholder="Street" style="margin-left: 163px; width: 242px;margin-top:50px;">
+                    <input type="text" class="title" placeholder="Zip Code" style="margin-left: 60px; width: 242px;margin-top:50px;">
+                    <input type="text" class="title" placeholder="City" style="margin-left: 247px; width: 242px;margin-top:50px;">
+                    <input type="text" class="title" placeholder="State" style="margin-left: 60px; width: 242px;margin-top:50px;"><br>
+                Due Date: <input type="text" class="title" placeholder="Month" style="margin-left: 150px; width: 50px;margin-top:50px;">
+                    <input type="text" class="title" placeholder="Day" style="margin-left: 11px; width: 50px;margin-top:50px;">
+                    <input type="text" class="title" placeholder="Year" style="margin-left: 11px; width: 50px;margin-top:50px;">
+                 
+                
           </div>
         </li>
-</ul>
+        </ul>
+    </body>
 </html>

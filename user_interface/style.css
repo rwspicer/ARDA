@@ -1,8 +1,8 @@
 	        
             body {
                 width: 100%;
-                margin-left: 0px;
                 height: 100%;
+                margin-left: 0px;
                 margin-top: 0px;
                 border-style: solid;
                 border-top-width: 12px;
@@ -12,11 +12,10 @@
             }
                 
             h1 {
-                font-family: Impact;
                 height: 70px;
+                font-family: Impact;
                 color: white;
                 font-size: 46px;
-                /*text-decoration: underline overline;*/
                 background-color: #207cca;
                 box-shadow: 0px 8px 10px #888888;
                 margin-top: 0px;
@@ -65,6 +64,7 @@
             }
             .search {
                 margin-left: -13px;
+                margin-top: 50px;
                 box-shadow: 0px 4px 10px #888888;
                 padding: 10px 15px;
                 background: rgba(50, 50, 50, 0.2);
@@ -80,7 +80,17 @@
                 background-color:#fafafa;
                 border-color:#207cca;
                 color:#207cca;}
-            
+            .title {
+                box-shadow: 0px 4px 10px #888888;
+                padding: 10px 15px;
+                background: rgba(50, 50, 50, 0.2);
+                border: 0px solid #dbdbdb;
+            }
+            .description {
+                box-shadow: 0px 4px 10px #888888;
+                background: rgba(50, 50, 50, 0.2);
+                border: 0px solid #dbdbdb;
+            }
             .tabs input[type=radio] {
                 position: absolute;
                 top: -9999px;
