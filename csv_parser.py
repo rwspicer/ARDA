@@ -58,7 +58,22 @@ def process_org(grid):
         grid = a grid of text cells, (a list of rows of cells)
     """
     return grid[1:]
-       
+
+
+def process_uw(grid):
+    """
+        this function is to remove extranuous data from the orginazation 
+    listings for the arda project
+    
+    arguments:
+        grid = a grid of text cells, (a list of rows of cells)
+    """
+    r_grid =[]
+    for row in grid[5:]:
+        if row[2] == 'Date':
+            continue
+        r_grid.append(row)
+    return r_grid
        
 def print_grid(grid):
     """
