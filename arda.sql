@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.41, for debian-linux-gnu (i686)
+-- MySQL dump 10.13  Distrib 5.6.23, for osx10.8 (x86_64)
 --
--- Host: localhost    Database: ARDA
+-- Host: localhost    Database: mydb
 -- ------------------------------------------------------
--- Server version	5.5.41-0ubuntu0.14.04.1
+-- Server version	5.6.23
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,170 +16,212 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Associated_disorder`
+-- Table structure for table `ASSOCIATED_DISORDER`
 --
 
-DROP TABLE IF EXISTS `Associated_disorder`;
+DROP TABLE IF EXISTS `ASSOCIATED_DISORDER`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Associated_disorder` (
-  `Resource_id` int(11) NOT NULL,
+CREATE TABLE `ASSOCIATED_DISORDER` (
+  `Name` varchar(100) NOT NULL,
   `Description` text,
-  `Name` varchar(128) DEFAULT NULL,
-  PRIMARY KEY (`Resource_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `RESOURCE_id` int(11) NOT NULL,
+  PRIMARY KEY (`Name`,`RESOURCE_id`),
+  KEY `fk_ASSOCIATED_DISORDER_RESOURCE1` (`RESOURCE_id`),
+  CONSTRAINT `fk_ASSOCIATED_DISORDER_RESOURCE1` FOREIGN KEY (`RESOURCE_id`) REFERENCES `RESOURCE` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Associated_disorder`
+-- Dumping data for table `ASSOCIATED_DISORDER`
 --
 
-LOCK TABLES `Associated_disorder` WRITE;
-/*!40000 ALTER TABLE `Associated_disorder` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Associated_disorder` ENABLE KEYS */;
+LOCK TABLES `ASSOCIATED_DISORDER` WRITE;
+/*!40000 ALTER TABLE `ASSOCIATED_DISORDER` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ASSOCIATED_DISORDER` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Behavior`
+-- Table structure for table `BEHAVIOR`
 --
 
-DROP TABLE IF EXISTS `Behavior`;
+DROP TABLE IF EXISTS `BEHAVIOR`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Behavior` (
-  `Resource_id` int(11) NOT NULL,
+CREATE TABLE `BEHAVIOR` (
+  `Name` varchar(100) NOT NULL,
   `Description` text,
-  `Name` varchar(128) DEFAULT NULL,
-  PRIMARY KEY (`Resource_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `RESOURCE_id` int(11) NOT NULL,
+  PRIMARY KEY (`Name`,`RESOURCE_id`),
+  KEY `fk_BEHAVIOR_RESOURCE1` (`RESOURCE_id`),
+  CONSTRAINT `fk_BEHAVIOR_RESOURCE1` FOREIGN KEY (`RESOURCE_id`) REFERENCES `RESOURCE` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Behavior`
+-- Dumping data for table `BEHAVIOR`
 --
 
-LOCK TABLES `Behavior` WRITE;
-/*!40000 ALTER TABLE `Behavior` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Behavior` ENABLE KEYS */;
+LOCK TABLES `BEHAVIOR` WRITE;
+/*!40000 ALTER TABLE `BEHAVIOR` DISABLE KEYS */;
+/*!40000 ALTER TABLE `BEHAVIOR` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Book`
+-- Table structure for table `BORROWER`
 --
 
-DROP TABLE IF EXISTS `Book`;
+DROP TABLE IF EXISTS `BORROWER`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Book` (
-  `Isbn` varchar(13) DEFAULT NULL,
-  `Publisher` varchar(128) DEFAULT NULL,
-  `Author` varchar(128) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `BORROWER` (
+  `First_name` varchar(45) NOT NULL,
+  `Last_name` varchar(45) NOT NULL,
+  `Email_address` varchar(45) NOT NULL,
+  `Checkout_date` varchar(45) DEFAULT NULL,
+  `Return_date` varchar(45) DEFAULT NULL,
+  `Reserve_date` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`First_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Book`
+-- Dumping data for table `BORROWER`
 --
 
-LOCK TABLES `Book` WRITE;
-/*!40000 ALTER TABLE `Book` DISABLE KEYS */;
-INSERT INTO `Book` VALUES ('1234567890123','Pearson','Temple Grandin');
-/*!40000 ALTER TABLE `Book` ENABLE KEYS */;
+LOCK TABLES `BORROWER` WRITE;
+/*!40000 ALTER TABLE `BORROWER` DISABLE KEYS */;
+/*!40000 ALTER TABLE `BORROWER` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Event`
+-- Table structure for table `EVENT`
 --
 
-DROP TABLE IF EXISTS `Event`;
+DROP TABLE IF EXISTS `EVENT`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Event` (
-  `Date` date DEFAULT NULL,
-  `Location` varchar(128) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `EVENT` (
+  `Location` varchar(100) NOT NULL,
+  `RESOURCE_id` int(11) NOT NULL,
+  PRIMARY KEY (`RESOURCE_id`),
+  CONSTRAINT `fk_EVENT_RESOURCE1` FOREIGN KEY (`RESOURCE_id`) REFERENCES `RESOURCE` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Event`
+-- Dumping data for table `EVENT`
 --
 
-LOCK TABLES `Event` WRITE;
-/*!40000 ALTER TABLE `Event` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Event` ENABLE KEYS */;
+LOCK TABLES `EVENT` WRITE;
+/*!40000 ALTER TABLE `EVENT` DISABLE KEYS */;
+/*!40000 ALTER TABLE `EVENT` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Online`
+-- Table structure for table `LIBRARY_ITEM`
 --
 
-DROP TABLE IF EXISTS `Online`;
+DROP TABLE IF EXISTS `LIBRARY_ITEM`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Online` (
-  `Url` text,
-  `Type` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `LIBRARY_ITEM` (
+  `Old_Item_id` int(11) NOT NULL,
+  `Item_type` varchar(45) NOT NULL,
+  `Author` varchar(45) DEFAULT NULL,
+  `RESOURCE_id` int(11) NOT NULL,
+  PRIMARY KEY (`RESOURCE_id`),
+  CONSTRAINT `fk_LIBRARY_ITEM_RESOURCE1` FOREIGN KEY (`RESOURCE_id`) REFERENCES `RESOURCE` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Online`
+-- Dumping data for table `LIBRARY_ITEM`
 --
 
-LOCK TABLES `Online` WRITE;
-/*!40000 ALTER TABLE `Online` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Online` ENABLE KEYS */;
+LOCK TABLES `LIBRARY_ITEM` WRITE;
+/*!40000 ALTER TABLE `LIBRARY_ITEM` DISABLE KEYS */;
+/*!40000 ALTER TABLE `LIBRARY_ITEM` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Resource`
+-- Table structure for table `ONLINE`
 --
 
-DROP TABLE IF EXISTS `Resource`;
+DROP TABLE IF EXISTS `ONLINE`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Resource` (
-  `Id` int(11) NOT NULL,
-  `Name` varchar(128) DEFAULT NULL,
+CREATE TABLE `ONLINE` (
+  `Url` varchar(45) NOT NULL,
+  `Type` varchar(45) NOT NULL,
+  `RESOURCE_id` int(11) NOT NULL,
+  PRIMARY KEY (`RESOURCE_id`,`Url`),
+  CONSTRAINT `fk_ONLINE_RESOURCE1` FOREIGN KEY (`RESOURCE_id`) REFERENCES `RESOURCE` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ONLINE`
+--
+
+LOCK TABLES `ONLINE` WRITE;
+/*!40000 ALTER TABLE `ONLINE` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ONLINE` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `RESOURCE`
+--
+
+DROP TABLE IF EXISTS `RESOURCE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `RESOURCE` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `Email` varchar(100) DEFAULT NULL,
+  `Phone_number` char(15) DEFAULT NULL,
+  `Gender` char(1) NOT NULL,
+  `Age_range` char(5) NOT NULL,
   `Description` text,
-  `Age_range` varchar(1) DEFAULT NULL,
-  `Phone_number` varchar(13) DEFAULT NULL,
-  `Email` varchar(128) DEFAULT NULL,
-  `Gender` varchar(1) DEFAULT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Category` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Resource`
+-- Dumping data for table `RESOURCE`
 --
 
-LOCK TABLES `Resource` WRITE;
-/*!40000 ALTER TABLE `Resource` DISABLE KEYS */;
-INSERT INTO `Resource` VALUES (1,'Something about Autism','This is a book about autism','2','(123)456-7890','someEmail@email.com','B');
-/*!40000 ALTER TABLE `Resource` ENABLE KEYS */;
+LOCK TABLES `RESOURCE` WRITE;
+/*!40000 ALTER TABLE `RESOURCE` DISABLE KEYS */;
+INSERT INTO `RESOURCE` VALUES (1,'Callous Disregard Autism and Vaccines-The Truth Behind a Tragedy','info@asagoldenheart.org','1 (800)328-8476','B','_All_','Not available','Nonfiction/Novels/Children\'s Books');
+/*!40000 ALTER TABLE `RESOURCE` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Therapy`
+-- Table structure for table `THERAPY`
 --
 
-DROP TABLE IF EXISTS `Therapy`;
+DROP TABLE IF EXISTS `THERAPY`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Therapy` (
-  `Location` varchar(128) DEFAULT NULL,
-  `Insurance_info` varchar(128) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `THERAPY` (
+  `Location` varchar(100) DEFAULT NULL,
+  `Insuarance_info` varchar(45) DEFAULT NULL,
+  `RESOURCE_id` int(11) NOT NULL,
+  PRIMARY KEY (`RESOURCE_id`),
+  CONSTRAINT `fk_THERAPY_RESOURCE1` FOREIGN KEY (`RESOURCE_id`) REFERENCES `RESOURCE` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Therapy`
+-- Dumping data for table `THERAPY`
 --
 
-LOCK TABLES `Therapy` WRITE;
-/*!40000 ALTER TABLE `Therapy` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Therapy` ENABLE KEYS */;
+LOCK TABLES `THERAPY` WRITE;
+/*!40000 ALTER TABLE `THERAPY` DISABLE KEYS */;
+/*!40000 ALTER TABLE `THERAPY` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -191,4 +233,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-02-16  0:41:34
+-- Dump completed on 2015-03-01 13:15:54
