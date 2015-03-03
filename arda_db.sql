@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.6.23, for osx10.8 (x86_64)
 --
--- Host: localhost    Database: mydb
+-- Host: localhost    Database: arda_db
 -- ------------------------------------------------------
 -- Server version	5.6.23
 
@@ -76,12 +76,15 @@ DROP TABLE IF EXISTS `BORROWER`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `BORROWER` (
   `First_name` varchar(45) NOT NULL,
-  `Last_name` varchar(45) NOT NULL,
-  `Email_address` varchar(45) NOT NULL,
-  `Checkout_date` varchar(45) DEFAULT NULL,
-  `Return_date` varchar(45) DEFAULT NULL,
-  `Reserve_date` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`First_name`)
+  `Last_name` varchar(45) DEFAULT NULL,
+  `Email_address` varchar(45) DEFAULT NULL,
+  `Reserved` tinyint(1) DEFAULT NULL,
+  `Checkout_date` datetime DEFAULT NULL,
+  `Return_date` datetime DEFAULT NULL,
+  `LIBRARY_ITEM_RESOURCE_id` int(11) NOT NULL,
+  PRIMARY KEY (`First_name`),
+  KEY `fk_BORROWER_LIBRARY_ITEM1` (`LIBRARY_ITEM_RESOURCE_id`),
+  CONSTRAINT `fk_BORROWER_LIBRARY_ITEM1` FOREIGN KEY (`LIBRARY_ITEM_RESOURCE_id`) REFERENCES `LIBRARY_ITEM` (`RESOURCE_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -152,10 +155,10 @@ DROP TABLE IF EXISTS `ONLINE`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ONLINE` (
-  `Url` varchar(45) NOT NULL,
+  `Url` text NOT NULL,
   `Type` varchar(45) NOT NULL,
   `RESOURCE_id` int(11) NOT NULL,
-  PRIMARY KEY (`RESOURCE_id`,`Url`),
+  PRIMARY KEY (`RESOURCE_id`),
   CONSTRAINT `fk_ONLINE_RESOURCE1` FOREIGN KEY (`RESOURCE_id`) REFERENCES `RESOURCE` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -186,7 +189,7 @@ CREATE TABLE `RESOURCE` (
   `Description` text,
   `Category` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -195,7 +198,6 @@ CREATE TABLE `RESOURCE` (
 
 LOCK TABLES `RESOURCE` WRITE;
 /*!40000 ALTER TABLE `RESOURCE` DISABLE KEYS */;
-INSERT INTO `RESOURCE` VALUES (1,'Callous Disregard Autism and Vaccines-The Truth Behind a Tragedy','info@asagoldenheart.org','1 (800)328-8476','B','_All_','Not available','Nonfiction/Novels/Children\'s Books');
 /*!40000 ALTER TABLE `RESOURCE` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,4 +235,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-01 13:15:54
+-- Dump completed on 2015-03-02 20:25:55
