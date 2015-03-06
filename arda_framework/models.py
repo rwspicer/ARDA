@@ -34,11 +34,12 @@ class Behavior(models.Model):
 
 class Borrower(models.Model):
     first_name = models.CharField(db_column='First_name', primary_key=True, max_length=45)  # Field name made lowercase.
-    last_name = models.CharField(db_column='Last_name', max_length=45)  # Field name made lowercase.
-    email_address = models.CharField(db_column='Email_address', max_length=45)  # Field name made lowercase.
-    checkout_date = models.CharField(db_column='Checkout_date', max_length=45, blank=True)  # Field name made lowercase.
-    return_date = models.CharField(db_column='Return_date', max_length=45, blank=True)  # Field name made lowercase.
-    reserve_date = models.CharField(db_column='Reserve_date', max_length=45, blank=True)  # Field name made lowercase.
+    last_name = models.CharField(db_column='Last_name', max_length=45, blank=True)  # Field name made lowercase.
+    email_address = models.CharField(db_column='Email_address', max_length=45, blank=True)  # Field name made lowercase.
+    reserved = models.IntegerField(db_column='Reserved', blank=True, null=True)  # Field name made lowercase.
+    checkout_date = models.DateTimeField(db_column='Checkout_date', blank=True, null=True)  # Field name made lowercase.
+    return_date = models.DateTimeField(db_column='Return_date', blank=True, null=True)  # Field name made lowercase.
+    library_item_resource = models.ForeignKey('LibraryItem', db_column='LIBRARY_ITEM_RESOURCE_id')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -66,9 +67,9 @@ class LibraryItem(models.Model):
 
 
 class Online(models.Model):
-    url = models.CharField(db_column='Url', max_length=45)  # Field name made lowercase.
+    url = models.TextField(db_column='Url')  # Field name made lowercase.
     type = models.CharField(db_column='Type', max_length=45)  # Field name made lowercase.
-    resource = models.ForeignKey('Resource', db_column='RESOURCE_id')  # Field name made lowercase.
+    resource = models.ForeignKey('Resource', db_column='RESOURCE_id', primary_key=True)  # Field name made lowercase.
 
     class Meta:
         managed = False

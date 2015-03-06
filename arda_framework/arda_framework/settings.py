@@ -59,7 +59,7 @@ WSGI_APPLICATION = 'arda_framework.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mydb', #os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'arda_db', #os.path.join(BASE_DIR, 'db.sqlite3'),
         'USER': 'arda-admin',
 		'PASSWORD': 'ICannotRememberTheLastTimeI8',
     }
