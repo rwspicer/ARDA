@@ -155,7 +155,6 @@ DROP TABLE IF EXISTS `ONLINE`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ONLINE` (
-  `Url` text NOT NULL,
   `Type` varchar(45) NOT NULL,
   `RESOURCE_id` int(11) NOT NULL,
   PRIMARY KEY (`RESOURCE_id`),
@@ -188,6 +187,7 @@ CREATE TABLE `RESOURCE` (
   `Age_range` char(5) NOT NULL,
   `Description` text,
   `Category` varchar(100) NOT NULL,
+  `Url` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -212,6 +212,7 @@ CREATE TABLE `THERAPY` (
   `Location` varchar(100) DEFAULT NULL,
   `Insuarance_info` varchar(45) DEFAULT NULL,
   `RESOURCE_id` int(11) NOT NULL,
+  `Expertise` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`RESOURCE_id`),
   CONSTRAINT `fk_THERAPY_RESOURCE1` FOREIGN KEY (`RESOURCE_id`) REFERENCES `RESOURCE` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -235,4 +236,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-02 20:25:55
+-- Dump completed on 2015-03-06 21:40:51
