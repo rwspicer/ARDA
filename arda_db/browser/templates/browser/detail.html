@@ -1,0 +1,44 @@
+{{item.title}}<br>
+
+    {% if item.rlibrary.library %}
+<!-- 
+        Library #: 
+            <br> &nbsp; 
+            {{item.rlibrary.phys_id}}
+            <br>
+-->
+        Author: 
+            <br> &nbsp; 
+            {{item.rlibrary.author}}
+            <br>
+        type: 
+            <br> &nbsp;
+            {% if item.rlibrary.item_type == '0' %} book {% endif %}
+            {% if item.rlibrary.item_type == '1' %} dvd {% endif %}
+            {% if item.rlibrary.item_type == '2' %} cd {% endif %}
+            <br>
+        catagory: 
+            <br> &nbsp;
+            {% if item.rlibrary.catagory == '0' %} a: will be one of the asa librarys catagories {% endif %}
+            {% if item.rlibrary.catagory == '1' %} b: will be one of the asa librarys catagories {% endif %}
+            {% if item.rlibrary.catagory == '2' %} c: will be one of the asa librarys catagories {% endif %}
+            <br>
+        
+    {% endif %}
+    <!--TODO These need to be expanded-->
+    {% if item.ronline.online %}
+        an on line resource
+    {% endif %}
+    {% if item.rservice.service %}
+        a service
+    {% endif %}
+    <!--END TODO These need to be expanded-->
+    
+    description: 
+        <br> &nbsp;
+        {{item.description}}
+        <br>
+
+    
+
+

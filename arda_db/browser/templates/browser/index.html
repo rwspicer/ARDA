@@ -1,0 +1,9 @@
+{% if resource_list %}
+    <ul>
+    {% for resource in resource_list %}
+        <li><a href="/browser/{{ resource.r_id }}/">{{ resource.title }} </a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Resources Match Your Search.</p>
+{% endif %}
