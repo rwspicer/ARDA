@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+		<title>
+			{% block title %}
+			{% endblock %}
+		</title>
+   	</head>
+	
+	<body>
+       	<header>
+			<img src="{% static 'images/arda.png' %}" alt="logo">
+			Autism Resource Database Alaska
+		</header>
+
+		<ul class="header_links">
+			<li> <a href="{% url 'home' %}">Home</a> </li>
+			<li> <a href="{% url 'about' %}">About</a> </li>
+			<li> <a href="{% url 'contact' %}">Contact</a> </li>
+			<li> <a href="{% url 'faq' %}">FAQ</a></li>
+		</ul>
+		
+		{% block content %}
+		{% endblock %}  
+		
+		<footer>
+		</footer>
+		
+	</body>
+</html>

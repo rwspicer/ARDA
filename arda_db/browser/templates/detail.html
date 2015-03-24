@@ -1,3 +1,12 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block title %}
+detail page
+{% endblock %}
+
+{% block content %} 
+<h1> detail </h1>
 {{item.title}}<br>
 
     {% if item.rlibrary.library %}
@@ -7,9 +16,9 @@
             {{item.rlibrary.phys_id}}
             <br>
 -->
-        Author: 
+        <p>Author: </p>
             <br> &nbsp; 
-            {{item.rlibrary.author}}
+            <p>{{item.rlibrary.author}}</p>
             <br>
         type: 
             <br> &nbsp;
@@ -39,6 +48,6 @@
         {{item.description}}
         <br>
 
-    
 
 
+{% endblock %}
