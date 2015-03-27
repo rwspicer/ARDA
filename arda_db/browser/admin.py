@@ -1,12 +1,9 @@
 from django.contrib import admin
 from browser.models import Resource, Borower, RLibrary, ROnline, RService, SDemo, SBehaviour, SDisorder, SServices
+from django.contrib.auth.models import Group
 
-#~ # Register your models here.
-#~ admin.site.register(Resource)
-#~ class RType(admin.TabularInline):
-    #~ model = RLibrary
-    #~ extra = 1
-    #~ max_num = 1
+admin.site.unregister(Group)
+
     
 class Demo(admin.TabularInline):
     model = SDemo
