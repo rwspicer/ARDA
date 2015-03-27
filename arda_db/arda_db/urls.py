@@ -3,6 +3,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic import TemplateView
 
 from django.contrib import admin
+
+from browser import views
 #admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -11,8 +13,8 @@ urlpatterns = patterns('',
     url(r'^contact/$', TemplateView.as_view(template_name='contact.html'), name='contact'),
     url(r'^about/$', TemplateView.as_view(template_name='about.html'), name='about'),
     url(r'^faq/$', TemplateView.as_view(template_name='faq.html'), name='faq'),
-    url(r'^(?P<r_id>\d+)/$', TemplateView.as_view(template_name='detail.html'), name='detail'),
-
+    #~ url(r'^(?P<r_id>\d+)/$', TemplateView.as_view(template_name='detail.html'), name='detail'),
+    url(r'^(?P<r_id>\d+)/$', views.detail, name='detail'),
  
     url(r'^admin/', include(admin.site.urls)),
 )
