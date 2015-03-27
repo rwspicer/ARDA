@@ -29,16 +29,40 @@ class RLibrary(Resource):
     #~ Resource.r_type = 'library'#models.CharField(max_length=1, choices=(('0','library'),), default = '0')
     # TODO: list all the types
     types = (
-        ('0', 'book'),
-        ('1', 'dvd'),
-        ('2', 'cd')
+        ('0', 'Book'),
+        ('1', 'DVD'),
+        ('2', 'CD'),
+        ('3', 'VHS'),
+        ('4', 'Binder'),
+        ('5', 'Manual'),
+        ('6', 'Spiral Notebook'),
+        ('7', 'Package(Book, DVD, et. al.)'),
+        ('8', 'Cards'),
+        ('9', 'Book w/ CD'),
+        ('10', 'Activity Book'),
+        ('11', 'Kit'),
+        ('12', 'Various'),
+        ('13', 'Catalogue'),
+        ('14', 'Computer Game'),
+        ('15', 'Watch/Timer'),
+        
+        
+        
     )
     item_type = models.CharField(max_length=1, choices=types)
     # TODO: list all the catagories
     cats = (
-        ('0', 'a'),
-        ('1', 'b'),
-        ('2', 'c')
+        ('0', 'Sensory Integration'),
+        ('1', 'DVD/Software materials'),
+        ('2', 'Resources for Professionals & Parents'),
+        ('3', 'Couple Relationships'),
+        ('4', 'Resources for Teaching Children/School'),
+        ('5', 'Support for Siblings'),
+        ('6', 'Resources for Older Children, Teens & Adults'),
+        ('7', "Nonfiction/Novels/Children's Books"),
+        ('8', 'Binder/Folder Resources'),
+        ('9', 'FASD'),
+
     )
     catagory = models.CharField(max_length=1, choices=cats)
     # is this needed here
