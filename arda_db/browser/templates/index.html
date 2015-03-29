@@ -1,22 +1,19 @@
 {% extends 'layouts/base.html' %}
 
-
 {% block title %}
 ARDA Autism Resource Database
 {% endblock %}
 
-{% block content %} 
-<h1> Homepage </h1>
-
-{% if resource_list %}
-    <ul>
-    {% for resource in resource_list %}
-    <a href="{{ resource.r_id }}/">{{ resource.title }} </a><br>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No Resources Match Your Search.</p>
-{% endif %}
-
+{% block content %}
+	<h1> Homepage </h1>
+	{% if resource_list %}
+	<ul>
+		{% for resource in resource_list %}
+			<a href="{{ resource.r_id }}/">{{ resource.title }} </a><br>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<p>No Resources Match Your Search.</p>
+	{% endif %}
 
 {% endblock %}

@@ -1,52 +1,134 @@
-/*body {
+body {
     width: 100%;
     height: 100%;
-    margin-left: 0px;
-    margin-top: 0px;
-    border-style: solid;
-    border-top-width: 12px;
-    border-top-color: #207cca;
+    margin: 0;
     font-family: Arial, Verdana, sans-serif;
-	color: #111111;
-
-}*/
-
-body {
-    width: 900px;
-    margin: 10px auto 10px auto;
-    border: solid 2px #ADADAD; 
-    background-color: #EEE;
+	color: #111;
 }
+
+/* Beginning of header contents */
 
 header {
-    height: 70px;
+	margin: 0px;
+	padding: 0px;
+    height: 80px;
     background-color: #207cca;
     box-shadow: 0px 8px 10px #888888;
-    font-family: Impact, Arial, sans-serif;
-    color: white;
-    font-size: 48px;
-    display: block;
+
 }
 
+header h1 {
+	margin: 0;
+	padding-top: 7px;
+	font-size: 45px;
+	font-family: Impact, Arial, sans-serif;
+	color: white;
+	overflow: hidden;
+	white-space: nowrap;
+}
 
 header img {
-    width: 100px;
-    height: 60px;
+	height: 70px;
+	width: 100px;
+	float: left;
+	padding: 10px 10px 0px 5px;
+	
+}
+
+/* End of header contents */
+
+#searchbar {
+	padding-top: 13px;
+	padding-left: 8px;
+}
+
+/* Beginning of header links */
+
+.header_links {
+	margin: 0;
+	padding-top: 13px;
+	padding-right: 8px;
 }
 
 
 ul.header_links {
     color: black;
-    padding: 0;
     list-style: none;
-    padding: 0px 0px 10px 650px;
+	float: right;
 }
+
+/*End of header links*/
 
 ul.header_links li {
    float: left;
    display: inline-block;
    padding: 0px 5px;
 }
+
+#wrapper {
+	background-color: #EEE;
+	border: solid 2px #ADADAD;
+	margin-top: 15px;
+}
+
+
+
+/* Beginning of sidebar content styling */
+#sidebar {
+	width: 240px;
+	float: left;
+	padding-left: 8px;
+	padding-right: 8px;
+	margin-top: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+/* End of sidebar */
+
+
+
+/* Beginning of main content*/
+
+main {
+	margin-left: 250px;
+	padding: 5px;
+	background-color: #FFFFFF;
+	min-height: 600px;
+}
+
+main p {
+	font-size:12px;
+	font-family: Helvetica, sans-serif;
+	color: #555555;
+}
+
+main h2 {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #333333;
+}
+
+main h3 {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #333333;
+}
+
+.overview_heading {
+	font-weight:bold;
+}
+
+main img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 10px;
+}
+
+
+footer {
+	text-align: center;
+}
+
+/* End of main content */
+
 
 
 

@@ -153,13 +153,13 @@ class SDisorder(models.Model):
     asd = models.BooleanField(default=False,
                             verbose_name= "Autism Spectrum Disorder")
     fas = models.BooleanField(default=False,
-                            verbose_name= "Fetal Alchol Syndrome")
+                            verbose_name= "Fetal Alcohol Syndrome")
     pdd = models.BooleanField(default=False,
-                            verbose_name= "Pervasive Devlopmental Disorder")
+                            verbose_name= "Pervasive Developmental Disorder")
     aspergers = models.BooleanField(default=False,
                             verbose_name= "Aspergers Syndrome")
     cdd = models.BooleanField(default=False,
-                            verbose_name= "Cognative Devlpoment Disorder")
+                            verbose_name= "Cognative Develpoment Disorder")
     
     class Meta:
         verbose_name = "Disorders"

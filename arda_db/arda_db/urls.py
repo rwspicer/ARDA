@@ -13,9 +13,13 @@ urlpatterns = patterns('',
     url(r'^contact/$', TemplateView.as_view(template_name='contact.html'), name='contact'),
     url(r'^about/$', TemplateView.as_view(template_name='about.html'), name='about'),
     url(r'^faq/$', TemplateView.as_view(template_name='faq.html'), name='faq'),
-    #~ url(r'^(?P<r_id>\d+)/$', TemplateView.as_view(template_name='detail.html'), name='detail'),
+    url(r'^results/$', TemplateView.as_view(template_name='results.html'), name='results'),
+
     url(r'^(?P<r_id>\d+)/$', views.detail, name='detail'),
- 
+    
+    (r'^search/$', views.search),
+    (r'^result/$', views.result),
+    
     url(r'^admin/', include(admin.site.urls)),
 )
 

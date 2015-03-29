@@ -51,6 +51,12 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader'
+)
+
+
 ROOT_URLCONF = 'arda_db.urls'
 
 WSGI_APPLICATION = 'arda_db.wsgi.application'
@@ -67,8 +73,6 @@ DATABASES = {
 		'PASSWORD': 'ICannotRememberTheLastTimeI8',
     }
 }
-
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
