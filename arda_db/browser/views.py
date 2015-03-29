@@ -71,6 +71,7 @@ def result(request):
     
     #Removing duplicates -- mysql doesn't support distinct()
     # values_list('shared_note', flat=True).distinct()
+    resource_list = list(set(resource_list))
     
     # qs.values_list('title', flat=True).distinct()
         

@@ -29,7 +29,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+ 
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',

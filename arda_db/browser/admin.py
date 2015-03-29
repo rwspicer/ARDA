@@ -1,5 +1,5 @@
 from django.contrib import admin
-from browser.models import Resource, Borower, RLibrary, ROnline, RService, SDemo, SBehaviour, SDisorder, SServices
+from browser.models import Resource, Borower, RLibrary, ROnline, RService, SDemo, SBehaviour, SDisorder, SServices, SAdditional
 from django.contrib.auth.models import Group
 
 admin.site.unregister(Group)
@@ -21,6 +21,10 @@ class Service(admin.TabularInline):
     model = SServices
     max_num = 1
 
+class Additional(admin.TabularInline):
+    model = SAdditional
+    max_num = 1
+
 class BorowerClass(admin.TabularInline):
     model = Borower
     
@@ -29,8 +33,7 @@ class BorowerClass(admin.TabularInline):
 
 
 class LibraryAdmin(admin.ModelAdmin):
-    inlines = [BorowerClass ,Demo, Behaviour, Disorder]
-    list_filter = ['phys_id']
+    inlines = [BorowerClass ,Demo, Behaviour, Disorder, Additional]
     search_fields = ['title','catagory']
     list_filter = ['catagory', 'item_type']
     list_display = ('title', 'phys_id')
@@ -42,14 +45,20 @@ class LibraryAdmin(admin.ModelAdmin):
     ]
     
 class OnlineAdmin(admin.ModelAdmin):
-    inlines = [Demo, Behaviour, Disorder]
+    inlines = [Demo, Behaviour, Disorder, Additional]
+    search_fields = ['title','catagory']
+    list_filter = ['otype', ]
+    list_display = ('title',)
     fieldsets = [
         (None, 			{'fields': ['title','otype','date','url']}),
         (None,          {'fields': ['description']}),
     ]
 
 class ServiceAdmin(admin.ModelAdmin):
-    inlines = [Service, Demo, Behaviour, Disorder]
+    inlines = [Service, Demo, Behaviour, Disorder, Additional]
+    search_fields = ['title']
+    #~ list_filter = ['otype', ]
+    list_display = ('title',)
     fieldsets = [
         (None, 			{'fields': ['title','phone','email','address']}),
         (None,          {'fields': ['description']}),
@@ -57,6 +66,7 @@ class ServiceAdmin(admin.ModelAdmin):
         #~ (None,          {'fields': ['item_type','catagory']}),
     ]
     
+
 
 admin.site.register(RLibrary, LibraryAdmin)
 admin.site.register(ROnline, OnlineAdmin)

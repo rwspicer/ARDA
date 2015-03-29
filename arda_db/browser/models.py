@@ -101,7 +101,7 @@ class ROnline(Resource):
         ('1', 'article'),
         ('2', 'web site')
     )
-    otype = models.CharField(max_length = 1, choices=types)
+    otype = models.CharField(max_length = 1, choices=types, verbose_name ="type")
     date = models.DateField()
     url = models.TextField(blank=True)
     online = True
@@ -176,3 +176,25 @@ class SServices(models.Model):
     
     class Meta:
         verbose_name = "Service Features"
+
+#~ ('2', 'Resources for Professionals & Parents'),
+        #~ ('3', 'Couple Relationships'),
+        #~ ('4', 'Resources for Teaching Children/School'),
+        #~ ('5', 'Support for Siblings'),
+        #~ ('6', 'Resources for Older Children, Teens & Adults'),
+
+class SAdditional(models.Model):
+    resource = models.ForeignKey(Resource)
+    parents = models.BooleanField(default = False, 
+                                verbose_name = "For Parents & Professionals")
+    relationships = models.BooleanField(default = False, 
+                                verbose_name = "Relationships")
+    teachers = models.BooleanField(default = False, 
+                                verbose_name = "For Teachers")
+    sibilings = models.BooleanField(default = False, 
+                                verbose_name = "For Siblings")
+    teens = models.BooleanField(default = False, 
+                                verbose_name = "For Teens/Young Adults")
+ 
+    class Meta:
+        verbose_name = "Additional Search optiions"
