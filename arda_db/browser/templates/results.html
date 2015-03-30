@@ -15,7 +15,7 @@ Search Results Page
 {% if content %}
     <p>Found {{ content|length }} Resource{{ content|pluralize }}.</p>
 	{% for resource in content %}
-	<a href="../{{ resource.r_id }}/">{{ resource.title }} {{resource.description}} </a><br>
+	<a href="../{{ resource.r_id }}/">{{ resource.title }}</a> <br> &nbsp; {{resource.description}} <br>
 	{% endfor %}
 {% else %}
     <p>No resources matched your search criteria.</p>

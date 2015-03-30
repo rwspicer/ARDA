@@ -11,6 +11,9 @@ RESOURCE_TYPES = (
 
 
 class Resource(models.Model):
+    """
+        Base Resource model, so that all types have a common numbering system
+    """
     #~ r_type = 'none'
     r_id = models.AutoField(primary_key = True)
     #~ r_type = 'none'#models.CharField(max_length=1, choices=RESOURCE_TYPES)
@@ -24,6 +27,9 @@ class Resource(models.Model):
 
 
 class RLibrary(Resource):
+    """
+        Library item database model
+    """
     phys_id = models.IntegerField(null=True)
     author = models.CharField(max_length = 30)
     #~ Resource.r_type = 'library'#models.CharField(max_length=1, choices=(('0','library'),), default = '0')
@@ -45,9 +51,6 @@ class RLibrary(Resource):
         ('13', 'Catalogue'),
         ('14', 'Computer Game'),
         ('15', 'Watch/Timer'),
-        
-        
-        
     )
     item_type = models.CharField(max_length=1, choices=types)
     # TODO: list all the catagories
@@ -78,6 +81,9 @@ class RLibrary(Resource):
     
 
 class Borower(models.Model):
+    """
+        borrower database model
+    """
     types= (
         ('0', 'available'),
         ('1', 'reservered'),
