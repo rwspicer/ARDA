@@ -785,15 +785,20 @@ table#change-history tbody th {
 /* HEADER */
 
 #header {
-  margin: 0px;
+    margin: 0px;
 	padding: 0px;
     height: 80px;
     background-color: #207cca;
     box-shadow: 0px 8px 10px #888888;
+    
 }
 
 #header a:link, #header a:visited {
     color: #fff;
+/*
+     float: right;
+*/
+
 }
 
 #header a:hover {
@@ -804,19 +809,39 @@ table#change-history tbody th {
     float: left;
 }
 #branding h1 {
+/*
     padding: 0 10px;
     font-size: 18px;
     margin: 8px 0;
     font-weight: normal;
+*/
+    margin: 0;
+	padding-top: 7px;
+	font-size: 45px;
+	font-family: Impact, Arial, sans-serif;
+	color: white;
+/*
+	overflow: hidden;
+*/
+	white-space: nowrap;
 }
 
+#branding img {
+	height: 70px;
+	width: 100px;
+	float: left;
+	padding: 10px 10px 0px 5px;
+	
+}
+/*
 #branding h1, #branding h1 a:link, #branding h1 a:visited {
     color: #f4f379;
 }
+*/
 
 #branding h2 {
     padding: 0 10px;
-    font-size: 14px;
+    font-size: px;
     margin: -8px 0 8px 0;
     font-weight: normal;
     color: #ffc;

@@ -1,9 +1,10 @@
 {% extends "admin/base.html" %}
-
+{% load i18n admin_static %}
 {% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
 
 {% block branding %}
-<h1 id="site-name"><a href="{% url 'admin:index' %}">ARDA Admin</a></h1>
+<img src="{% static 'images/arda.png' %}" alt="logo">
+<h1 id="site-name"><a href="{% url 'admin:index' %}">ARDA Admin Site</a></h1>
 {% endblock %}
 
 {% block nav-global %}{% endblock %}

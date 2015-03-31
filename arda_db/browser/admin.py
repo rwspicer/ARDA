@@ -35,8 +35,8 @@ class BorowerClass(admin.TabularInline):
 class LibraryAdmin(admin.ModelAdmin):
     inlines = [BorowerClass ,Demo, Behaviour, Disorder, Additional]
     search_fields = ['title','catagory']
-    list_filter = ['catagory', 'item_type']
-    list_display = ('title', 'phys_id')
+    list_filter = ['borower__status', 'catagory', 'item_type', ]
+    list_display = ('title', 'phys_id', )
     fieldsets = [
         (None, 			{'fields': ['title','author','phys_id','item_type','catagory']}),
         (None,          {'fields': ['description']}),
@@ -57,7 +57,7 @@ class OnlineAdmin(admin.ModelAdmin):
 class ServiceAdmin(admin.ModelAdmin):
     inlines = [Service, Demo, Behaviour, Disorder, Additional]
     search_fields = ['title']
-    #~ list_filter = ['otype', ]
+    #~ list_filter = ['sservices', ]
     list_display = ('title',)
     fieldsets = [
         (None, 			{'fields': ['title','phone','email','address']}),

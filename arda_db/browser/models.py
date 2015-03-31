@@ -17,7 +17,7 @@ class Resource(models.Model):
     #~ r_type = 'none'
     r_id = models.AutoField(primary_key = True)
     #~ r_type = 'none'#models.CharField(max_length=1, choices=RESOURCE_TYPES)
-    title = models.CharField(max_length = 30, default='title')
+    title = models.CharField(max_length = 90, default='title')
     description = models.TextField(blank=True)
     
     def __unicode__(self):
@@ -31,7 +31,7 @@ class RLibrary(Resource):
         Library item database model
     """
     phys_id = models.IntegerField(null=True)
-    author = models.CharField(max_length = 30)
+    author = models.CharField(max_length = 60)
     #~ Resource.r_type = 'library'#models.CharField(max_length=1, choices=(('0','library'),), default = '0')
     # TODO: list all the types
     types = (
@@ -45,12 +45,12 @@ class RLibrary(Resource):
         ('7', 'Package(Book, DVD, et. al.)'),
         ('8', 'Cards'),
         ('9', 'Book w/ CD'),
-        ('10', 'Activity Book'),
-        ('11', 'Kit'),
-        ('12', 'Various'),
-        ('13', 'Catalogue'),
-        ('14', 'Computer Game'),
-        ('15', 'Watch/Timer'),
+        ('a', 'Activity Book'),
+        ('b', 'Kit'),
+        ('c', 'Various'),
+        ('d', 'Catalogue'),
+        ('e', 'Computer Game'),
+        ('f', 'Watch/Timer'),
     )
     item_type = models.CharField(max_length=1, choices=types)
     # TODO: list all the catagories
@@ -62,6 +62,7 @@ class RLibrary(Resource):
         ('4', 'Resources for Teaching Children/School'),
         ('5', 'Support for Siblings'),
         ('6', 'Resources for Older Children, Teens & Adults'),
+        ('a', 'Behavior'),
         ('7', "Nonfiction/Novels/Children's Books"),
         ('8', 'Binder/Folder Resources'),
         ('9', 'FASD'),
