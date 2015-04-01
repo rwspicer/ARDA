@@ -9,7 +9,7 @@ detail page
 	<h1> detail </h1>
 	{{item.title}}<br>
 	
-	{% if item.rlibrary.library %}
+	{% if item.rlibrary %}
 		<!-- 
 		Library #: 
 		<br> &nbsp; 
@@ -35,10 +35,10 @@ detail page
 		<br>        
 	{% endif %}
 	<!--TODO These need to be expanded-->
-	{% if item.ronline.online %}
+	{% if item.ronline %}
 		an on line resource
 	{% endif %}
-	{% if item.rservice.service %}
+	{% if item.rservice %}
 		a service
 	{% endif %}
 	<!--END TODO These need to be expanded-->
