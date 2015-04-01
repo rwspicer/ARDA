@@ -37,6 +37,7 @@ class LibraryAdmin(admin.ModelAdmin):
     search_fields = ['title','catagory']
     list_filter = ['borower__status', 'catagory', 'item_type', ]
     list_display = ('title', 'phys_id', )
+    ordering       = ('phys_id',)
     fieldsets = [
         (None, 			{'fields': ['title','author','phys_id','item_type','catagory']}),
         (None,          {'fields': ['description']}),
