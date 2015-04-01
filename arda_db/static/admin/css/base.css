@@ -815,10 +815,12 @@ table#change-history tbody th {
     margin: 8px 0;
     font-weight: normal;
 */
+/*
     margin: 0;
-	padding-top: 7px;
+*/
+	margin-top: 10px;
 	font-size: 45px;
-	font-family: Impact, Arial, sans-serif;
+	font-family:  Arial, sans-serif;
 	color: white;
 /*
 	overflow: hidden;
