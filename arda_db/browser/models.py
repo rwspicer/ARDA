@@ -61,13 +61,23 @@ class RLibrary(Resource):
         ('9', 'FASD'),
     )
     catagory = models.CharField(max_length=1, choices=cats)
-    # is this needed here
-    #~ status = (
-        #~ ('0', 'available'),
-        #~ ('1', 'reserved'),
-        #~ ('2', 'out')
-    #~ )
-    #~ availablity = models.CharField(max_length=1, choices=status)
+    types= (
+        ('0', 'available'),
+        ('1', 'reservered'),
+        ('2', 'checked out'),
+    )
+    status = models.CharField(max_length=1, choices=types, default="0")
+    borrower_name = models.CharField(max_length = 60, blank=True)
+    phone = models.CharField(max_length = 10, blank=True)
+    email = models.CharField(max_length = 50, blank=True)
+    checkout_date = models.DateField(blank=True, null=True)
+    return_date = models.DateField(blank=True, null=True)
+    
+    def clean(self):
+        if self.status == '0':
+            #~ self.checkout_date = self.return_date = ""
+            self.email = self.phone = self.borrower_name = "" 
+        
     class Meta:
         verbose_name ='library item'
     

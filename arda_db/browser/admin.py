@@ -33,14 +33,23 @@ class BorowerClass(admin.TabularInline):
 
 
 class LibraryAdmin(admin.ModelAdmin):
-    inlines = [BorowerClass ,Demo, Behaviour, Disorder, Additional]
+    inlines = [Demo, Behaviour, Disorder, Additional]
     search_fields = ['title','catagory']
-    list_filter = ['borower__status', 'catagory', 'item_type', ]
-    list_display = ('title', 'phys_id', )
+    list_filter = ['status', 'catagory', 'item_type', ]
+    list_display = ('title', 'phys_id', 'status' )
     ordering       = ('phys_id',)
     fieldsets = [
-        (None, 			{'fields': ['title','author','phys_id','item_type','catagory']}),
+        (None, 			{'fields': ['title','author','phys_id','item_type'
+                                                                ,'catagory']}),
         (None,          {'fields': ['description']}),
+        ("Borower Info",       {'classes': ('collapse', 'open'),
+                                'fields': ['status', 
+                                           'email', 
+                                           'phone', 
+                                           'checkout_date', 
+                                           'return_date',]
+                                }
+        ),
         #~ (None,          {'fields': ['r_type']}),
         #~ (None,          {'fields': ['item_type','catagory']}),
     ]
