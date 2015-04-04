@@ -15,7 +15,7 @@ class Resource(models.Model):
     r_id = models.AutoField(primary_key = True)
     title = models.CharField(max_length = 90, default='')
     description = models.TextField(blank=True)
-    
+    homepage = models.BooleanField(default=False)
     def __unicode__(self):
         return self.title
 
@@ -207,6 +207,7 @@ class SBehaviour(models.Model):
     meltdown = models.BooleanField(default=False)
     anxiety = models.BooleanField(default=False)
     change = models.BooleanField(default=False)
+    nutrition = models.BooleanField(default=False)
     class Meta:
         verbose_name_plural = verbose_name = "Behaviors"
 
