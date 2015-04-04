@@ -34,55 +34,99 @@
 -->
         </div>
 		<div id="sidebar">
-			<form action="/result/" method="get">
-				<p> Demographics </p>
-				<input type="checkbox" name="male" value="selected" id="g_male" />
-				<label for="g_male">male</label><br>
-				<input type="checkbox" name="female" value="selected" id="g_female" />
-				<label for="g_female">female</label><br>
-				<input type="checkbox" name="age1-3" value="selected" id="age1-3" />
-				<label for="age1-3">Age 1-3</label><br>
-				<input type="checkbox" name="age3-18" value="selected" id="age3-18" />
-				<label for="age3-18">Age 3-18</label><br>
-				<input type="checkbox" name="age18+" value="selected" id="age18+" />
-				<label for="age18+">Age 18+</label><br>
-				<p> Disorders </p>
-				<input type="checkbox" name="Autism Spectrum Disorder" value="selected" id="asd" />
-				<label for="Austism Spectrum Disorder">Autism Spectrum</label> <br>
-				<input type="checkbox" name="Fetal Alcohol Syndrome" value="selected" id="fas" />
-				<label for="fas">Fetal Alcohol</label><br>
-				<input type="checkbox" name="Pervasive Developement Disorder" value="selected" id="pdd" />
-				<label for="pdd">Pervasive Development</label><br>
-				<input type="checkbox" name="Aspergers Syndrome" value="selected" id="aspergers" />
-				<label for="aspergers">Aspergers Syndrome</label><br>
-				<input type="checkbox" name="Cognative Development Disorder" value="selected" id="cdd" />
-				<label for="cdd">Cognative Development</label><br>
-				<p> Behaviors </p>
-				<input type="checkbox" name="sleep" value="selected" id="sleep" />
-				<label for="sleep">Sleep</label><br>
-				<input type="checkbox" name="safety home" value="selected" id="safety_home" />
-				<label for="safety_home">Safety Home</label><br>
-				<input type="checkbox" name="safety public" value="selected" id="safety_public" />
-				<label for="safety_public">Safety Public</label><br>
-				<input type="checkbox" name="safety travel" value="selected" id="safety_travel" />
-				<label for="safety_travel">Safety Travel</label><br>
-				<input type="checkbox" name="repetition" value="selected" id="repetition" />
-				<label for="repetition">Repitition </label><br>
-				<input type="checkbox" name="aggression" value="selected" id="aggression" />
-				<label for="aggression">Aggression</label><br>
-				<input type="checkbox" name="communication" value="selected" id="communication" />
-				<label for="communication">Communication</label><br>
-				<input type="checkbox" name="nonverbal" value="selected" id="nonverbal" />
-				<label for="nonverbal">Nonverbal</label><br>
-				<input type="checkbox" name="sensory" value="selected" id="sensory" />
-				<label for="sensory">Sensory</label><br>
-				<input type="checkbox" name="meltdown" value="selected" id="meltdown" />
-				<label for="meltdown">Meltdown</label><br>
-				<input type="checkbox" name="anxiety" value="selected" id="anxiety" />
-				<label for="anxiety">Anxiety</label><br>
-				<input type="checkbox" name="change" value="selected" id="change" />
-				<label for="change">Change</label><br><br>
-		
+			<form action="/result/" method="get">	
+			    <label class="collapse" for="_demographics">Demographics</label>
+			    <input id="_demographics" type="checkbox">
+				<div>
+					<input type="checkbox" name="male" value="selected" id="g_male" />
+					<label for="g_male">male</label><br>
+					<input type="checkbox" name="female" value="selected" id="g_female" />
+					<label for="g_female">female</label><br>
+					<input type="checkbox" name="age1-3" value="selected" id="age1-3" />
+					<label for="age1-3">Age 1-3</label><br>
+					<input type="checkbox" name="age3-18" value="selected" id="age3-18" />
+					<label for="age3-18">Age 3-18</label><br>
+					<input type="checkbox" name="age18+" value="selected" id="age18+" />
+					<label for="age18+">Age 18+</label><br>
+				</div>
+				
+			    <label class="collapse" for="_disorders">Disorders</label>
+			    <input id="_disorders" type="checkbox">
+				<div>
+					<input type="checkbox" name="Autism Spectrum Disorder" value="selected" id="asd" />
+					<label for="Austism Spectrum Disorder">Autism Spectrum</label> <br>
+					<input type="checkbox" name="Fetal Alcohol Syndrome" value="selected" id="fas" />
+					<label for="fas">Fetal Alcohol</label><br>
+					<input type="checkbox" name="Pervasive Developement Disorder" value="selected" id="pdd" />
+					<label for="pdd">Pervasive Development</label><br>
+					<input type="checkbox" name="Aspergers Syndrome" value="selected" id="aspergers" />
+					<label for="aspergers">Aspergers Syndrome</label><br>
+					<input type="checkbox" name="Cognative Development Disorder" value="selected" id="cdd" />
+					<label for="cdd">Cognative Development</label><br>
+				</div>
+				
+			    <label class="collapse" for="_behaviors">Behaviors</label>
+			    <input id="_behaviors" type="checkbox">
+				<div>
+					<input type="checkbox" name="sleep" value="selected" id="sleep" />
+					<label for="sleep">Sleep</label><br>
+					<input type="checkbox" name="safety home" value="selected" id="safety_home" />
+					<label for="safety_home">Safety Home</label><br>
+					<input type="checkbox" name="safety public" value="selected" id="safety_public" />
+					<label for="safety_public">Safety Public</label><br>
+					<input type="checkbox" name="safety travel" value="selected" id="safety_travel" />
+					<label for="safety_travel">Safety Travel</label><br>
+					<input type="checkbox" name="repetition" value="selected" id="repetition" />
+					<label for="repetition">Repitition </label><br>
+					<input type="checkbox" name="aggression" value="selected" id="aggression" />
+					<label for="aggression">Aggression</label><br>
+					<input type="checkbox" name="communication" value="selected" id="communication" />
+					<label for="communication">Communication</label><br>
+					<input type="checkbox" name="nonverbal" value="selected" id="nonverbal" />
+					<label for="nonverbal">Nonverbal</label><br>
+					<input type="checkbox" name="sensory" value="selected" id="sensory" />
+					<label for="sensory">Sensory</label><br>
+					<input type="checkbox" name="meltdown" value="selected" id="meltdown" />
+					<label for="meltdown">Meltdown</label><br>
+					<input type="checkbox" name="anxiety" value="selected" id="anxiety" />
+					<label for="anxiety">Anxiety</label><br>
+					<input type="checkbox" name="change" value="selected" id="change" />
+					<label for="change">Change</label><br><br>
+				</div>
+				
+			    <label class="collapse" for="_services">Services</label>
+			    <input id="_services" type="checkbox">
+				<div>
+					<input type="checkbox" name="diagnostic" value="selected" id="diagnostic" />
+					<label for="diagnostic">Diagnostic</label><br>
+					<input type="checkbox" name="resource" value="selected" id="resource" />
+					<label for="resource">Resource</label><br>
+					<input type="checkbox" name="therapy" value="selected" id="therapy" />
+					<label for="therapy">Therapy</label><br>
+					<input type="checkbox" name="educational" value="selected" id="educational" />
+					<label for="educational">Educational</label><br>
+					<input type="checkbox" name="referral" value="selected" id="referral" />
+					<label for="referral">Referral</label><br>
+					<input type="checkbox" name="legal" value="selected" id="legal" />
+					<label for="legal">Legal</label><br>
+				</div>
+				
+			    <label class="collapse" for="_additional">Additional</label>
+			    <input id="_additional" type="checkbox">
+				<div>
+					<input type="checkbox" name="parents" value="selected" id="parents" />
+					<label for="parents">Parents</label><br>
+					<input type="checkbox" name="relationships" value="selected" id="relationships" />
+					<label for="relationships">Relationships</label><br>
+					<input type="checkbox" name="teachers" value="selected" id="teachers" />
+					<label for="teachers">Teachers</label><br>
+					<input type="checkbox" name="siblings" value="selected" id="siblings" />
+					<label for="siblings">Siblings</label><br>
+					<input type="checkbox" name="teens" value="selected" id="teens" />
+					<label for="teens">Teen</label><br>
+				</div>
+				<br>
+				
 				<input type="submit" value="Submit" />
 		
 			</form>
@@ -101,7 +145,7 @@
 		</div> <!-- closing wrapper tag -->
 		
 		<footer>
-			<a href="{% url 'admin:index' %}">admin login</a>
+			<!-- <a href="{% url 'admin:index' %}">admin login</a> -->
 		</footer>
 		
 	</body>

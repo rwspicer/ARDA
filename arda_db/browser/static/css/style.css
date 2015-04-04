@@ -58,18 +58,19 @@ ul.header_links {
 	float: right;
 }
 
-/*End of header links*/
-
 ul.header_links li {
    float: left;
    display: inline-block;
    padding: 0px 5px;
 }
 
+/*End of header links*/
+
 #wrapper {
 	background-color: #EEE;
-	border: solid 2px #ADADAD;
+	border-top: solid 2px #ADADAD;
 	margin-top: 15px;
+	min-height: 100%;
 }
 
 
@@ -80,12 +81,46 @@ ul.header_links li {
 	float: left;
 	padding-left: 8px;
 	padding-right: 8px;
-	margin-top: 10px;
+	margin-top: 30px;
 	font-family: Arial, Helvetica, sans-serif;
+	
+	/* Static scrollable sidebar */
+	/* Problems arise when page exceeds window height */
+/*	
+	position: fixed;
+    top: 100px;
+    bottom: 0;
+    overflow: scroll;
+*/
+	
 }
+
+
 /* End of sidebar */
 
+/* Beginning of collapse  */
 
+.collapse{
+  font-size: 18px;
+  display:block;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.collapse + input{
+  display:none;
+}
+.collapse + input + *{
+  display:none;
+}
+.collapse + input:checked + *{
+  display:block;
+}
+
+.collapse:hover{
+	color: #207cca;
+}
+
+/* End of collapse  */
 
 /* Beginning of main content*/
 
@@ -93,7 +128,7 @@ main {
 	margin-left: 250px;
 	padding: 5px;
 	background-color: #FFFFFF;
-	min-height: 800px;
+	min-height: 900px;
 }
 
 main p {
@@ -123,12 +158,13 @@ main img {
 	padding-bottom: 10px;
 }
 
+/* End of main content */
 
 footer {
 	text-align: center;
 }
 
-/* End of main content */
+
 
 
 

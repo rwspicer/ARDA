@@ -68,6 +68,30 @@ def result(request):
         resource_list.extend(list(Resource.objects.filter(sbehaviour__anxiety = True)))
     if 'change' in request.GET:
         resource_list.extend(list(Resource.objects.filter(sbehaviour__change = True)))
+    if 'diagnostic' in request.GET:
+        resource_list.extend(list(Resource.objects.filter(sservices__diagnostic = True)))
+    if 'resource' in request.GET:
+        resource_list.extend(list(Resource.objects.filter(sservices__resource = True)))
+    if 'therapy' in request.GET:
+        resource_list.extend(list(Resource.objects.filter(sservices__therapy = True)))
+    if 'educational' in request.GET:
+        resource_list.extend(list(Resource.objects.filter(sservices__educational = True)))
+    if 'referral' in request.GET:
+        resource_list.extend(list(Resource.objects.filter(sservices__referral = True)))
+    if 'legal' in request.GET:
+        resource_list.extend(list(Resource.objects.filter(sservices__legal = True)))
+    if 'city' in request.GET:
+        resource_list.extend(list(Resource.objects.filter(sservices__city = True)))
+    if 'parents' in request.GET:
+        resource_list.extend(list(Resource.objects.filter(sadditional__parents = True)))
+    if 'relationships' in request.GET:
+        resource_list.extend(list(Resource.objects.filter(sadditional__relationships = True)))
+    if 'teachers' in request.GET:
+        resource_list.extend(list(Resource.objects.filter(sadditional__teachers = True)))
+    if 'siblings' in request.GET:
+        resource_list.extend(list(Resource.objects.filter(sadditional__sibilings = True)))
+    if 'teens' in request.GET:
+        resource_list.extend(list(Resource.objects.filter(sadditional__teens = True)))
     
     #Removing duplicates -- mysql doesn't support distinct()
     # values_list('shared_note', flat=True).distinct()
