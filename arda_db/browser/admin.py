@@ -43,7 +43,8 @@ class LibraryAdmin(admin.ModelAdmin):
                                                                 ,'catagory']}),
         (None,          {'fields': ['description']}),
         ("Borower Info",       {'classes': ('collapse', 'open'),
-                                'fields': ['status', 
+                                'fields': ['status',
+                                           'borrower_name',
                                            'email', 
                                            'phone', 
                                            'checkout_date', 
@@ -70,7 +71,7 @@ class ServiceAdmin(admin.ModelAdmin):
     #~ list_filter = ['sservices', ]
     list_display = ('title',)
     fieldsets = [
-        (None, 			{'fields': ['title','phone','email','address']}),
+        (None, 			{'fields': ['title','phone','email','address','url']}),
         (None,          {'fields': ['description']}),
         #~ (None,          {'fields': ['r_type']}),
         #~ (None,          {'fields': ['item_type','catagory']}),

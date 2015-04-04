@@ -61,22 +61,62 @@ class RLibrary(Resource):
         ('9', 'FASD'),
     )
     catagory = models.CharField(max_length=1, choices=cats)
-    types= (
+    status = (
         ('0', 'available'),
         ('1', 'reservered'),
         ('2', 'checked out'),
     )
-    status = models.CharField(max_length=1, choices=types, default="0")
-    borrower_name = models.CharField(max_length = 60, blank=True)
+    status = models.CharField(max_length=1, choices=status, default="0")
+    borrower_name = models.CharField(max_length = 60, blank=True, verbose_name = 'name')
     phone = models.CharField(max_length = 10, blank=True)
     email = models.CharField(max_length = 50, blank=True)
-    checkout_date = models.DateField(blank=True, null=True)
-    return_date = models.DateField(blank=True, null=True)
+    
+    
+    checkout_date = models.DateTimeField(blank=True, null=True, verbose_name = "reserved until/check out appointment")
+    return_date = models.DateTimeField(blank=True, null=True, verbose_name = "return appointment")
     
     def clean(self):
         if self.status == '0':
             #~ self.checkout_date = self.return_date = ""
             self.email = self.phone = self.borrower_name = "" 
+        if self.status == '1':
+            # check for name & contact
+            self.email_ar() # start up the admin reminder email thread
+            if not self.email == "":
+                self.email_cr()
+        if self.status == '2':
+            # check for name & contact
+            self.email_aco() # start up the admin reminder email thread
+            if not self.email == "":
+                self.email_cco()
+            
+    def email_cr(self):
+        print "sending client resevered email"
+        # send email (prehaps write an email thread)
+        # claculete time to a date before & sleep
+        # send email
+        # end thread
+        
+    def email_ar(self):
+        print "sending admin resevered email"
+        # send email
+        # claculete time to a date before & sleep
+        # send email
+        # end thread
+        
+    def email_cco(self):
+        print "sending client check out email"
+        # send email
+        # claculete time to a date before & sleep
+        # send email
+        # end thread
+        
+    def email_aco(self):
+        print "sending admin check out email"
+        # send email
+        # claculete time to a date before & sleep
+        # send email
+        # end thread
         
     class Meta:
         verbose_name ='library item'
