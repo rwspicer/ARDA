@@ -21,7 +21,7 @@ header h1 {
 	margin: 0;
 	padding-top: 7px;
 	font-size: 45px;
-	font-family: Impact, Arial, sans-serif;
+	font-family: Arial, sans-serif, Impact;
 	color: white;
 	overflow: hidden;
 	white-space: nowrap;

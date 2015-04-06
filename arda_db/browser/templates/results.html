@@ -14,9 +14,22 @@ Search Results Page
 
 {% if content %}
     <p>Found {{ content|length }} Resource{{ content|pluralize }}.</p>
+    <table>
 	{% for resource in content %}
-	<a href="../{{ resource.r_id }}/">{{ resource.title }}</a> <br> &nbsp; {{resource.description}} <br>
+    <table>
+    <tr>
+        <td>
+        <a href="../{{ resource.r_id }}/">{{ resource.title }}</a> 
+        </td>
+    </tr>
+    <tr>
+        <td>
+        {{resource.description}} 
+        </td>
+    </tr>
+    </table>
 	{% endfor %}
+    </table>
 {% else %}
     <p>No resources matched your search criteria.</p>
 {% endif %}
