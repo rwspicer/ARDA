@@ -13,7 +13,9 @@ header {
 	padding: 0px;
     height: 80px;
     background-color: #207cca;
+/*
     box-shadow: 0px 8px 10px #888888;
+*/
 
 }
 
@@ -128,7 +130,7 @@ main {
 	margin-left: 250px;
 	padding: 5px;
 	background-color: #FFFFFF;
-	min-height: 900px;
+	min-height: 1000px;
 }
 
 main p {
