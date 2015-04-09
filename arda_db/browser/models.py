@@ -15,7 +15,8 @@ class Resource(models.Model):
     r_id = models.AutoField(primary_key = True)
     title = models.CharField(max_length = 90, default='')
     description = models.TextField(blank=True)
-    homepage = models.BooleanField(default=False)
+    homepage = models.BooleanField(default = False)
+    show_in_browser = models.BooleanField(default = True)
     def __unicode__(self):
         return self.title
 
@@ -119,7 +120,7 @@ class RLibrary(Resource):
         # end thread
         
     class Meta:
-        verbose_name ='library item'
+        verbose_name ='Library Item'
     
 
 class Borower(models.Model):
@@ -127,9 +128,9 @@ class Borower(models.Model):
         borrower database model -- TODO merge with Library Item
     """
     types= (
-        ('0', 'available'),
-        ('1', 'reservered'),
-        ('2', 'checked out'),
+        ('0', 'Available'),
+        ('1', 'Reserved'),
+        ('2', 'Checked Out'),
     )
     status = models.CharField(max_length=1, choices=types, default="0")
     
@@ -145,7 +146,7 @@ class Borower(models.Model):
     
 class ROnline(Resource):
     """
-    datbase model for online items 
+    database model for online items 
     """
     # types of online resources
     types = (
@@ -158,8 +159,20 @@ class ROnline(Resource):
     date = models.DateField()
     url = models.TextField(blank=True)
     class Meta:
-        verbose_name ='online item'
-
+        verbose_name ='Online item'
+        
+        
+class REvent(Resource):
+    """
+    database model for events
+    """
+    # add types? fund raiser, meet and great, etc. 
+    date_time = models.DateTimeField()
+    location = models.TextField(blank=True)
+    # what else?
+    class Meta:
+        verbose_name ='Event'
+    
 
 
 class RService(Resource):
@@ -171,7 +184,7 @@ class RService(Resource):
     email = models.CharField(max_length = 50)
     url = models.TextField(blank=True)
     class Meta:
-        verbose_name ='service'
+        verbose_name ='Service'
 
 
 
@@ -225,9 +238,9 @@ class SDisorder(models.Model):
     pdd = models.BooleanField(default=False,
                             verbose_name= "Pervasive Developmental Disorder")
     aspergers = models.BooleanField(default=False,
-                            verbose_name= "Aspergers Syndrome")
+                            verbose_name= "Asperger Syndrome")
     cdd = models.BooleanField(default=False,
-                            verbose_name= "Cognative Develpoment Disorder")
+                            verbose_name= "Cognitive Development Disorder")
     
     class Meta:
          verbose_name_plural = verbose_name = "Disorders"
