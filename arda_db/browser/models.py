@@ -1,9 +1,9 @@
 """
 models.py
 ross spicer
-updated 2015-04-01
+updated 2015-04-09
 
-    contains the databas models for the browser
+    contains the database models for the browser
 """
 from django.db import models
 
