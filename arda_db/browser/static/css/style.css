@@ -2,6 +2,9 @@ body {
     width: 100%;
     height: 100%;
     margin: 0;
+    border-style: solid;
+    border-top-width: 12px;
+    border-top-color: #207cca;
     font-family: Arial, Verdana, sans-serif;
 	color: #111;
 }
@@ -23,7 +26,7 @@ header h1 {
 	margin: 0;
 	padding-top: 7px;
 	font-size: 45px;
-	font-family: Arial, sans-serif, Impact;
+	font-family: Impact, Arial, sans-serif;
 	color: white;
 	overflow: hidden;
 	white-space: nowrap;
@@ -33,8 +36,8 @@ header img {
 	height: 62px;
 	width: 100px;
 	float: left;
-	padding: 10px 10px 0px 5px;
-	
+	padding: 10px 10px 10px 5px;
+    margin-top: -5px;
 }
 
 /* End of header contents */
@@ -166,8 +169,12 @@ footer {
 	text-align: center;
 }
 
+a.h:link {
+    text-decoration: none;
+}
 
-
-
+a.h:visited {
+    color: white;
+}
 
 

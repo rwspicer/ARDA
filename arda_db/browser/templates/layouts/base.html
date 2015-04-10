@@ -4,6 +4,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <link rel="shortcut icon" href="{% static 'images/arda.png' %}" type="image/png">
 		<title>
 			{% block title %}
 			{% endblock %}
@@ -12,8 +13,8 @@
 	
 	<body>
        	<header>
-			<img src="{% static 'images/arda.png' %}" alt="logo">
-			<h1>Autism Resource Database Alaska<h1>
+			<a href="{% url 'home' %}"><img src="{% static 'images/arda.png' %}" alt="logo"></a>
+            <h1><a class="h" href="{% url 'home' %}">Autism Resource Database Alaska</a></h1>
 		</header>
 		
 		<ul class="header_links">
