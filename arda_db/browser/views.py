@@ -2,8 +2,7 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponse
 from django import forms
 from models import Resource
-from models import SDemo
-from itertools import chain
+from models import REvent
 
 def home(request):
     resource_list = Resource.objects.order_by('r_id')
@@ -19,11 +18,12 @@ def search(request):
     else:
         return render(request, 'results.html', {'error': True})
 
+def events(request):
+    resource_list = REvent.objects.all()
+    return render(request, 'results.html', {'content': resource_list})
 
 def result(request):
     resource_list = []
-    # if 'male' in request.GET:
-    #     resource_list = chain(resource_list, (Resource.objects.filter(sdemo__gender_m = True)))
     if 'male' in request.GET:
         resource_list.extend(list(Resource.objects.filter(sdemo__gender_m = True)))
     if 'female' in request.GET:

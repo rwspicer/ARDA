@@ -6,6 +6,8 @@ ARDA Autism Resource Database
 
 {% block content %}
 	<h1> Homepage </h1>
+	<a href="{% url 'events' %}">View all events</a>
+	
 	{% if resource_list %}
 	<ul>
 		{% for resource in resource_list %}
