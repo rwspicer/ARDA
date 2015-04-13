@@ -12,11 +12,13 @@ class Resource(models.Model):
     """
         Base Resource model, so that all types have a common numbering system
     """
-    r_id = models.AutoField(primary_key = True)
-    title = models.CharField(max_length = 90, default='')
-    description = models.TextField(blank=True)
-    homepage = models.BooleanField(default = False)
-    show_in_browser = models.BooleanField(default = True)
+    r_id = models.AutoField(primary_key = True) #auto generated
+    title = models.CharField(max_length = 90, default='') # title
+    description = models.TextField(blank=True) # description
+    homepage = models.BooleanField(default = False) # should the resource
+                                                    # be shown on the home page
+    show_in_browser = models.BooleanField(default = True) # for events 
+                                                          # hidden as a user opt
     def __unicode__(self):
         return self.title
 
@@ -25,11 +27,12 @@ class RLibrary(Resource):
     """
         Library item database model
     """
-    phys_id = models.IntegerField(null=True)
-    author = models.CharField(max_length = 60)
-    # these ar the types of items in the Physical Library
-    types = (
-        ('0', 'Book'),
+    phys_id = models.IntegerField(null=True)  #no column in .xls file
+    author = models.CharField(max_length = 60) # author col in # .xls
+    # these are the types of items in the Physical Library, some have been
+    # combined from the .xls file
+    types = ( 
+        ('0', 'Book'), 
         ('1', 'DVD'),
         ('2', 'CD'),
         ('3', 'VHS'),
@@ -46,9 +49,9 @@ class RLibrary(Resource):
         ('e', 'Computer Game'),
         ('f', 'Watch/Timer'),
     )
-    item_type = models.CharField(max_length=1, choices=types)
+    item_type = models.CharField(max_length=1, choices=types) #Item col in .xls
     # The Catagories for Items in the phyiscal libaray 
-    cats = (
+    cats = ( #categories in the .xls file
         ('0', 'Sensory Integration'),
         ('1', 'DVD/Software materials'),
         ('2', 'Resources for Professionals & Parents'),
@@ -61,20 +64,23 @@ class RLibrary(Resource):
         ('8', 'Binder/Folder Resources'),
         ('9', 'FASD'),
     )
-    catagory = models.CharField(max_length=1, choices=cats)
+    catagory = models.CharField(max_length=1, choices=cats) #category col in xls
+   
+    # borrower info
     status = (
         ('0', 'available'),
         ('1', 'reservered'),
         ('2', 'checked out'),
     )
     status = models.CharField(max_length=1, choices=status, default="0")
-    borrower_name = models.CharField(max_length = 60, blank=True, verbose_name = 'name')
+    borrower_name = models.CharField(max_length = 60, blank=True, 
+                                                         verbose_name = 'name')
     phone = models.CharField(max_length = 10, blank=True)
     email = models.CharField(max_length = 50, blank=True)
-    
-    
-    checkout_date = models.DateTimeField(blank=True, null=True, verbose_name = "reserved until/check out appointment")
-    return_date = models.DateTimeField(blank=True, null=True, verbose_name = "return appointment")
+    checkout_date = models.DateTimeField(blank=True, null=True,
+                        verbose_name = "reserved until/check out appointment")
+    return_date = models.DateTimeField(blank=True, null=True, 
+                        verbose_name = "return appointment")
     
     def clean(self):
         if self.status == '0':
