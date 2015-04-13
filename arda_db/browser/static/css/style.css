@@ -67,7 +67,7 @@ ul.header_links li {
 #wrapper {
 	background-color: #EEE;
 	border-top: solid 2px #ADADAD;
-	margin-top: 15px;
+	margin-top: -30px;
 	min-height: 100%;
 }
 
@@ -79,7 +79,7 @@ ul.header_links li {
 	float: left;
 	padding-left: 8px;
 	padding-right: 8px;
-	margin-top: 30px;
+	margin-top: 0px;
 	font-family: Lato, Arial, sans-serif;
 }
 
@@ -148,7 +148,7 @@ main img {
 
 .submit {
     padding: 8px, 15px;
-    left:-10px;
+    margin-left: 0px;
     border: 6px solid #207cca;
     background-color: #207cca;
     color: #fafafa;
