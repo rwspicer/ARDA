@@ -2,14 +2,10 @@ body {
     width: 100%;
     height: 100%;
     margin: 0;
-    font-family: Helvetica, Arial, Verdana, sans-serif;
+    font-family: Lato, Arial, sans-serif;
 	color: #111;
 }
 
-
-a {
-	text-decoration: none !important;
-}
 
 /* Beginning of header contents */
 
@@ -24,7 +20,7 @@ header h1 {
 	margin: 0;
 	padding-top: 7px;
 	font-size: 45px;
-	font-family: Arial, Impact, sans-serif;
+	font-family: Impact, Lato, sans-serif;
 	color: white;
 	overflow: hidden;
 	white-space: nowrap;
@@ -49,7 +45,7 @@ header img {
 /* Beginning of header links */
 
 .header_links {
-	margin: 0;
+	margin-top: -60px;
 	padding-top: 13px;
 	padding-right: 8px;
 }
@@ -84,7 +80,7 @@ ul.header_links li {
 	padding-left: 8px;
 	padding-right: 8px;
 	margin-top: 30px;
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: Lato, Arial, sans-serif;
 }
 
 /* End of sidebar */
@@ -96,6 +92,7 @@ ul.header_links li {
   display:block;
   padding-bottom: 10px;
   padding-top: 10px;
+  cursor: pointer;
 }
 .collapse + input{
   display:none;
@@ -124,17 +121,17 @@ main {
 
 main p {
 	font-size:12px;
-	font-family: Helvetica, sans-serif;
+	font-family: Lato, Arial, sans-serif;
 	color: #555555;
 }
 
 main h2 {
-	font-family: Arial, Helvetica sans-serif;
+	font-family: Lato, Arial, sans-serif;
 	color: #333333;
 }
 
 main h3 {
-	font-family: Arial, Helvetica sans-serif;
+	font-family: Lato, Arial, sans-serif;
 	color: #333333;
 }
 
@@ -147,6 +144,21 @@ main img {
 	margin-left: auto;
 	margin-right: auto;
 	padding-bottom: 10px;
+}
+
+.submit {
+    padding: 8px, 15px;
+    left:-10px;
+    border: 6px solid #207cca;
+    background-color: #207cca;
+    color: #fafafa;
+    cursor: pointer;
+}
+
+.submit:hover {
+    background-color:#fafafa;
+    border-color:#207cca;
+    color:#207cca;
 }
 
 .row {
@@ -172,6 +184,18 @@ footer {
 	text-align: center;
 }
 
+
+a.hl {
+	text-decoration: none !important;
+}
+
+a.hl:visited {
+    color: white;
+}
+
+a.hl:hover {
+    color: grey;
+}
 a.h:link {
     text-decoration: none;
 }
