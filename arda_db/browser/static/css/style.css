@@ -2,8 +2,13 @@ body {
     width: 100%;
     height: 100%;
     margin: 0;
-    font-family: Arial, Verdana, sans-serif;
+    font-family: Helvetica, Arial, Verdana, sans-serif;
 	color: #111;
+}
+
+
+a {
+	text-decoration: none !important;
 }
 
 /* Beginning of header contents */
@@ -11,19 +16,15 @@ body {
 header {
 	margin: 0px;
 	padding: 0px;
-    height: 80px;
+    height: 76px;
     background-color: #207cca;
-/*
-    box-shadow: 0px 8px 10px #888888;
-*/
-
 }
 
 header h1 {
 	margin: 0;
 	padding-top: 7px;
 	font-size: 45px;
-	font-family: Impact, Arial, sans-serif;
+	font-family: Arial, Impact, sans-serif;
 	color: white;
 	overflow: hidden;
 	white-space: nowrap;
@@ -52,7 +53,6 @@ header img {
 	padding-top: 13px;
 	padding-right: 8px;
 }
-
 
 ul.header_links {
     color: black;
@@ -84,19 +84,8 @@ ul.header_links li {
 	padding-left: 8px;
 	padding-right: 8px;
 	margin-top: 30px;
-	font-family: Arial, Helvetica, sans-serif;
-	
-	/* Static scrollable sidebar */
-	/* Problems arise when page exceeds window height */
-/*	
-	position: fixed;
-    top: 100px;
-    bottom: 0;
-    overflow: scroll;
-*/
-	
+	font-family: Helvetica, Arial, sans-serif;
 }
-
 
 /* End of sidebar */
 
@@ -140,12 +129,12 @@ main p {
 }
 
 main h2 {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica sans-serif;
 	color: #333333;
 }
 
 main h3 {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica sans-serif;
 	color: #333333;
 }
 
@@ -159,6 +148,23 @@ main img {
 	margin-right: auto;
 	padding-bottom: 10px;
 }
+
+.row {
+	text-align: center;
+}
+
+ul.pagination {
+	list-style: none;
+}
+
+ul.pagination li {
+	display: inline;
+}
+
+.arrow_unavailable {
+	visibility: hidden;
+}
+
 
 /* End of main content */
 

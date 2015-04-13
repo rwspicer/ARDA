@@ -16,9 +16,7 @@ urlpatterns = patterns('',
     url(r'^results/$', TemplateView.as_view(template_name='results.html'), name='results'),
     url(r'^events/$', 'browser.views.events', name='events'),
     url(r'^(?P<r_id>\d+)/$', views.detail, name='detail'),
-    
-    (r'^search/$', views.search),
-    (r'^result/$', views.result),
+    url(r'^result/$', views.result),
     
     url(r'^admin/', include(admin.site.urls)),
 )

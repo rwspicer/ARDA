@@ -8,28 +8,51 @@ Search Results Page
 
 <h1> Results </h1>
 
-{% if query %}
-	<p>You searched for: <strong>{{ query }}</strong></p>
-{% endif %}
-
 {% if content %}
-    <p>Found {{ content|length }} Resource{{ content|pluralize }}.</p>
+	<p>Found {{ content.paginator.count }} Resource{{ content.paginator.count|pluralize }} </p> 
+	<p>Page {{ content.number }} of {{ content.paginator.num_pages }} </p>
     <table>
 	{% for resource in content %}
-    <table>
-    <tr>
-        <td>
-        <a href="../{{ resource.r_id }}/">{{ resource.title }}</a> 
-        </td>
-    </tr>
-    <tr>
-        <td>
-        {{resource.description}} 
-        </td>
-    </tr>
-    </table>
+    	<table>
+    	<tr>
+        	<td>
+        		<a href="../{{ resource.r_id }}/">{{ resource.title }}</a> 
+        	</td>
+    	</tr>
+    	<tr>
+        	<td>
+        		{{resource.description}} 
+        	</td>
+    	</tr>
+    	</table>
 	{% endfor %}
     </table>
+	
+	<div class="row">
+		<div class="columns">
+			<ul class="pagination">
+				{% if content.has_previous %}
+					<li class="arrow"><a href="{{ page_url }}?page={{ content.previous_page_number }}&{{ filter_url_addon }}/">&laquo; Previous </a></li>
+				{% else %}
+					<li class="arrow_unavailable"><a href="">&laquo; Previous </a></li>
+				{% endif %}
+				{% for page in content.paginator.page_range %}
+					{% if page == content.number %}
+						<li class="current"><a href"{{ page_url }}?page={{ page }}&{{ filter_url_addon }}">{{ page }}</a></li>
+					{% else %}
+						<li><a href="{{ page_url }}?page={{ page }}&{{ filter_url_addon }}">{{ page }}</a></li>
+					{% endif %}
+				{% endfor %}
+				{% if content.has_next %}
+					<li class="arrow"><a href="{{ page_url }}?page={{ content.next_page_number }}&{{ filter_url_addon }}/"> Next &raquo;</a></li>
+				{% else %}
+					<li class="arrow_unavailable"><a href=""> Next &raquo;</a></li>
+				{% endif %}
+			</ul> <!--  closing pagination  !-->	
+		</div> <!--  closing columns  !-->
+	</div> <!--  closing row  !-->
+	
+	
 {% else %}
     <p>No resources matched your search criteria.</p>
 {% endif %}
