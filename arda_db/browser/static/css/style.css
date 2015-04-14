@@ -45,9 +45,10 @@ header img {
 /* Beginning of header links */
 
 .header_links {
-	margin-top: -60px;
-	padding-top: 13px;
-	padding-right: 8px;
+	margin-top: -50px;
+    margin-left: 940px;
+    width: 450px;  
+    position: fixed;      
 }
 
 ul.header_links {
@@ -57,9 +58,11 @@ ul.header_links {
 }
 
 ul.header_links li {
-   float: left;
-   display: inline-block;
-   padding: 0px 5px;
+    float: left;
+    display: inline-block;
+    padding: 0px 8px;
+    font-size: 16px;
+    font-weight:600;
 }
 
 /*End of header links*/
@@ -135,6 +138,13 @@ main h3 {
 	color: #333333;
 }
 
+p.header {
+    font-size: 18px;
+}
+
+p.content {
+    font-size: 14px;
+}
 .overview_heading {
 	font-weight:bold;
 }
@@ -147,9 +157,10 @@ main img {
 }
 
 .submit {
+    width: 80px;
     padding: 8px, 15px;
     margin-left: 0px;
-    border: 6px solid #207cca;
+    border: 3px solid #207cca;
     background-color: #207cca;
     color: #fafafa;
     cursor: pointer;
@@ -184,7 +195,6 @@ footer {
 	text-align: center;
 }
 
-
 a.hl {
 	text-decoration: none !important;
 }
@@ -199,7 +209,6 @@ a.hl:hover {
 a.h:link {
     text-decoration: none;
 }
-
 a.h:visited {
     color: white;
 }
