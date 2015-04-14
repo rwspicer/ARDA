@@ -6,11 +6,20 @@ Search Results Page
 
 {% block content %} 
 
-<h1> Results </h1>
+{% if page_url == "/events/"%}
+	<h1> Events </h1>
+{% else %}
+	<h1> Results </h1>
+{% endif %}
 
 {% if content %}
-	<p>Found {{ content.paginator.count }} Resource{{ content.paginator.count|pluralize }} </p> 
-	<p>Page {{ content.number }} of {{ content.paginator.num_pages }} </p>
+	{% if page_url == "/events/"%}
+		<p>{{ content.paginator.count }} Event{{ content.paginator.count|pluralize }} </p> 
+		<p>Page {{ content.number }} of {{ content.paginator.num_pages }} </p>
+	{% else %}
+		<p>Found {{ content.paginator.count }} Resource{{ content.paginator.count|pluralize }} </p> 
+		<p>Page {{ content.number }} of {{ content.paginator.num_pages }} </p>
+	{% endif %}
     <table>
 	{% for resource in content %}
     	<table>
@@ -48,13 +57,17 @@ Search Results Page
 				{% else %}
 					<li class="arrow_unavailable"><a href=""> Next &raquo;</a></li>
 				{% endif %}
-			</ul> <!--  closing pagination  !-->	
-		</div> <!--  closing columns  !-->
-	</div> <!--  closing row  !-->
+			</ul> 
+		</div>
+	</div>
 	
 	
 {% else %}
-    <p>No resources matched your search criteria.</p>
+	{% if page_url == "/events/"%}
+		<p>Sorry, we don’t have any events scheduled at this time. Please check back at a later date. </p>
+	{% else %}
+    	<p>No resources matched your search criteria.</p>
+	{% endif %}
 {% endif %}
 
 

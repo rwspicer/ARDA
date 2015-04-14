@@ -17,19 +17,32 @@
 			<a href="{% url 'home' %}"><img src="{% static 'images/arda.png' %}" alt="logo"></a>
             <h1><a class="h" href="{% url 'home' %}">Autism Resource Database Alaska</a></h1>
 		</header>
-
+		
 		<ul class="header_links">
 			<li> <a class="hl" href="{% url 'home' %}">Home</a> </li>
 			<li> <a class="hl" href="{% url 'about' %}">About</a> </li>
 			<li> <a class="hl" href="{% url 'contact' %}">Contact Us</a> </li>
 			<li> <a class="hl" href="{% url 'faq' %}">FAQ</a></li>
 		</ul>
-
-		<div id="searchbar">
 		
-        </div>
+		<div id="searchbar"></div>
+		
 		<div id="sidebar">
-			<form action="/result/" method="get">	
+			<form action="/result/" method="get">
+			    <label class="collapse" for="_types">Resource Types</label>
+			    <input id="_types" type="checkbox">
+				<div>
+					<input type="checkbox" name="library" value="selected" id="library" />
+					<label for="library">Library</label><br>
+					<input type="checkbox" name="online" value="selected" id="online" />
+					<label for="online">Online</label><br>
+					<input type="checkbox" name="service" value="service" id="service" />
+					<label for="service">Services</label><br>
+				</div>
+				
+				<h3> Filters </h3>
+				<hr>
+					
 			    <label class="collapse" for="_demographics">Demographics</label>
 			    <input id="_demographics" type="checkbox">
 				<div>
@@ -86,7 +99,9 @@
 					<input type="checkbox" name="anxiety" value="selected" id="anxiety" />
 					<label for="anxiety">Anxiety</label><br>
 					<input type="checkbox" name="change" value="selected" id="change" />
-					<label for="change">Change</label><br><br>
+					<label for="change">Change</label><br>
+					<input type="checkbox" name="nutrition" value="selected" id="nutrition" />
+					<label for="nutrition">Nutrition</label><br><br>
 				</div>
 				
 			    <label class="collapse" for="_services">Services</label>
@@ -129,8 +144,6 @@
 		
 	    {% if error %}
 	    {% endif %}
-		
-		</div> <!-- closing searchbar tag-->
 		
 		<div id="wrapper">
 			<main>
