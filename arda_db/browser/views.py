@@ -158,6 +158,10 @@ def result(request):
     if 'service' in request.GET:
         resource_type_list.extend(list(resource_list.filter(r_id__in = RService.objects.all())))
         filter_url_addon += 'service=selected&'
+    if 'event' in request.GET:
+        resource_type_list.extend(list(resource_list.filter(r_id__in = REvent.objects.all())))
+        filter_url_addon += 'event=selected&'
+    
     
     # Delete the last character & 
     filter_url_addon = filter_url_addon[:-1]
