@@ -13,7 +13,7 @@ class Resource(models.Model):
         Base Resource model, so that all types have a common numbering system
     """
     r_id = models.AutoField(primary_key = True) #auto generated
-    title = models.CharField(max_length = 90, default='') # title
+    title = models.CharField(max_length = 160, default='') # title
     description = models.TextField(blank=True) # description
     homepage = models.BooleanField(default = False) # should the resource
                                                     # be shown on the home page
