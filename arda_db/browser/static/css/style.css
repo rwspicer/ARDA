@@ -36,19 +36,15 @@ header img {
 
 /* End of header contents */
 
-#searchbar {
-	padding-top: 13px;
-	padding-left: 8px;
-    padding-bottom: 13px;
-}
+
 
 /* Beginning of header links */
 
 .header_links {
 	margin-top: -50px;
     margin-left: 940px;
-    width: 450px;  
-    position: fixed;      
+    width: 300px;  
+    position: absolute;
 }
 
 ul.header_links {
@@ -69,8 +65,6 @@ ul.header_links li {
 
 #wrapper {
 	background-color: #EEE;
-	border-top: solid 2px #ADADAD;
-	margin-top: -30px;
 	min-height: 100%;
 }
 
@@ -78,11 +72,12 @@ ul.header_links li {
 
 /* Beginning of sidebar content styling */
 #sidebar {
-	width: 240px;
-	float: left;
+    float: left;
+	width: 230px;
 	padding-left: 8px;
 	padding-right: 8px;
-	margin-top: 0px;
+	margin-top: 25px;
+    margin-left: -115px;
 	font-family: Lato, Arial, sans-serif;
 }
 
@@ -92,7 +87,7 @@ ul.header_links li {
 
 .collapse{
   font-size: 18px;
-  display:block;
+  display:  block;
   padding-bottom: 10px;
   padding-top: 10px;
   cursor: pointer;
@@ -116,10 +111,11 @@ ul.header_links li {
 /* Beginning of main content*/
 
 main {
+    margin-top:0px;
 	margin-left: 250px;
 	padding: 5px;
 	background-color: #FFFFFF;
-	min-height: 1200px;
+	min-height: 1200px;    
 }
 
 main p {
