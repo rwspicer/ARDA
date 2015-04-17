@@ -1,0 +1,644 @@
+-- MySQL dump 10.13  Distrib 5.5.41, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: arda_db
+-- ------------------------------------------------------
+-- Server version	5.5.41-0ubuntu0.14.10.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `auth_group`
+--
+
+DROP TABLE IF EXISTS `auth_group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(80) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group`
+--
+
+LOCK TABLES `auth_group` WRITE;
+/*!40000 ALTER TABLE `auth_group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_group_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_group_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_group_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `group_id` (`group_id`,`permission_id`),
+  KEY `auth_group_permissions_0e939a4f` (`group_id`),
+  KEY `auth_group_permissions_8373b171` (`permission_id`),
+  CONSTRAINT `auth_group__permission_id_1f49ccbbdc69d2fc_fk_auth_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_group_permission_group_id_689710a9a73b7457_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group_permissions`
+--
+
+LOCK TABLES `auth_group_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_group_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_permission`
+--
+
+DROP TABLE IF EXISTS `auth_permission`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `content_type_id` int(11) NOT NULL,
+  `codename` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `content_type_id` (`content_type_id`,`codename`),
+  KEY `auth_permission_417f1b1c` (`content_type_id`),
+  CONSTRAINT `auth__content_type_id_508cf46651277a81_fk_django_content_type_id` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_permission`
+--
+
+LOCK TABLES `auth_permission` WRITE;
+/*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
+INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can add permission',2,'add_permission'),(5,'Can change permission',2,'change_permission'),(6,'Can delete permission',2,'delete_permission'),(7,'Can add group',3,'add_group'),(8,'Can change group',3,'change_group'),(9,'Can delete group',3,'delete_group'),(10,'Can add user',4,'add_user'),(11,'Can change user',4,'change_user'),(12,'Can delete user',4,'delete_user'),(13,'Can add content type',5,'add_contenttype'),(14,'Can change content type',5,'change_contenttype'),(15,'Can delete content type',5,'delete_contenttype'),(16,'Can add session',6,'add_session'),(17,'Can change session',6,'change_session'),(18,'Can delete session',6,'delete_session'),(19,'Can add resource',7,'add_resource'),(20,'Can change resource',7,'change_resource'),(21,'Can delete resource',7,'delete_resource'),(22,'Can add Library Item',8,'add_rlibrary'),(23,'Can change Library Item',8,'change_rlibrary'),(24,'Can delete Library Item',8,'delete_rlibrary'),(25,'Can add borower',9,'add_borower'),(26,'Can change borower',9,'change_borower'),(27,'Can delete borower',9,'delete_borower'),(28,'Can add Online item',10,'add_ronline'),(29,'Can change Online item',10,'change_ronline'),(30,'Can delete Online item',10,'delete_ronline'),(31,'Can add Event',11,'add_revent'),(32,'Can change Event',11,'change_revent'),(33,'Can delete Event',11,'delete_revent'),(34,'Can add Service',12,'add_rservice'),(35,'Can change Service',12,'change_rservice'),(36,'Can delete Service',12,'delete_rservice'),(37,'Can add Demographics',13,'add_sdemo'),(38,'Can change Demographics',13,'change_sdemo'),(39,'Can delete Demographics',13,'delete_sdemo'),(40,'Can add Behaviors',14,'add_sbehaviour'),(41,'Can change Behaviors',14,'change_sbehaviour'),(42,'Can delete Behaviors',14,'delete_sbehaviour'),(43,'Can add Disorders',15,'add_sdisorder'),(44,'Can change Disorders',15,'change_sdisorder'),(45,'Can delete Disorders',15,'delete_sdisorder'),(46,'Can add Service Features',16,'add_sservices'),(47,'Can change Service Features',16,'change_sservices'),(48,'Can delete Service Features',16,'delete_sservices'),(49,'Can add Additional Search options',17,'add_sadditional'),(50,'Can change Additional Search options',17,'change_sadditional'),(51,'Can delete Additional Search options',17,'delete_sadditional');
+/*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user`
+--
+
+DROP TABLE IF EXISTS `auth_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `password` varchar(128) NOT NULL,
+  `last_login` datetime NOT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(30) NOT NULL,
+  `email` varchar(75) NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `date_joined` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user`
+--
+
+LOCK TABLES `auth_user` WRITE;
+/*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$15000$kkJw315y3pCW$cKySGyVGpOo0KbOhctdPGilrFJU7fdgTpzX/Pc4Gz4E=','2015-04-17 19:03:34',1,'ross','','','',1,1,'2015-04-17 19:03:17');
+/*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_groups`
+--
+
+DROP TABLE IF EXISTS `auth_user_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user_groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`,`group_id`),
+  KEY `auth_user_groups_e8701ad4` (`user_id`),
+  KEY `auth_user_groups_0e939a4f` (`group_id`),
+  CONSTRAINT `auth_user_groups_group_id_33ac548dcf5f8e37_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  CONSTRAINT `auth_user_groups_user_id_4b5ed4ffdb8fd9b0_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_groups`
+--
+
+LOCK TABLES `auth_user_groups` WRITE;
+/*!40000 ALTER TABLE `auth_user_groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_user_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_user_user_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user_user_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`,`permission_id`),
+  KEY `auth_user_user_permissions_e8701ad4` (`user_id`),
+  KEY `auth_user_user_permissions_8373b171` (`permission_id`),
+  CONSTRAINT `auth_user_u_permission_id_384b62483d7071f0_fk_auth_permission_id` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_user_user_permissi_user_id_7f0938558328534a_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_user_permissions`
+--
+
+LOCK TABLES `auth_user_user_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_user_user_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_user_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `browser_borower`
+--
+
+DROP TABLE IF EXISTS `browser_borower`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `browser_borower` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `borrower_name` varchar(50) NOT NULL,
+  `phone` varchar(10) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `checkout_date` date DEFAULT NULL,
+  `return_date` date DEFAULT NULL,
+  `status` varchar(1) NOT NULL,
+  `resource_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `browser_borower_e2f3ef5b` (`resource_id`),
+  CONSTRAINT `resource_id_e30b565344c639a_fk_browser_rlibrary_resource_ptr_id` FOREIGN KEY (`resource_id`) REFERENCES `browser_rlibrary` (`resource_ptr_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `browser_borower`
+--
+
+LOCK TABLES `browser_borower` WRITE;
+/*!40000 ALTER TABLE `browser_borower` DISABLE KEYS */;
+/*!40000 ALTER TABLE `browser_borower` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `browser_resource`
+--
+
+DROP TABLE IF EXISTS `browser_resource`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `browser_resource` (
+  `r_id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` longtext NOT NULL,
+  `title` varchar(160) DEFAULT NULL,
+  `homepage` tinyint(1) NOT NULL,
+  `show_in_browser` tinyint(1) NOT NULL,
+  PRIMARY KEY (`r_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=210 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `browser_resource`
+--
+
+LOCK TABLES `browser_resource` WRITE;
+/*!40000 ALTER TABLE `browser_resource` DISABLE KEYS */;
+INSERT INTO `browser_resource` VALUES (1,'A Parent\'s Guide to Understanding Sensory Integration','A Parent\'s Guide to Understanding Sensory Integration',1,1),(2,'Building Bridges Through Sensory Integration','Building Bridges Through Sensory Integration',0,1),(3,'ART: basic for young children','ART: basic for young children',0,1),(4,'Play & Imagination in Children with Autism','Play & Imagination in Children with Autism',0,1),(5,'Asperger Syndrome and Sensory Issues','Asperger Syndrome and Sensory Issues',0,1),(6,'The Out-of-Sync Child','The Out-of-Sync Child',0,1),(7,'Talking Timer','Talking Timer',0,1),(8,'Time Timer Watch Plus','Time Timer Watch Plus',0,1),(9,'Going Through an Airport','Going Through an Airport',0,1),(10,'Going Through an Airport','Going Through an Airport',0,1),(11,'Social Skills','Social Skills',0,1),(12,'Advocacy for Individuals on the Autism Spectrum','Advocacy for Individuals on the Autism Spectrum',0,1),(13,'Classroom Strategies- VTC Disc 1 & 2','Classroom Strategies- VTC Disc 1 & 2',0,1),(14,'Tips for Toilet Training','Tips for Toilet Training',0,1),(15,'Visual Strategies','Visual Strategies',0,1),(16,'Transitions Through the Lifespan','Transitions Through the Lifespan',0,1),(17,'Achieving Excellence For Alaska\'s Deaf & Heard of Hearing Students','Achieving Excellence For Alaska\'s Deaf & Heard of Hearing Students',0,1),(18,'My Next Steps A Parent\'s Guide to Understanding Autism','My Next Steps A Parent\'s Guide to Understanding Autism',0,1),(19,'Activity Trainer/ Discrete Trail Trainer','Activity Trainer/ Discrete Trail Trainer',0,1),(20,'Early Intervention & Autism','Early Intervention & Autism',0,1),(21,'Early Intervention & Autism','Early Intervention & Autism',0,1),(22,'Signs of Autism in Infants: Recognition and Early Intervention','Signs of Autism in Infants: Recognition and Early Intervention',0,1),(23,'By the Ages: Behavior & Development in Children Pre-Birth through Eight','By the Ages: Behavior & Development in Children Pre-Birth through Eight',0,1),(24,'Brain Rules Baby','Brain Rules Baby',0,1),(25,'1001 Great Ideas for Teaching & Raising Children w/ Autism or Asperger\'s','1001 Great Ideas for Teaching & Raising Children w/ Autism or Asperger\'s',0,1),(26,'1001 Great Ideas for Teaching & Raising Children w/ Autism or Asperger\'s','1001 Great Ideas for Teaching & Raising Children w/ Autism or Asperger\'s',0,1),(27,'The Smart Parent\'s Guide to Getting Your Kids Through Checkups, Illnesses & Accidents','The Smart Parent\'s Guide to Getting Your Kids Through Checkups, Illnesses & Accidents',0,1),(28,'The Everything Parent\'s Guide to Children with Asperger\'s Syndrome 2nd Ed.','The Everything Parent\'s Guide to Children with Asperger\'s Syndrome 2nd Ed.',0,1),(29,'My Child Has Autism: What Parents Need To Know','My Child Has Autism: What Parents Need To Know',0,1),(30,'Ten Things Every Child With Autism Wishes You Knew','Ten Things Every Child With Autism Wishes You Knew',0,1),(31,'The Autism Mom\'s Survival Guide (for dads, too!)','The Autism Mom\'s Survival Guide (for dads, too!)',0,1),(32,'Does My Child Have Autism?','Does My Child Have Autism?',0,1),(33,'Parenting a child with Asperger syndrome','Parenting a child with Asperger syndrome',0,1),(34,'Parenting a child with Asperger syndrome','Parenting a child with Asperger syndrome',0,1),(35,'Top Ten Tips: A Survival Guide for Families w/ Children on the Autism Spectrum ','Top Ten Tips: A Survival Guide for Families w/ Children on the Autism Spectrum ',0,1),(36,'Laughing and Loving with Autism','Laughing and Loving with Autism',0,1),(37,'More Laughing and Loving with Autism','More Laughing and Loving with Autism',0,1),(38,'The Child with Autism Learns The Faith','The Child with Autism Learns The Faith',0,1),(39,'Demystifying Autism Spectrum Disorders: A Guide to Diagnosis for Parents & Professionals','Demystifying Autism Spectrum Disorders: A Guide to Diagnosis for Parents & Professionals',0,1),(40,'The Complete Guide to Asperger\'s Syndrome','The Complete Guide to Asperger\'s Syndrome',0,1),(41,'Autism\'s False Prophets','Autism\'s False Prophets',0,1),(42,'The First Year: Autism Spectrum Disorders','The First Year: Autism Spectrum Disorders',0,1),(43,'The Child with Autism at Home & in the Community','The Child with Autism at Home & in the Community',0,1),(44,'Animal-Assisted Interventions for Individuals with Autism','Animal-Assisted Interventions for Individuals with Autism',0,1),(45,'You Make The Difference In Helping Your Children Learn','You Make The Difference In Helping Your Children Learn',0,1),(46,'You Make The Difference In Helping Your Children Learn (An Aboriginal Adaptation)','You Make The Difference In Helping Your Children Learn (An Aboriginal Adaptation)',0,1),(47,'Nobody Ever Told Me (or my Mother) That! ','Nobody Ever Told Me (or my Mother) That! ',0,1),(48,'My Social Stories Book','My Social Stories Book',0,1),(49,'The Child with Autism Goes to Town','The Child with Autism Goes to Town',0,1),(50,'The Child with Autism Goes to Town','The Child with Autism Goes to Town',0,1),(51,'The Child with Autism at Home','The Child with Autism at Home',0,1),(52,'The Child with Autism at Home','The Child with Autism at Home',0,1),(53,'Guide to Developmental Disability Services','Guide to Developmental Disability Services',0,1),(54,'Activity Schedules for Children with Autism: Teaching Independent Behavior','Activity Schedules for Children with Autism: Teaching Independent Behavior',0,1),(55,'TalkAbility','TalkAbility',0,1),(56,'Everyday Solutions: A Practical Guide for Families of Children w/ Autism Spectrum Disorders','Everyday Solutions: A Practical Guide for Families of Children w/ Autism Spectrum Disorders',0,1),(57,'Everyday Solutions: A Practical Guide for Families of Children w/ Autism Spectrum Disorders','Everyday Solutions: A Practical Guide for Families of Children w/ Autism Spectrum Disorders',0,1),(58,'Everyday Solutions: A Practical Guide for Families of Children w/ Autism Spectrum Disorders','Everyday Solutions: A Practical Guide for Families of Children w/ Autism Spectrum Disorders',0,1),(59,'The Autistic Spectrum Parents\' Daily Helper: A Workbook for You & Your Child','The Autistic Spectrum Parents\' Daily Helper: A Workbook for You & Your Child',0,1),(60,'Autism? Asperger\'s? ADHD? ADD? A Parent\'s Roadmap to Understanding and Support!','Autism? Asperger\'s? ADHD? ADD? A Parent\'s Roadmap to Understanding and Support!',0,1),(61,'Autism Speaks: First 100 Days Kit','Autism Speaks: First 100 Days Kit',0,1),(62,'Confronting Autism: The Aurora on the Dark Side of Venus: A Practical Guide to Hope, Knowledge & Empowerment','Confronting Autism: The Aurora on the Dark Side of Venus: A Practical Guide to Hope, Knowledge & Empowerment',0,1),(63,'The Autism Sourcebook: Everything You Need to Know About Diagnosis, Treatment, Coping & Healing','The Autism Sourcebook: Everything You Need to Know About Diagnosis, Treatment, Coping & Healing',0,1),(64,'About Our Services','About Our Services',0,1),(65,'Strengthening Relationships When Our Children Have Special Needs','Strengthening Relationships When Our Children Have Special Needs',0,1),(66,'Married with Special-Needs Children: A Couples\' Guide to Keeping Connected','Married with Special-Needs Children: A Couples\' Guide to Keeping Connected',0,1),(67,'Connecting with Your Asperger Partner: Negotiating the Maze of Intimacy','Connecting with Your Asperger Partner: Negotiating the Maze of Intimacy',0,1),(68,'Creating a Win-Win IEP for Students with Autism','Creating a Win-Win IEP for Students with Autism',0,1),(69,'I Need Help with School! A Guide for Parents of Children with Autism & Asperger\'s Syndrome','I Need Help with School! A Guide for Parents of Children with Autism & Asperger\'s Syndrome',0,1),(70,'Special Education Law','Special Education Law',0,1),(71,'You\'re Going to Love This Kid! Teaching Students with Autism in the Inclusive Classroom','You\'re Going to Love This Kid! Teaching Students with Autism in the Inclusive Classroom',0,1),(72,'A Work In Progress: Behavior Management Strategies & a Curriculum for Intensive Behavioral Treatment of Autism','A Work In Progress: Behavior Management Strategies & a Curriculum for Intensive Behavioral Treatment of Autism',0,1),(73,'Visual Supports for People with Autism','Visual Supports for People with Autism',0,1),(74,'Quality Literacy Instruction for Students with Autism Spectrum Disorders','Quality Literacy Instruction for Students with Autism Spectrum Disorders',0,1),(75,'Visual Strategies for Improving Communication: Volume 1: Practical Supports for School and Home','Visual Strategies for Improving Communication: Volume 1: Practical Supports for School and Home',0,1),(76,'Evidence-Based Practice and Autism in the School','Evidence-Based Practice and Autism in the School',0,1),(77,'Evidence-Based Practice and Autism in the School','Evidence-Based Practice and Autism in the School',0,1),(78,'Practical Ideas That Really Work for Students with Asperger Syndrome','Practical Ideas That Really Work for Students with Asperger Syndrome',0,1),(79,'Practical Ideas That Really Work for Students with Asperger Syndrome','Practical Ideas That Really Work for Students with Asperger Syndrome',0,1),(80,'Inclusive Programming for Elementary Students with Autism ','Inclusive Programming for Elementary Students with Autism ',0,1),(81,'How Well Does Your IEP Measure Up?','How Well Does Your IEP Measure Up?',0,1),(82,'Love, Understanding & Other Best Practices','Love, Understanding & Other Best Practices',0,1),(83,'Love, Understanding & Other Best Practices ','Love, Understanding & Other Best Practices ',0,1),(84,'Teaching Asperger\'s Students Social Skills Through Acting','Teaching Asperger\'s Students Social Skills Through Acting',0,1),(85,'Asperger Syndrome and the Elementary School Experience ','Asperger Syndrome and the Elementary School Experience ',0,1),(86,'Successful Kindergarten Transition','Successful Kindergarten Transition',0,1),(87,'The Transition to Kindergarten','The Transition to Kindergarten',0,1),(88,'Incorporating Social Goals in the Classroom','Incorporating Social Goals in the Classroom',0,1),(89,'Building Structures with Young Children','Building Structures with Young Children',0,1),(90,'Participation Guidelines For Alaska Students in State Academic Assessments (June 2011)','Participation Guidelines For Alaska Students in State Academic Assessments (June 2011)',0,1),(91,'What are Visual Strategies?','What are Visual Strategies?',0,1),(92,'Writing in Preschool: Learning to Orchestrate Meaning and Marks','Writing in Preschool: Learning to Orchestrate Meaning and Marks',0,1),(93,'Strategies at Hand: Quick and Handy Positive Behavior Support Strategies','Strategies at Hand: Quick and Handy Positive Behavior Support Strategies',0,1),(94,'Strategies at Hand: Quick and Handy Positive Behavior Support Strategies','Strategies at Hand: Quick and Handy Positive Behavior Support Strategies',0,1),(95,'Strategies at Hand: Quick and Hand Strategies for Working with Students on the Autism Spectrum','Strategies at Hand: Quick and Hand Strategies for Working with Students on the Autism Spectrum',0,1),(96,'Special Education & The Law','Special Education & The Law',0,1),(97,'Sibshops: Workshops for Siblings of Children with Special Needs','Sibshops: Workshops for Siblings of Children with Special Needs',0,1),(98,'The Sibling Slam Book: What its Really Like to have a brother or sister with Special Needs','The Sibling Slam Book: What its Really Like to have a brother or sister with Special Needs',0,1),(99,'Living with a Brother or Sister with Special Needs: A Book for Sibs (2nd Ed.)','Living with a Brother or Sister with Special Needs: A Book for Sibs (2nd Ed.)',0,1),(100,'Sibling Stories: Reflections on Life with a Brother or Sister on the Autism Spectrum','Sibling Stories: Reflections on Life with a Brother or Sister on the Autism Spectrum',0,1),(101,'Views from our Shoes: Growing Up with a Brother or Sister with Special Needs','Views from our Shoes: Growing Up with a Brother or Sister with Special Needs',0,1),(102,'My Brother Has Autism','My Brother Has Autism',0,1),(103,'My Brother Has Autism','My Brother Has Autism',0,1),(104,'Building Social Relationships','Building Social Relationships',0,1),(105,'Inclusive Programming for Middle School Students with Autism/Asperger\'s Syndrome','Inclusive Programming for Middle School Students with Autism/Asperger\'s Syndrome',0,1),(106,'Inclusive Programming for High School Students with Autism or Asperger\'s Syndrome','Inclusive Programming for High School Students with Autism or Asperger\'s Syndrome',0,1),(107,'Nobody Likes Me, Everybody Hates Me: The Top 25 Friendship Problems and How to Solve Them ','Nobody Likes Me, Everybody Hates Me: The Top 25 Friendship Problems and How to Solve Them ',0,1),(108,'Asperger Syndrome and Adolescence: Practical Solutions for School Success','Asperger Syndrome and Adolescence: Practical Solutions for School Success',0,1),(109,'The Autism Transition Guide: Planning the Journey from School to Adult Life','The Autism Transition Guide: Planning the Journey from School to Adult Life',0,1),(110,'The Social Success Workbook for Teens','The Social Success Workbook for Teens',0,1),(111,'Perfect Targets: Asperger Syndrome and Bullying','Perfect Targets: Asperger Syndrome and Bullying',0,1),(112,'Adolescents on the Autism Spectrum','Adolescents on the Autism Spectrum',0,1),(113,'Your Life Is NOT a Label','Your Life Is NOT a Label',0,1),(114,'Developing Talents: Careers for Individuals with Asperger Syndrome and High-Functioning Autism','Developing Talents: Careers for Individuals with Asperger Syndrome and High-Functioning Autism',0,1),(115,'Asperger Syndrome and Difficult Moments: Practical Solutions for Tantrums, Rage and Meltdowns','Asperger Syndrome and Difficult Moments: Practical Solutions for Tantrums, Rage and Meltdowns',0,1),(116,'Dangerous Encounters: Avoiding Perilous Situations with Autism','Dangerous Encounters: Avoiding Perilous Situations with Autism',0,1),(117,'Young Children\'s Behavior: Practical Approaches for Caregivers and Teachers (3rd Ed.)','Young Children\'s Behavior: Practical Approaches for Caregivers and Teachers (3rd Ed.)',0,1),(118,'How to Handle a Hard-to-Handle Kid','How to Handle a Hard-to-Handle Kid',0,1),(119,'The Challenging Child','The Challenging Child',0,1),(120,'The Explosive Child ','The Explosive Child ',0,1),(121,'Power Cards: Using Special Interests to Motivate Children and Youth with Asperger Syndrome and Autism','Power Cards: Using Special Interests to Motivate Children and Youth with Asperger Syndrome and Autism',0,1),(122,'Callous Disregard: Autism and Vaccines-The Truth Behind a Tragedy','Callous Disregard: Autism and Vaccines-The Truth Behind a Tragedy',0,1),(123,'Autism Heroes: Portraits of Families Meeting the Challenge','Autism Heroes: Portraits of Families Meeting the Challenge',0,1),(124,'Effervescence: A True-Life Tale of Autism and of Courage','Effervescence: A True-Life Tale of Autism and of Courage',0,1),(125,'Unstrange Minds: Remapping the World of Autism ','Unstrange Minds: Remapping the World of Autism ',0,1),(126,'Born on a Blue Day','Born on a Blue Day',0,1),(127,'There\'s a Boy in Here: Emerging from the Bonds of Autism','There\'s a Boy in Here: Emerging from the Bonds of Autism',0,1),(128,'The Best Kind of Different: Our Family\'s Journey with Asperger\'s Syndrome','The Best Kind of Different: Our Family\'s Journey with Asperger\'s Syndrome',0,1),(129,'Voices from the Spectrum: Parents, Grandparents, Siblings, People w/ Autism & Professionals Share Their Wisdom','Voices from the Spectrum: Parents, Grandparents, Siblings, People w/ Autism & Professionals Share Their Wisdom',0,1),(130,'Soon Will Come The Light (2nd Ed.)','Soon Will Come The Light (2nd Ed.)',0,1),(131,'be different: Adventure of a Free-Range Aspergian','be different: Adventure of a Free-Range Aspergian',0,1),(132,'be different: Adventure of a Free-Range Aspergian','be different: Adventure of a Free-Range Aspergian',0,1),(133,'Rainwater','Rainwater',0,1),(134,'Thinking In Pictures and Other Reports From My Life With Autism','Thinking In Pictures and Other Reports From My Life With Autism',0,1),(135,'Let Me Hear Your Voice: A Family\'s Triumph Over Autism','Let Me Hear Your Voice: A Family\'s Triumph Over Autism',0,1),(136,'House Rules','House Rules',0,1),(137,'Genius Genes: How Asperger Talents Changed the World','Genius Genes: How Asperger Talents Changed the World',0,1),(138,'Like Colour to the blind: Soul Searching and Soul Finding','Like Colour to the blind: Soul Searching and Soul Finding',0,1),(139,'The Speed of Dark','The Speed of Dark',0,1),(140,'A Child\'s Journey Out of Autism: One Family\'s Story of Living in Hope and Finding a Cure','A Child\'s Journey Out of Autism: One Family\'s Story of Living in Hope and Finding a Cure',0,1),(141,'Paper Words: Discovering and Living with My Autism','Paper Words: Discovering and Living with My Autism',0,1),(142,'Trevor Trevor: A Metaphor for Children','Trevor Trevor: A Metaphor for Children',0,1),(143,'Little Rainman (Autism--Through the eyes of a child)','Little Rainman (Autism--Through the eyes of a child)',0,1),(144,'My Best Friend Will','My Best Friend Will',0,1),(145,'A is for All Aboard!','A is for All Aboard!',0,1),(146,'Trevor Trevor: A Metaphor for Children','Trevor Trevor: A Metaphor for Children',0,1),(147,'Albert Einstein','Albert Einstein',0,1),(148,'Apples for Cheyenne: A story about autism, horses and friendship','Apples for Cheyenne: A story about autism, horses and friendship',0,1),(149,'How to Talk to an Autistic Kid','How to Talk to an Autistic Kid',0,1),(150,'The Best Me: Choosing Healthy Food and Drink (English/Spanish version)','The Best Me: Choosing Healthy Food and Drink (English/Spanish version)',0,1),(151,'Bullies Are a Pain in the Brain','Bullies Are a Pain in the Brain',0,1),(152,'Amazing Me: It\'s Busy Being 3! ','Amazing Me: It\'s Busy Being 3! ',0,1),(153,'Amazing Me: It\'s Busy Being 3! ','Amazing Me: It\'s Busy Being 3! ',0,1),(154,'The Autism Acceptance book: Being a Friend to Someone with Autism','The Autism Acceptance book: Being a Friend to Someone with Autism',0,1),(155,'The Autism Acceptance book: Being a Friend to Someone with Autism','The Autism Acceptance book: Being a Friend to Someone with Autism',0,1),(156,'This is Asperger Syndrome','This is Asperger Syndrome',0,1),(157,'Personal Space Camp: Activity and Idea Book w/ Supplementary Teacher\'s Guide','Personal Space Camp: Activity and Idea Book w/ Supplementary Teacher\'s Guide',0,1),(158,'Personal Space Camp','Personal Space Camp',0,1),(159,'Do-Watch-Listen-Say: Social and Communication Intervention for Children with Autism','Do-Watch-Listen-Say: Social and Communication Intervention for Children with Autism',0,1),(160,'Taking the Mystery Out of Medications in Autism/Asperger Syndromes','Taking the Mystery Out of Medications in Autism/Asperger Syndromes',0,1),(161,'Relationship Development Intervention with Children, Adolescents and Adults','Relationship Development Intervention with Children, Adolescents and Adults',0,1),(162,'Healthcare for Children on the Autism Spectrum ','Healthcare for Children on the Autism Spectrum ',0,1),(163,'Biological Treatments for Autism and PDD','Biological Treatments for Autism and PDD',0,1),(164,'Engaging Autism: Using the Floortime Approach to Help Children Relate, Communicate, & Think','Engaging Autism: Using the Floortime Approach to Help Children Relate, Communicate, & Think',0,1),(165,'Autism: Caring for Children with Autism Spectrum Disorders: A Resource Toolkit for Clinicians','Autism: Caring for Children with Autism Spectrum Disorders: A Resource Toolkit for Clinicians',0,1),(166,'Findings and Conclusions: Addressing the need for evidenced-based practice guidelines for Autism Spectrum Disorders','Findings and Conclusions: Addressing the need for evidenced-based practice guidelines for Autism Spectrum Disorders',0,1),(167,'The SCRETS Model: Enhancing Communication & Socioemotional Abilities of Children w/ Autism Spectrum Disorder','The SCRETS Model: Enhancing Communication & Socioemotional Abilities of Children w/ Autism Spectrum Disorder',0,1),(168,'BrainWorks','BrainWorks',0,1),(169,'Effective Sensory Diets Seminar Manual 1148','Effective Sensory Diets Seminar Manual 1148',0,1),(170,'Effective Sensory Diets Seminar Manual 1148','Effective Sensory Diets Seminar Manual 1148',0,1),(171,'Navigating the Social World: A Curriculum for Individuals with Asperger\'s Syndrome, High Functioning Autism and Related Disorders','Navigating the Social World: A Curriculum for Individuals with Asperger\'s Syndrome, High Functioning Autism and Related Disorders',0,1),(172,'The Integrated Self-Advocacy ISA Curriculum: A Program for Emerging Self-Advocates w/ Autism Spectrum and Other Conditions (Teacher Edition)','The Integrated Self-Advocacy ISA Curriculum: A Program for Emerging Self-Advocates w/ Autism Spectrum and Other Conditions (Teacher Edition)',0,1),(173,'The Integrated Self-Advocacy ISA Curriculum: A Program for Emerging Self-Advocates w/ Autism Spectrum and Other Conditions (Teacher Edition)','The Integrated Self-Advocacy ISA Curriculum: A Program for Emerging Self-Advocates w/ Autism Spectrum and Other Conditions (Teacher Edition)',0,1),(174,'Pivotal Response Treatments for Autism: Communication, Social & Academic Development','Pivotal Response Treatments for Autism: Communication, Social & Academic Development',0,1),(175,'Your Inner Physician and You: CranioSacral Therapy and SomatoEmotional Release','Your Inner Physician and You: CranioSacral Therapy and SomatoEmotional Release',0,1),(176,'I am the Child: Using Brain Gym with children who have special needs','I am the Child: Using Brain Gym with children who have special needs',0,1),(177,'Therapy Shoppe the extraordinary little specialty shoppe for school & pediatric therapists, teachers, and parents, too!','Therapy Shoppe the extraordinary little specialty shoppe for school & pediatric therapists, teachers, and parents, too!',0,1),(178,'Therapy Shoppe the extraordinary little specialty shoppe for school & pediatric therapists, teachers, and parents, too!','Therapy Shoppe the extraordinary little specialty shoppe for school & pediatric therapists, teachers, and parents, too!',0,1),(179,'First Signs Screening Kit for Pediatric Practitioners','First Signs Screening Kit for Pediatric Practitioners',0,1),(180,'First Signs Screening Kit for Pediatric Practitioners','First Signs Screening Kit for Pediatric Practitioners',0,1),(181,'Great Kids: Helping Your Baby & Child Develop the 10 Essential Qualities for a Healthy, Happy Life','Great Kids: Helping Your Baby & Child Develop the 10 Essential Qualities for a Healthy, Happy Life',0,1),(182,'Bright Not Broken: Gifted Kids, ADHD, and Autism: Why Twice-Exceptional Children Are Stuck and How to Help Them','Bright Not Broken: Gifted Kids, ADHD, and Autism: Why Twice-Exceptional Children Are Stuck and How to Help Them',0,1),(183,'The Paper Trail Notebook: Helping your family stay organized along the way','The Paper Trail Notebook: Helping your family stay organized along the way',0,1),(184,'Autism Speaks Family Services Transition Tool Kit','Autism Speaks Family Services Transition Tool Kit',0,1),(185,'Autism Speaks Family Services Transition Tool Kit','Autism Speaks Family Services Transition Tool Kit',0,1),(186,'Autism: Should My Child Take Medicine for Challenging Behavior?','Autism: Should My Child Take Medicine for Challenging Behavior?',0,1),(187,'Taking the Work Out of Blood Work: Helping Your Patient With Autism: A Provider\'s Guide','Taking the Work Out of Blood Work: Helping Your Patient With Autism: A Provider\'s Guide',0,1),(188,'Autism Research Review International Quarterly Publications','Autism Research Review International Quarterly Publications',0,1),(189,'Alaska Autism Resource Center/Special Education Service Agency','Alaska Autism Resource Center/Special Education Service Agency',0,1),(190,'FAS: Parenting Children Affected by Fetal Alcohol Syndrome: A Guide for Daily Living (2nd Ed.)','FAS: Parenting Children Affected by Fetal Alcohol Syndrome: A Guide for Daily Living (2nd Ed.)',0,1),(191,'FAS: Parenting Children Affected by Fetal Alcohol Syndrome: A Guide for Daily Living (2nd Ed.)','FAS: Parenting Children Affected by Fetal Alcohol Syndrome: A Guide for Daily Living (2nd Ed.)',0,1),(192,'A Practical Native American Guide for Caregivers of Children, Adolescents and Adults with Fetal Alcohol Syndrome and Alcohol Related Conditions','A Practical Native American Guide for Caregivers of Children, Adolescents and Adults with Fetal Alcohol Syndrome and Alcohol Related Conditions',0,1),(193,'Alcohol, pregnancy and the developing child','Alcohol, pregnancy and the developing child',0,1),(194,'Fetal Alcohol Syndrome and the Criminal Justice System','Fetal Alcohol Syndrome and the Criminal Justice System',0,1),(195,'Damaged Angels: A mother discovers the terrible cost of alcohol in pregnancy','Damaged Angels: A mother discovers the terrible cost of alcohol in pregnancy',0,1),(196,'Decisionville: An interactive educational game about the consequences of drinking alcohol and pregnancy designed for rural Alaska','Decisionville: An interactive educational game about the consequences of drinking alcohol and pregnancy designed for rural Alaska',0,1),(197,'Decisionville: An interactive educational game about the consequences of drinking alcohol and pregnancy designed for rural Alaska','Decisionville: An interactive educational game about the consequences of drinking alcohol and pregnancy designed for rural Alaska',0,1),(198,'Worth the Trip: Raising and Teaching Children with Fetal Alcohol Syndrome','Worth the Trip: Raising and Teaching Children with Fetal Alcohol Syndrome',0,1),(199,'Worth the Trip: Raising and Teaching Children with Fetal Alcohol Syndrome','Worth the Trip: Raising and Teaching Children with Fetal Alcohol Syndrome',0,1),(200,'Students Like Me: Teaching Children with Fetal Alcohol Syndrome','Students Like Me: Teaching Children with Fetal Alcohol Syndrome',0,1),(201,'Students Like Me: Teaching Children with Fetal Alcohol Syndrome','Students Like Me: Teaching Children with Fetal Alcohol Syndrome',0,1),(202,'Can\'t, Not won\'t: A Christian Response to Fetal Alcohol Spectrum Disorder (FASD)','Can\'t, Not won\'t: A Christian Response to Fetal Alcohol Spectrum Disorder (FASD)',0,1),(203,'Can\'t, Not won\'t: A Christian Response to Fetal Alcohol Spectrum Disorder (FASD)','Can\'t, Not won\'t: A Christian Response to Fetal Alcohol Spectrum Disorder (FASD)',0,1),(204,'Fetal Alcohol and Other Drug Effects: A Four-Part Training Series for Parents and Professionals','Fetal Alcohol and Other Drug Effects: A Four-Part Training Series for Parents and Professionals',0,1),(205,'The Final Score: Winning Against FAS','The Final Score: Winning Against FAS',0,1),(206,'The Final Score: Winning Against FAS','The Final Score: Winning Against FAS',0,1),(207,'Transgenerational Issues & Multimodal Treatment Strategies Through the Lifespan in Fetal Alcohol Spectrum Disorders (#2)','Transgenerational Issues & Multimodal Treatment Strategies Through the Lifespan in Fetal Alcohol Spectrum Disorders (#2)',0,1),(208,'Transgenerational Issues & Multimodal Treatment Strategies Through the Lifespan in Fetal Alcohol Spectrum Disorders (#3)','Transgenerational Issues & Multimodal Treatment Strategies Through the Lifespan in Fetal Alcohol Spectrum Disorders (#3)',0,1),(209,'Pinky and The Brain: Mice of the Jungles (Children\'s Movie)','Pinky and The Brain: Mice of the Jungles (Children\'s Movie)',0,1);
+/*!40000 ALTER TABLE `browser_resource` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `browser_revent`
+--
+
+DROP TABLE IF EXISTS `browser_revent`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `browser_revent` (
+  `resource_ptr_id` int(11) NOT NULL,
+  `date_time` datetime NOT NULL,
+  `location` longtext NOT NULL,
+  PRIMARY KEY (`resource_ptr_id`),
+  CONSTRAINT `browse_resource_ptr_id_10545dbafc3beffa_fk_browser_resource_r_id` FOREIGN KEY (`resource_ptr_id`) REFERENCES `browser_resource` (`r_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `browser_revent`
+--
+
+LOCK TABLES `browser_revent` WRITE;
+/*!40000 ALTER TABLE `browser_revent` DISABLE KEYS */;
+/*!40000 ALTER TABLE `browser_revent` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `browser_rlibrary`
+--
+
+DROP TABLE IF EXISTS `browser_rlibrary`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `browser_rlibrary` (
+  `resource_ptr_id` int(11) NOT NULL,
+  `phys_id` int(11) DEFAULT NULL,
+  `author` varchar(160) DEFAULT NULL,
+  `item_type` varchar(1) NOT NULL,
+  `catagory` varchar(1) NOT NULL,
+  `borrower_name` varchar(60) NOT NULL,
+  `checkout_date` datetime DEFAULT NULL,
+  `email` varchar(50) NOT NULL,
+  `phone` varchar(10) NOT NULL,
+  `return_date` datetime DEFAULT NULL,
+  `status` varchar(1) NOT NULL,
+  PRIMARY KEY (`resource_ptr_id`),
+  CONSTRAINT `browse_resource_ptr_id_3bd89354ba3a3a97_fk_browser_resource_r_id` FOREIGN KEY (`resource_ptr_id`) REFERENCES `browser_resource` (`r_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `browser_rlibrary`
+--
+
+LOCK TABLES `browser_rlibrary` WRITE;
+/*!40000 ALTER TABLE `browser_rlibrary` DISABLE KEYS */;
+INSERT INTO `browser_rlibrary` VALUES (1,1,'Sensory Integration International, Inc','0','0','',NULL,'','',NULL,'0'),(2,2,'Ellen Yack, Paula Aquilla, & Shirley Sutton','0','0','',NULL,'','',NULL,'0'),(3,3,'Lila Lasky & Rose Mukerji-Bergeson','0','0','',NULL,'','',NULL,'0'),(4,4,'Pamela J. Wolfberg','0','0','',NULL,'','',NULL,'0'),(5,5,'Brenda Smith Myles et. al.','0','0','',NULL,'','',NULL,'0'),(6,6,'Carol Stock Kranowitz','0','0','',NULL,'','',NULL,'0'),(7,7,'N/A','f','0','',NULL,'','',NULL,'0'),(8,8,'N/A','f','0','',NULL,'','',NULL,'0'),(9,9,'Special Education Service Agency (SESA)','1','1','',NULL,'','',NULL,'0'),(10,10,'Special Education Service Agency (SESA)','1','1','',NULL,'','',NULL,'0'),(11,11,'Betsy Kruth','1','1','',NULL,'','',NULL,'0'),(12,12,'Stephen Shore','1','1','',NULL,'','',NULL,'0'),(13,13,'Susan Hepburn','1','1','',NULL,'','',NULL,'0'),(14,14,'Susan Hepburn','1','1','',NULL,'','',NULL,'0'),(15,15,'Betsy Kruth','1','1','',NULL,'','',NULL,'0'),(16,16,'Valerie Paradiz','1','1','',NULL,'','',NULL,'0'),(17,17,'The Arc of Anchorage','1','1','',NULL,'','',NULL,'0'),(18,18,'University of Washington Autism Center','1','1','',NULL,'','',NULL,'0'),(19,19,'Accelerations Educational Software','2','1','',NULL,'','',NULL,'0'),(20,20,'James Ball','0','2','',NULL,'','',NULL,'0'),(21,21,'James Ball','0','2','',NULL,'','',NULL,'0'),(22,22,'Stella Acquarone','0','2','',NULL,'','',NULL,'0'),(23,23,'K. Eileen Allen & Lynn R. Marotz','0','2','',NULL,'','',NULL,'0'),(24,24,'John Medina','0','2','',NULL,'','',NULL,'0'),(25,26,'Ellen Notbhm & Veronic Zysk','0','2','',NULL,'','',NULL,'0'),(26,27,'Ellen Notbhm & Veronic Zysk','0','2','',NULL,'','',NULL,'0'),(27,28,'Jennifer Trachtenberg','0','2','',NULL,'','',NULL,'0'),(28,29,'William Stillman','0','2','',NULL,'','',NULL,'0'),(29,30,'Clarissa Willis','0','2','',NULL,'','',NULL,'0'),(30,31,'Ellen Notbhm','0','2','',NULL,'','',NULL,'0'),(31,32,'Susan Senator','0','2','',NULL,'','',NULL,'0'),(32,33,'Wendy L. Stone & Theresa Foy DiGeronimo','0','2','',NULL,'','',NULL,'0'),(33,34,'Brenda Boyd','0','2','',NULL,'','',NULL,'0'),(34,35,'Brenda Boyd','0','2','',NULL,'','',NULL,'0'),(35,36,'Teresa A. Cardon','0','2','',NULL,'','',NULL,'0'),(36,37,'R. Wayne Gilpin','0','2','',NULL,'','',NULL,'0'),(37,38,'R. Wayne Gilpin','0','2','',NULL,'','',NULL,'0'),(38,39,'Kathy Labosh','0','2','',NULL,'','',NULL,'0'),(39,40,'Carolyn Thorwarth Bruey','0','2','',NULL,'','',NULL,'0'),(40,41,'Tony Attwood','0','2','',NULL,'','',NULL,'0'),(41,42,'Paul A. Offit','0','2','',NULL,'','',NULL,'0'),(42,43,'Nancy D. Wiseman','0','2','',NULL,'','',NULL,'0'),(43,44,'Kathy Labosh & LaNita Miller','0','2','',NULL,'','',NULL,'0'),(44,45,'Merope Pavlides','0','2','',NULL,'','',NULL,'0'),(45,46,'Ayala Manolson, Barb Ward & Nancy Dodington','0','2','',NULL,'','',NULL,'0'),(46,138,'Ayala Manolson, Barb Ward & Nancy Dodington','0','2','',NULL,'','',NULL,'0'),(47,47,'Diane Bahr','0','2','',NULL,'','',NULL,'0'),(48,50,'Carol Gray & Abbie Leigh White','0','2','',NULL,'','',NULL,'0'),(49,51,'Kathy Labosh','0','2','',NULL,'','',NULL,'0'),(50,52,'Kathy Labosh','0','2','',NULL,'','',NULL,'0'),(51,53,'Kathy Labosh ','0','2','',NULL,'','',NULL,'0'),(52,54,'Kathy Labosh','0','2','',NULL,'','',NULL,'0'),(53,55,'Governor\'s Council on Disabilities & Special Ed., DMHDD, UAA Center for Human Development','0','2','',NULL,'','',NULL,'0'),(54,56,'Lynn E. McClannahan & Patricia J. Krantz','0','2','',NULL,'','',NULL,'0'),(55,58,'Fern Sussman','0','2','',NULL,'','',NULL,'0'),(56,59,'Mindy Small & Lisa Kontente','0','2','',NULL,'','',NULL,'0'),(57,60,'Mindy Small & Lisa Kontente','0','2','',NULL,'','',NULL,'0'),(58,61,'Mindy Small & Lisa Kontente','0','2','',NULL,'','',NULL,'0'),(59,62,'Philip Abrams & Leslie Henriques','0','2','',NULL,'','',NULL,'0'),(60,63,'Diane Drake Burns','0','2','',NULL,'','',NULL,'0'),(61,182,'Autism Speaks Inc. ','4','2','',NULL,'','',NULL,'0'),(62,118,'Victoria A. Beck','0','2','',NULL,'','',NULL,'0'),(63,158,'Karen Siff Exkorn','0','2','',NULL,'','',NULL,'0'),(64,186,'Disability Law Center of Alaska','5','2','',NULL,'','',NULL,'0'),(65,57,'Nicholas Martin','0','3','',NULL,'','',NULL,'0'),(66,115,'Laura E. Marshak & Fran Pollock Prezant','0','3','',NULL,'','',NULL,'0'),(67,116,'Louise Weston','0','3','',NULL,'','',NULL,'0'),(68,64,'Beth Fouse','0','4','',NULL,'','',NULL,'0'),(69,65,'Rebecca A. Moyes','0','4','',NULL,'','',NULL,'0'),(70,66,'Peter W. D. Wright & Pamela Darr Wright','0','4','',NULL,'','',NULL,'0'),(71,67,'Paula Kluth','0','4','',NULL,'','',NULL,'0'),(72,68,'Ron Leaf & John McEachin','0','4','',NULL,'','',NULL,'0'),(73,69,'Marlene J. Cohen & Donna L. Sloan','0','4','',NULL,'','',NULL,'0'),(74,70,'Christina Carnahan & Pamela Williamson','0','4','',NULL,'','',NULL,'0'),(75,71,'Linda A. Hodgdon','0','4','',NULL,'','',NULL,'0'),(76,72,'National Autism Center','6','4','',NULL,'','',NULL,'0'),(77,73,'National Autism Center','6','4','',NULL,'','',NULL,'0'),(78,74,'Kathleen McConnell & Gail R. Ryser','6','4','',NULL,'','',NULL,'0'),(79,75,'Kathleen McConnell & Gail R. Ryser','6','4','',NULL,'','',NULL,'0'),(80,76,'Shelia Wagner','0','4','',NULL,'','',NULL,'0'),(81,77,'Diane Twachtman-Cullen & Jennifer Twachtman-Reily','0','4','',NULL,'','',NULL,'0'),(82,78,'Larry Martin Davis','0','4','',NULL,'','',NULL,'0'),(83,79,'Larry Martin Davis','0','4','',NULL,'','',NULL,'0'),(84,80,'Amelia Davies','0','4','',NULL,'','',NULL,'0'),(85,81,'Susan Thomspon Moore','0','4','',NULL,'','',NULL,'0'),(86,82,'Robert C. Pianta & Marcia Kraft-Sayre','0','4','',NULL,'','',NULL,'0'),(87,83,'Robert C. Pianta & Martha J. Cox','0','4','',NULL,'','',NULL,'0'),(88,84,'Rebecca A. Moyes','0','4','',NULL,'','',NULL,'0'),(89,183,'Ingrid Chalufour & Karen Worth','7','4','',NULL,'','',NULL,'0'),(90,184,'Dept. of Education & Early Development','5','4','',NULL,'','',NULL,'0'),(91,185,'Linda Hodgdon','5','4','',NULL,'','',NULL,'0'),(92,25,'Judith A Schickedanz & Renee M. Casbergue','0','4','',NULL,'','',NULL,'0'),(93,85,'Tracy G. Mueller & Robin D. Brewer','8','4','',NULL,'','',NULL,'0'),(94,86,'Tracy G. Mueller & Robin D. Brewer','8','4','',NULL,'','',NULL,'0'),(95,87,'Robin D. Brewer & Tracy G. Mueller','8','4','',NULL,'','',NULL,'0'),(96,187,'Disability Law Center of Alaska','5','4','',NULL,'','',NULL,'0'),(97,88,'Don Meyer & Patricia Vadsay','0','5','',NULL,'','',NULL,'0'),(98,89,'Don Meyer ','0','5','',NULL,'','',NULL,'0'),(99,90,'Donald Meyer & Patricia Vadasy','0','5','',NULL,'','',NULL,'0'),(100,91,'Lynne Stern Feiges & Mary Jane Weiss','0','5','',NULL,'','',NULL,'0'),(101,137,'Donald Meyer','0','5','',NULL,'','',NULL,'0'),(102,146,'Gigi Sestak','0','5','',NULL,'','',NULL,'0'),(103,147,'Gigi Sestak','0','5','',NULL,'','',NULL,'0'),(104,92,'Scott Bellini','0','6','',NULL,'','',NULL,'0'),(105,93,'Shelia Wagner','0','6','',NULL,'','',NULL,'0'),(106,94,'Shelia Wagner','0','6','',NULL,'','',NULL,'0'),(107,95,'Michele Borba','0','6','',NULL,'','',NULL,'0'),(108,96,'Brenda Smith Myles & Diane Adreon','0','6','',NULL,'','',NULL,'0'),(109,97,'Carolyn Thorwarth Bruey & Mary Beth Urban','0','6','',NULL,'','',NULL,'0'),(110,98,'Barbara Cooper & Nancy Widdows','9','6','',NULL,'','',NULL,'0'),(111,99,'Rebekah Heinrichs','0','6','',NULL,'','',NULL,'0'),(112,100,'Chantal Sicile-Kira','0','6','',NULL,'','',NULL,'0'),(113,117,'Jerry Newport','0','6','',NULL,'','',NULL,'0'),(114,120,'Temple Grandin & Kate Duffy','0','6','',NULL,'','',NULL,'0'),(115,101,'Brenda Smith Myles & Jack Southwick','0','a','',NULL,'','',NULL,'0'),(116,102,'Bill Davis & Wendy Goldband Schunick','0','a','',NULL,'','',NULL,'0'),(117,103,'Louise Porter','0','a','',NULL,'','',NULL,'0'),(118,104,'C. Drew Edwards','0','a','',NULL,'','',NULL,'0'),(119,105,'Stanley I. Greenspan & Jacqueline Salmon','0','a','',NULL,'','',NULL,'0'),(120,106,'Ross W. Green','0','a','',NULL,'','',NULL,'0'),(121,107,'Elisa Gagnon','6','a','',NULL,'','',NULL,'0'),(122,108,'Andrew J. Wakefield','0','7','',NULL,'','',NULL,'0'),(123,109,'Bargara Firestone','0','7','',NULL,'','',NULL,'0'),(124,110,'Simone Brenneman','0','7','',NULL,'','',NULL,'0'),(125,111,'Roy Richard Grinker','0','7','',NULL,'','',NULL,'0'),(126,112,'Daniel Tammet','0','7','',NULL,'','',NULL,'0'),(127,113,'Judy & Sean Barron','0','7','',NULL,'','',NULL,'0'),(128,114,'Shonda Schilling','0','7','',NULL,'','',NULL,'0'),(129,119,'Cindy N. Ariel & Robert A. Naseef','0','7','',NULL,'','',NULL,'0'),(130,121,'Thomas A. McKean','0','7','',NULL,'','',NULL,'0'),(131,122,'John Elder Robinson','0','7','',NULL,'','',NULL,'0'),(132,123,'John Elder Robinson','0','7','',NULL,'','',NULL,'0'),(133,124,'Sandra Brown','0','7','',NULL,'','',NULL,'0'),(134,125,'Temple Grandin','0','7','',NULL,'','',NULL,'0'),(135,126,'Catherine Maurice','0','7','',NULL,'','',NULL,'0'),(136,127,'Jodie Picoult','0','7','',NULL,'','',NULL,'0'),(137,128,'Michael Fitzgerald & Brendan O\'Brien','0','7','',NULL,'','',NULL,'0'),(138,129,'Donna Williams','0','7','',NULL,'','',NULL,'0'),(139,130,'Elizabeth Moon','0','7','',NULL,'','',NULL,'0'),(140,131,'Leeann Whiffen','0','7','',NULL,'','',NULL,'0'),(141,160,'Judy Endow','0','7','',NULL,'','',NULL,'0'),(142,132,'Diane Twachtman-Cullen','0','7','',NULL,'','',NULL,'0'),(143,133,'Karen L. Simmons','0','7','',NULL,'','',NULL,'0'),(144,134,'Jamie Lowell & Tara Tuchel','0','7','',NULL,'','',NULL,'0'),(145,135,'Paula & Victoria Kluth','0','7','',NULL,'','',NULL,'0'),(146,136,'Diane Twachtman-Cullen','0','7','',NULL,'','',NULL,'0'),(147,139,'Ibi Lepschky','0','7','',NULL,'','',NULL,'0'),(148,140,'Elizabeth King Gerlach','0','7','',NULL,'','',NULL,'0'),(149,141,'Daniel Stefanski','0','7','',NULL,'','',NULL,'0'),(150,142,'Dianne Warren ','0','7','',NULL,'','',NULL,'0'),(151,143,'Trevor Romain','0','7','',NULL,'','',NULL,'0'),(152,144,'Julia Cook & Laura A. Jana','0','7','',NULL,'','',NULL,'0'),(153,145,'Julia Cook & Laura A. Jana','0','7','',NULL,'','',NULL,'0'),(154,148,'Ellen Sabin','a','7','',NULL,'','',NULL,'0'),(155,149,'Ellen Sabin','a','7','',NULL,'','',NULL,'0'),(156,150,'Elisa Gagnon & Brenda Smith Myles','0','7','',NULL,'','',NULL,'0'),(157,151,'Julia Cook ','a','7','',NULL,'','',NULL,'0'),(158,152,'Julia Cook','0','7','',NULL,'','',NULL,'0'),(159,153,'Kathleen Ann Quill','0','2','',NULL,'','',NULL,'0'),(160,154,'Luke Tsai','0','2','',NULL,'','',NULL,'0'),(161,155,'Steven E. Gutsteiin & Rachel K. Sheely','0','2','',NULL,'','',NULL,'0'),(162,156,'Fred R. Volkmar & Lisa A. Wiesner','0','2','',NULL,'','',NULL,'0'),(163,157,'William Shaw','0','2','',NULL,'','',NULL,'0'),(164,159,'Stanley I. Greenspan & Serena Wieder','0','2','',NULL,'','',NULL,'0'),(165,161,'American Academy of Pediatrics','b','2','',NULL,'','',NULL,'0'),(166,162,'National Autism Center','6','2','',NULL,'','',NULL,'0'),(167,163,'Barry M. Prizant','5','2','',NULL,'','',NULL,'0'),(168,164,'BrainWorks','c','2','',NULL,'','',NULL,'0'),(169,165,'Gwen Wild','5','2','',NULL,'','',NULL,'0'),(170,166,'Gwen Wild','5','2','',NULL,'','',NULL,'0'),(171,167,'Jeanette McAfee','0','2','',NULL,'','',NULL,'0'),(172,168,'Valerie Paradiz','0','2','',NULL,'','',NULL,'0'),(173,169,'Valerie Paradiz','0','2','',NULL,'','',NULL,'0'),(174,170,'Robert L. Koegel & Lynn Kern Koegel','0','2','',NULL,'','',NULL,'0'),(175,171,'John E. Upledger','0','2','',NULL,'','',NULL,'0'),(176,172,'Cecilia K. Freeman','0','2','',NULL,'','',NULL,'0'),(177,48,'Therapy Shoppe','d','2','',NULL,'','',NULL,'0'),(178,49,'Therapy Shoppe','d','2','',NULL,'','',NULL,'0'),(179,173,'First Signs','b','2','',NULL,'','',NULL,'0'),(180,174,'First Signs','b','2','',NULL,'','',NULL,'0'),(181,188,'Stanley I. Greenspan','0','2','',NULL,'','',NULL,'0'),(182,189,'Diane M. Kennedy, Rebecca S. Banks & Temple Grandin','0','2','',NULL,'','',NULL,'0'),(183,175,'Stone Soup Group','4','8','',NULL,'','',NULL,'0'),(184,176,'Autism Speaks Inc. ','4','8','',NULL,'','',NULL,'0'),(185,177,'Autism Speaks Inc. ','4','8','',NULL,'','',NULL,'0'),(186,178,'Autism Speaks Inc., Autism Treatment Network & Autism Intervention Research Network on Physical Health','4','8','',NULL,'','',NULL,'0'),(187,179,'Autism Speaks Inc., Autism Treatment Network & Autism Intervention Research Network on Physical Health','4','8','',NULL,'','',NULL,'0'),(188,180,'Autism Research Institute','4','8','',NULL,'','',NULL,'0'),(189,181,'N/A','c','8','',NULL,'','',NULL,'0'),(190,1000,'Sara Graefe','0','9','',NULL,'','',NULL,'0'),(191,1001,'Sara Graefe','0','9','',NULL,'','',NULL,'0'),(192,1002,'Robin A. LaDue','0','9','',NULL,'','',NULL,'0'),(193,1003,'Hans-Ludwig Spohr & Hans-Christoph Steinhausen ','0','9','',NULL,'','',NULL,'0'),(194,1004,'Julianne Conry & Diane K. Fast','0','9','',NULL,'','',NULL,'0'),(195,1005,'Bonnie Buxton','0','9','',NULL,'','',NULL,'0'),(196,1006,'Rural Alaska Community Action Program, Inc.','e','9','',NULL,'','',NULL,'0'),(197,1007,'Rural Alaska Community Action Program, Inc.','e','9','',NULL,'','',NULL,'0'),(198,1008,'Vida Health Communications','1','9','',NULL,'','',NULL,'0'),(199,1009,'Vida Health Communications','1','9','',NULL,'','',NULL,'0'),(200,1010,'Vida Health Communications','1','9','',NULL,'','',NULL,'0'),(201,1011,'Vida Health Communications','1','9','',NULL,'','',NULL,'0'),(202,1012,'Mennonite Central Committee Canada','1','9','',NULL,'','',NULL,'0'),(203,1013,'Mennonite Central Committee Canada','1','9','',NULL,'','',NULL,'0'),(204,1014,'Diane V. Malbin','1','9','',NULL,'','',NULL,'0'),(205,1015,'Early Decisions Project','1','9','',NULL,'','',NULL,'0'),(206,1016,'Early Decisions Project','1','9','',NULL,'','',NULL,'0'),(207,1017,'Kieran D. O\'Malley','1','9','',NULL,'','',NULL,'0'),(208,1018,'Kieran D. O\'Malley','1','9','',NULL,'','',NULL,'0'),(209,1019,'Warner Bros. Family Entertainment','3','9','',NULL,'','',NULL,'0');
+/*!40000 ALTER TABLE `browser_rlibrary` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `browser_ronline`
+--
+
+DROP TABLE IF EXISTS `browser_ronline`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `browser_ronline` (
+  `resource_ptr_id` int(11) NOT NULL,
+  `otype` varchar(1) NOT NULL,
+  `date` date DEFAULT NULL,
+  `url` longtext NOT NULL,
+  PRIMARY KEY (`resource_ptr_id`),
+  CONSTRAINT `browse_resource_ptr_id_278d221e33737c04_fk_browser_resource_r_id` FOREIGN KEY (`resource_ptr_id`) REFERENCES `browser_resource` (`r_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `browser_ronline`
+--
+
+LOCK TABLES `browser_ronline` WRITE;
+/*!40000 ALTER TABLE `browser_ronline` DISABLE KEYS */;
+/*!40000 ALTER TABLE `browser_ronline` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `browser_rservice`
+--
+
+DROP TABLE IF EXISTS `browser_rservice`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `browser_rservice` (
+  `resource_ptr_id` int(11) NOT NULL,
+  `address` varchar(50) NOT NULL,
+  `phone` varchar(10) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `url` longtext NOT NULL,
+  PRIMARY KEY (`resource_ptr_id`),
+  CONSTRAINT `browser_resource_ptr_id_8c56eb27f8c815b_fk_browser_resource_r_id` FOREIGN KEY (`resource_ptr_id`) REFERENCES `browser_resource` (`r_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `browser_rservice`
+--
+
+LOCK TABLES `browser_rservice` WRITE;
+/*!40000 ALTER TABLE `browser_rservice` DISABLE KEYS */;
+/*!40000 ALTER TABLE `browser_rservice` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `browser_sadditional`
+--
+
+DROP TABLE IF EXISTS `browser_sadditional`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `browser_sadditional` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parents` tinyint(1) NOT NULL,
+  `relationships` tinyint(1) NOT NULL,
+  `teachers` tinyint(1) NOT NULL,
+  `sibilings` tinyint(1) NOT NULL,
+  `teens` tinyint(1) NOT NULL,
+  `resource_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `browser_sadditional_e2f3ef5b` (`resource_id`),
+  CONSTRAINT `browser_sad_resource_id_8f0b35c3f68afac_fk_browser_resource_r_id` FOREIGN KEY (`resource_id`) REFERENCES `browser_resource` (`r_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `browser_sadditional`
+--
+
+LOCK TABLES `browser_sadditional` WRITE;
+/*!40000 ALTER TABLE `browser_sadditional` DISABLE KEYS */;
+/*!40000 ALTER TABLE `browser_sadditional` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `browser_sbehaviour`
+--
+
+DROP TABLE IF EXISTS `browser_sbehaviour`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `browser_sbehaviour` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sleep` tinyint(1) NOT NULL,
+  `safety_home` tinyint(1) NOT NULL,
+  `safety_public` tinyint(1) NOT NULL,
+  `safety_travel` tinyint(1) NOT NULL,
+  `repetition` tinyint(1) NOT NULL,
+  `aggression` tinyint(1) NOT NULL,
+  `communication` tinyint(1) NOT NULL,
+  `nonverbal` tinyint(1) NOT NULL,
+  `sensory` tinyint(1) NOT NULL,
+  `meltdown` tinyint(1) NOT NULL,
+  `anxiety` tinyint(1) NOT NULL,
+  `change` tinyint(1) NOT NULL,
+  `resource_id` int(11) NOT NULL,
+  `nutrition` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `browser_sbehaviour_e2f3ef5b` (`resource_id`),
+  CONSTRAINT `browser_sb_resource_id_37fbf75bc460f3e9_fk_browser_resource_r_id` FOREIGN KEY (`resource_id`) REFERENCES `browser_resource` (`r_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `browser_sbehaviour`
+--
+
+LOCK TABLES `browser_sbehaviour` WRITE;
+/*!40000 ALTER TABLE `browser_sbehaviour` DISABLE KEYS */;
+/*!40000 ALTER TABLE `browser_sbehaviour` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `browser_sdemo`
+--
+
+DROP TABLE IF EXISTS `browser_sdemo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `browser_sdemo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `age1to3` tinyint(1) NOT NULL,
+  `age3to18` tinyint(1) NOT NULL,
+  `age18plus` tinyint(1) NOT NULL,
+  `gender_m` tinyint(1) NOT NULL,
+  `gender_f` tinyint(1) NOT NULL,
+  `resource_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `browser_sdemo_e2f3ef5b` (`resource_id`),
+  CONSTRAINT `browser_sdem_resource_id_cf468d1be95e08_fk_browser_resource_r_id` FOREIGN KEY (`resource_id`) REFERENCES `browser_resource` (`r_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `browser_sdemo`
+--
+
+LOCK TABLES `browser_sdemo` WRITE;
+/*!40000 ALTER TABLE `browser_sdemo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `browser_sdemo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `browser_sdisorder`
+--
+
+DROP TABLE IF EXISTS `browser_sdisorder`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `browser_sdisorder` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `asd` tinyint(1) NOT NULL,
+  `fas` tinyint(1) NOT NULL,
+  `pdd` tinyint(1) NOT NULL,
+  `aspergers` tinyint(1) NOT NULL,
+  `cdd` tinyint(1) NOT NULL,
+  `resource_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `browser_sdisorder_e2f3ef5b` (`resource_id`),
+  CONSTRAINT `browser_sd_resource_id_631a93610480dbe1_fk_browser_resource_r_id` FOREIGN KEY (`resource_id`) REFERENCES `browser_resource` (`r_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `browser_sdisorder`
+--
+
+LOCK TABLES `browser_sdisorder` WRITE;
+/*!40000 ALTER TABLE `browser_sdisorder` DISABLE KEYS */;
+/*!40000 ALTER TABLE `browser_sdisorder` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `browser_sservices`
+--
+
+DROP TABLE IF EXISTS `browser_sservices`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `browser_sservices` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `diagnostic` tinyint(1) NOT NULL,
+  `resource` tinyint(1) NOT NULL,
+  `therapy` tinyint(1) NOT NULL,
+  `educational` tinyint(1) NOT NULL,
+  `referral` tinyint(1) NOT NULL,
+  `legal` tinyint(1) NOT NULL,
+  `city` varchar(30) NOT NULL,
+  `resourceLink_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `browser_sservices_217fc992` (`resourceLink_id`),
+  CONSTRAINT `browser_resourceLink_id_7e303dadaa91dd3_fk_browser_resource_r_id` FOREIGN KEY (`resourceLink_id`) REFERENCES `browser_resource` (`r_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `browser_sservices`
+--
+
+LOCK TABLES `browser_sservices` WRITE;
+/*!40000 ALTER TABLE `browser_sservices` DISABLE KEYS */;
+/*!40000 ALTER TABLE `browser_sservices` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_admin_log`
+--
+
+DROP TABLE IF EXISTS `django_admin_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_admin_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `action_time` datetime NOT NULL,
+  `object_id` longtext,
+  `object_repr` varchar(200) NOT NULL,
+  `action_flag` smallint(5) unsigned NOT NULL,
+  `change_message` longtext NOT NULL,
+  `content_type_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `django_admin_log_417f1b1c` (`content_type_id`),
+  KEY `django_admin_log_e8701ad4` (`user_id`),
+  CONSTRAINT `django_admin_log_user_id_52fdd58701c5f563_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `djang_content_type_id_697914295151027a_fk_django_content_type_id` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_admin_log`
+--
+
+LOCK TABLES `django_admin_log` WRITE;
+/*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
+INSERT INTO `django_admin_log` VALUES (1,'2015-04-17 19:03:45','1','A Parent\'s Guide to Understanding Sensory Integration',2,'Changed homepage.',8,1);
+/*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_content_type`
+--
+
+DROP TABLE IF EXISTS `django_content_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_content_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `app_label` varchar(100) NOT NULL,
+  `model` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `django_content_type_app_label_45f3b1d93ec8c61c_uniq` (`app_label`,`model`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_content_type`
+--
+
+LOCK TABLES `django_content_type` WRITE;
+/*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
+INSERT INTO `django_content_type` VALUES (1,'log entry','admin','logentry'),(2,'permission','auth','permission'),(3,'group','auth','group'),(4,'user','auth','user'),(5,'content type','contenttypes','contenttype'),(6,'session','sessions','session'),(7,'resource','browser','resource'),(8,'Library Item','browser','rlibrary'),(9,'borower','browser','borower'),(10,'Online item','browser','ronline'),(11,'Event','browser','revent'),(12,'Service','browser','rservice'),(13,'Demographics','browser','sdemo'),(14,'Behaviors','browser','sbehaviour'),(15,'Disorders','browser','sdisorder'),(16,'Service Features','browser','sservices'),(17,'Additional Search options','browser','sadditional');
+/*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_migrations`
+--
+
+DROP TABLE IF EXISTS `django_migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_migrations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `app` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `applied` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_migrations`
+--
+
+LOCK TABLES `django_migrations` WRITE;
+/*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2015-04-17 18:59:47'),(2,'auth','0001_initial','2015-04-17 18:59:51'),(3,'admin','0001_initial','2015-04-17 18:59:52'),(4,'browser','0001_initial','2015-04-17 18:59:52'),(5,'browser','0002_auto_20150320_0137','2015-04-17 18:59:53'),(6,'browser','0003_auto_20150320_0253','2015-04-17 18:59:58'),(7,'browser','0004_auto_20150320_0322','2015-04-17 19:00:00'),(8,'browser','0005_auto_20150320_0326','2015-04-17 19:00:00'),(9,'browser','0006_borower','2015-04-17 19:00:01'),(10,'browser','0007_auto_20150320_0719','2015-04-17 19:00:01'),(11,'browser','0008_auto_20150320_0751','2015-04-17 19:00:02'),(12,'browser','0009_auto_20150321_1921','2015-04-17 19:00:03'),(13,'browser','0010_auto_20150328_1802','2015-04-17 19:00:03'),(14,'browser','0011_auto_20150329_1919','2015-04-17 19:00:05'),(15,'browser','0012_auto_20150331_2002','2015-04-17 19:00:06'),(16,'browser','0013_auto_20150331_2016','2015-04-17 19:00:06'),(17,'browser','0014_auto_20150331_2028','2015-04-17 19:00:07'),(18,'browser','0015_auto_20150401_1845','2015-04-17 19:00:07'),(19,'browser','0016_auto_20150402_2302','2015-04-17 19:00:10'),(20,'browser','0017_auto_20150404_1929','2015-04-17 19:00:11'),(21,'browser','0018_auto_20150404_2035','2015-04-17 19:00:12'),(22,'browser','0019_resource_show_in_browser','2015-04-17 19:00:13'),(23,'browser','0020_auto_20150409_2025','2015-04-17 19:00:15'),(24,'browser','0021_auto_20150417_1643','2015-04-17 19:00:16'),(25,'browser','0022_auto_20150417_1820','2015-04-17 19:00:17'),(26,'sessions','0001_initial','2015-04-17 19:00:17');
+/*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_session`
+--
+
+DROP TABLE IF EXISTS `django_session`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_session` (
+  `session_key` varchar(40) NOT NULL,
+  `session_data` longtext NOT NULL,
+  `expire_date` datetime NOT NULL,
+  PRIMARY KEY (`session_key`),
+  KEY `django_session_de54fa62` (`expire_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_session`
+--
+
+LOCK TABLES `django_session` WRITE;
+/*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
+INSERT INTO `django_session` VALUES ('nvxrysl539uvatv3udqzds4su1x0eg8k','MDU1N2ZhZDMyYzk5YTkxYzY4NGNlYmM1MWY3NGMxZjY3YzIwNWQ4MDp7Il9hdXRoX3VzZXJfaGFzaCI6ImQyZGRhY2I0ZWYzNjA5ODBlYjFmMjYwMDA4MTNiZTVmMDZkOTRmOWUiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-05-01 19:03:34');
+/*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-04-17 11:04:03
