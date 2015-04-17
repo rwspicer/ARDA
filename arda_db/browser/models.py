@@ -28,7 +28,7 @@ class RLibrary(Resource):
         Library item database model
     """
     phys_id = models.IntegerField(null=True)  #no column in .xls file
-    author = models.CharField(max_length = 60) # author col in # .xls
+    author = models.CharField(max_length = 160) # author col in # .xls
     # these are the types of items in the Physical Library, some have been
     # combined from the .xls file
     types = ( 
