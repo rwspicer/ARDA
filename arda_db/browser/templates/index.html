@@ -7,13 +7,14 @@ ARDA Autism Resource Database
 {% block content %}
 	<h1> Homepage </h1>
 	<a href="{% url 'events' %}">View all events</a>
+	<br>
+	<br>
 	
+	<h3>Featured</h3>
 	{% if resource_list %}
-	<ul>
 		{% for resource in resource_list %}
 			<a href="{{ resource.r_id }}/">{{ resource.title }} </a><br>
 		{% endfor %}
-	</ul>
 	{% else %}
 	<p>No Resources Match Your Search.</p>
 	{% endif %}
