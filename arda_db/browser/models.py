@@ -6,6 +6,7 @@ updated 2015-04-09
     contains the database models for the browser
 """
 from django.db import models
+from django.core.mail import send_mail
 
 
 class Resource(models.Model):
@@ -99,6 +100,8 @@ class RLibrary(Resource):
             
     def email_cr(self):
         print "sending client resevered email"
+        #~ send_mail('Subject here', 'Here is the message.', 'from@example.com',
+        #~ [self.email], fail_silently=True)
         # send email (prehaps write an email thread)
         # claculete time to a date before & sleep
         # send email
@@ -129,24 +132,24 @@ class RLibrary(Resource):
         verbose_name ='Library Item'
     
 
-class Borower(models.Model):
-    """
-        borrower database model -- TODO merge with Library Item
-    """
-    types= (
-        ('0', 'Available'),
-        ('1', 'Reserved'),
-        ('2', 'Checked Out'),
-    )
-    status = models.CharField(max_length=1, choices=types, default="0")
-    
-    
-    resource = models.ForeignKey(RLibrary)
-    borrower_name = models.CharField(max_length = 50, blank=True)
-    phone = models.CharField(max_length = 10)
-    email = models.CharField(max_length = 50)
-    checkout_date = models.DateField(blank=True, null=True)
-    return_date = models.DateField(blank=True, null=True)
+#~ class Borower(models.Model):
+    #~ """
+        #~ borrower database model -- TODO merge with Library Item
+    #~ """
+    #~ types= (
+        #~ ('0', 'Available'),
+        #~ ('1', 'Reserved'),
+        #~ ('2', 'Checked Out'),
+    #~ )
+    #~ status = models.CharField(max_length=1, choices=types, default="0")
+    #~ 
+    #~ 
+    #~ resource = models.ForeignKey(RLibrary)
+    #~ borrower_name = models.CharField(max_length = 50, blank=True)
+    #~ phone = models.CharField(max_length = 10)
+    #~ email = models.CharField(max_length = 50)
+    #~ checkout_date = models.DateField(blank=True, null=True)
+    #~ return_date = models.DateField(blank=True, null=True)
     
 
     
@@ -163,7 +166,7 @@ class ROnline(Resource):
     otype = models.CharField(max_length = 1, choices=types, 
                                                            verbose_name ="type")
     date = models.DateField()
-    url = models.TextField(blank=True)
+    url = models.URLField(blank=True)
     class Meta:
         verbose_name ='Online item'
         
@@ -188,7 +191,7 @@ class RService(Resource):
     address = models.CharField(max_length = 50)
     phone = models.CharField(max_length = 10)
     email = models.CharField(max_length = 50)
-    url = models.TextField(blank=True)
+    url = models.URLField(blank=True)
     class Meta:
         verbose_name ='Service'
 
@@ -257,6 +260,13 @@ class SServices(models.Model):
     """
     service search related item Database model
     """
+    cities = (
+        ('0', 'State Wide'),
+        ('1', 'Anchorage'),
+        ('2', 'Fairbanks'),
+        ('3', 'Juno'),
+    )
+    
     resourceLink = models.ForeignKey(Resource)
     diagnostic = models.BooleanField(default=False)
     resource = models.BooleanField(default=False)
@@ -264,7 +274,7 @@ class SServices(models.Model):
     educational = models.BooleanField(default=False)
     referral = models.BooleanField(default=False)
     legal = models.BooleanField(default=False)
-    city = models.CharField(max_length = 30)
+    city = models.CharField(max_length = 1, choices=cities, default = '0' )
     
     class Meta:
         verbose_name_plural = verbose_name = "Service Features"

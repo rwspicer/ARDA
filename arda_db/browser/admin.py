@@ -6,7 +6,7 @@ updated 2015-04-09
     this file manages the admin pages
 """
 from django.contrib import admin
-from browser.models import Resource, Borower, RLibrary, ROnline, RService, \
+from browser.models import Resource, RLibrary, ROnline, RService, \
                            REvent, SDemo, SBehaviour, SDisorder, SServices, \
                            SAdditional
 from django.contrib.auth.models import Group, User
@@ -102,7 +102,7 @@ class OnlineAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, 			{'fields': ['title','otype','date','url']}),
         (None,          {'fields': ['description']}),
-        ("Browser Options",    {'fields': ["homepage", ]}),#"show_in_browser"]}),
+        ("Browser Options",   {'fields': ["homepage", ]}),#"show_in_browser"]}),
     ]
 
 
@@ -116,7 +116,7 @@ class ServiceAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, 			{'fields': ['title','phone','email','address','url']}),
         (None,          {'fields': ['description']}),
-        ("Browser Options",    {'fields': ["homepage", ]}),#"show_in_browser"]}),
+        ("Browser Options",   {'fields': ["homepage", ]}),#"show_in_browser"]}),
     ]
 
 
