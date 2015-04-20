@@ -200,7 +200,22 @@ class ROnline(Resource):
     class Meta:
         verbose_name ='Online item'
         
-        
+
+from threading import Thread 
+from datetime import tzinfo, timedelta, datetime
+
+ZERO = timedelta(0)
+
+class UTC(tzinfo):
+  def utcoffset(self, dt):
+    return ZERO
+  def tzname(self, dt):
+    return "UTC"
+  def dst(self, dt):
+    return ZERO
+
+utc = UTC()  
+from time import sleep
 class REvent(Resource):
     """
     database model for events
@@ -210,7 +225,20 @@ class REvent(Resource):
     location = models.TextField(blank=True)
     # what else?
     
+    def clean(self):
+        #~ self.show_in_browser = '1'
+        t = Thread(target = self.hide)
+        t.start()
     
+    def hide(self):
+        now = datetime.now(utc)
+        print (self.date_time-now).seconds
+        sleep((self.date_time-now).seconds)
+        print "false"
+        self.show_in_browser = False
+        print self.show_in_browser
+        self.save()
+        
     class Meta:
         verbose_name ='Event'
     

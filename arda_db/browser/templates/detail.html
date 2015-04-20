@@ -41,7 +41,7 @@ detail page
         </tr>
 
 		<tr>
-            <td>catagory</td>
+            <td>Catagory</td>
             <td> 
                 {% if item.rlibrary.catagory == '0' %} {{item.rlibrary.cats.0.1}} {% endif %}
                 {% if item.rlibrary.catagory == '1' %} {{item.rlibrary.cats.1.1}} {% endif %}
@@ -96,9 +96,20 @@ detail page
             <td><a href="{{item.rservice.url}}">{{item.rservice.url}}</a></td>
         </tr>
 	{% endif %}
+    {% if item.revent %}
+    <tr>
+            <td>Location</td>
+            <td>{{item.revent.location}}</td>
+    </tr>
+    <tr>
+            <td>Time</td>
+            <td>{{item.revent.date_time}}</td>
+    </tr>
+
+    {% endif %}
 	<!--END TODO These need to be expanded-->
     <tr>
-        <td>description</td>
+        <td>Description</td>
         <td>{{item.description}}</td>
     </tr>
     </table>
