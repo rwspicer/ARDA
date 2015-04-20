@@ -6,17 +6,41 @@ ARDA Autism Resource Database
 
 {% block content %}
 	<h1> Homepage </h1>
-	<a href="{% url 'events' %}">View all events</a>
+
+	<div class="events">
+		<a href="{% url 'events' %}">View all events</a>
+	</div>
+
 	<br>
-	<br>
-	
-	<h3>Featured</h3>
-	{% if resource_list %}
-		{% for resource in resource_list %}
-			<a href="{{ resource.r_id }}/">{{ resource.title }} </a><br>
-		{% endfor %}
-	{% else %}
-	<p>No Resources Match Your Search.</p>
-	{% endif %}
+
+	<div class="purpose">
+		<h3>Purpose</h3>
+		<p>
+			This Autism Resource Database for Alaska is a digital network for autism related resources specific to Alaska. The ARDA includes library items available for check out, reputable online items, services and therapies provided across Alaska, and upcoming events. The purpose for this database is to provide a hub for autism related information and services to help meet the needs of all Alaskans. 
+		<p>
+			Know a service provided and do not see it on our database? Send us an e-mail at info@asagoldenheart.org and we will update our database!
+		<p>
+	</div> 
+
+
+	<div class="featured_resources">
+		<h3>Featured</h3>
+		{% if resource_list %}
+			{% for resource in resource_list %}
+				<a href="{{ resource.r_id }}/">{{ resource.title }} </a><br>
+			{% endfor %}
+		{% else %}
+		<p>No Resources Match Your Search.</p>
+		{% endif %}
+	</div>
+
+	<div class="disclaimer">
+		<h3>Disclaimer </h3>
+		<p>
+			These materials have been prepared for informational purposes only. This general information is not intended to diagnose any medical condition or to be used as a replacement of a health professional. If you have any specific questions about any medical matter, consult with a doctor or other professional healthcare provider. 
+		</p>
+	</div>
+
+
 
 {% endblock %}
