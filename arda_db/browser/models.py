@@ -232,11 +232,11 @@ class REvent(Resource):
     
     def hide(self):
         now = datetime.now(utc)
-        print (self.date_time-now).seconds
-        sleep((self.date_time-now).seconds)
-        print "false"
+        #~ print (self.date_time-now).seconds + 2*60*60
+        sleep((self.date_time-now).seconds + 2*60*60)
+        #~ print "false"
         self.show_in_browser = False
-        print self.show_in_browser
+        #~ print self.show_in_browser
         self.save()
         
     class Meta:
