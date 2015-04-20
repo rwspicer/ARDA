@@ -6,7 +6,7 @@ updated 2015-04-09
     contains the database models for the browser
 """
 from django.db import models
-from django.core.mail import send_mail
+from django.core.mail import send_mail, mail_admins
 
 
 class Resource(models.Model):
@@ -99,31 +99,61 @@ class RLibrary(Resource):
                 self.email_cco()
             
     def email_cr(self):
-        print "sending client resevered email"
-        #~ send_mail('Subject here', 'Here is the message.', 'from@example.com',
-        #~ [self.email], fail_silently=True)
-        # send email (prehaps write an email thread)
+        # send email (perhaps write an email thread)
+        #~ print "sending client resevered email"
+        subject = "Checkout Appointment Reminder"
+        msg = "Dear " + self.borrower_name + ',\n\n' +\
+              "You have set up an appointment to check out " + self.title + \
+              ". Your appointment is at " + str(self.checkout_date) + \
+              ". Thank you \n\n The Autism Society of Alaska."
+        sender = 'from@example.com'
+        send_mail(subject, msg, sender,[self.email], fail_silently=True)
         # claculete time to a date before & sleep
         # send email
         # end thread
         
     def email_ar(self):
-        print "sending admin resevered email"
+        #~ print "sending admin resevered email"
         # send email
+        subject = "Checkout Appointment Reminder"
+        msg = self.borrower_name + " has set up an appointment to check out " \
+              + self.title + ", the Physical ID is " + str(self.phys_id) +\
+              ". The appointment is at " + str(self.checkout_date) + \
+              ". Thank you \n\n The Autism Society of Alaska."
+        sender = 'from@example.com'
+        mail_admins(subject, msg, fail_silently=True)
+        
         # claculete time to a date before & sleep
         # send email
         # end thread
         
     def email_cco(self):
-        print "sending client check out email"
+        #~ print "sending client check out email"
         # send email
+        subject = "Return Appointment Reminder"
+        msg = "Dear " + self.borrower_name + ',\n\n' +\
+              "You have checked out " + self.title + \
+              " from The Autism Society of Alaska's Library. " +\
+              ". Your appointment to return the book is at " + \
+              str(self.return_date) + \
+              ". Thank you \n\n The Autism Society of Alaska."
+        sender = 'from@example.com'
+        send_mail(subject, msg, sender,[self.email], fail_silently=True)
         # claculete time to a date before & sleep
         # send email
         # end thread
         
     def email_aco(self):
-        print "sending admin check out email"
+        #~ print "sending admin check out email"
         # send email
+        subject = "Return Appointment Reminder"
+        msg = self.borrower_name + 'has checked out ' + self.title + \
+              ", the Physincal ID is " + str(self.phys_id) + \
+              ". The appointment to return the book is at " + \
+              str(self.return_date) + \
+              ". Thank you \n\n The Autism Society of Alaska."
+        sender = 'from@example.com'
+        mail_admins(subject, msg, fail_silently=True)
         # claculete time to a date before & sleep
         # send email
         # end thread
@@ -179,6 +209,8 @@ class REvent(Resource):
     date_time = models.DateTimeField()
     location = models.TextField(blank=True)
     # what else?
+    
+    
     class Meta:
         verbose_name ='Event'
     
