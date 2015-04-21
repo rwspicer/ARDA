@@ -16,26 +16,26 @@ header {
     height: 76px;
     background-color: #207cca;
 	display: block;
-	min-width: 1170px;
+	min-width: 1080px;
 }
 
 
 header h1 {
 	margin: 0;
-	padding-top: 7px;
+	padding-top: 8px;
 	font-size: 45px;
 	font-family: Impact, Lato, sans-serif;
 	color: white;
 	display: inline-block;
 	position: absolute;
-	width: 750px;
+	width: 650px;
 }
 
 header img {
 	height: 62px;
 	width: 100px;
 	float: left;
-	padding: 10px 10px 17px 5px;
+	padding: 6px 10px 17px 5px;
 	display: block
 }
 
@@ -121,12 +121,13 @@ main {
 	min-height: 1300px;
 	font-family: Lato, Arial, sans-serif;
 	color: #333333;
-	max-width: 1000px;
+	max-width: 1500px;
 }
 
 main p {
 	font-size:12px;
 	color: #555555;
+    font-family: Lato, Arial, sans-serif;
 }
 
 p.header {
@@ -184,37 +185,43 @@ ul.pagination li {
 
 /* Beginning of index main contents */
 
+
 .events {
 	display: block;
 	/*float: left;*/
-	width: 300px;
+	width: 450px;
 	float: left;
 }
 
 .purpose {
 	display: inline-block;
-	float: right;
-	width: 300px;
+    position: absolute;
+/*    float: right;*/
+	width: 255px;
+    margin-left: 525px;
 }
 
 .featured_resources {
 	display: block;
 	/*float: left;*/
-	width: 300px;
+	width: 450px;
 }
-
-
 
 .disclaimer {
 	display: block;
-	width: 300px;
+	width: 450px;
 	float: left;
 }
 
-
 /* End of index main contents */
 
+/* Beginning of user_guide main contents */
 
+.guide_images {
+    width: 250px;
+    box-shadow: 0px 8px 10px #888888;
+    margin-left: 10px;
+}
 
 footer {
 	text-align: center;
@@ -229,7 +236,7 @@ a.hl:visited {
 }
 
 a.hl:hover {
-    color: grey;
+    color: lightgray;
 }
 a.h:link {
     text-decoration: none;

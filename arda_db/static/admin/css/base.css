@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 0;
     font-size: 12px;
-    font-family: "Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+    font-family: Lato, Arial, sans-serif;
     color: #333;
     background: #fff;
 }
@@ -789,7 +789,7 @@ table#change-history tbody th {
 #header {
     margin: 0px;
 	padding: 0px;
-    height: 80px;
+    height: 76px;
     background-color: #207cca;
 /*
     box-shadow: 0px 8px 10px #888888;
@@ -822,7 +822,7 @@ table#change-history tbody th {
 /*
     margin: 0;
 */
-	margin-top: 10px;
+	margin-top: 8px;
 	font-size: 45px;
 	font-family:  Arial, sans-serif;
 	color: white;
@@ -836,8 +836,7 @@ table#change-history tbody th {
 	height: 62px;
 	width: 100px;
 	float: left;
-	padding: 10px 10px 0px 5px;
-	
+	padding: 6px 10px 0px 5px;
 }
 /*
 #branding h1, #branding h1 a:link, #branding h1 a:visited {
@@ -881,10 +880,6 @@ table#change-history tbody th {
     color: #666;
 }
 
-
-/*
-
-#site-name {
-
+h1#site-name {
+    font-family: Impact, Arial, sans-serif;
 }
-*/
