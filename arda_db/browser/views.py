@@ -112,6 +112,34 @@ def result(request):
     if 'nutrition' in request.GET:
         resource_list = resource_list.filter(sbehaviour__nutrition = True)
         filter_url_addon += 'change=selected&'
+
+    if 'service' in request.GET:
+        if 'diagnostic' in request.GET:
+            resource_list = resource_list.filter(sservices__diagnostic = True)
+            filter_url_addon += 'diagnostic=selected&'
+        if 'resource' in request.GET:
+            resource_list = resource_list.filter(sservices__resource = True)
+            filter_url_addon += 'resource=selected&'
+        if 'therapy' in request.GET:
+            resource_list = resource_list.filter(sservices__therapy = True)
+            filter_url_addon += 'therapy=selected&'
+        if 'educational' in request.GET:
+            resource_list = resource_list.filter(sservices__educational = True)
+            filter_url_addon += 'educational=selected&'
+        if 'referral' in request.GET:
+            resource_list = resource_list.filter(sservices__referral = True)
+            filter_url_addon += 'referral=selected&'
+        if 'legal' in request.GET:
+            resource_list = resource_list.filter(sservices__legal = True)
+            filter_url_addon += 'legal=selected&'
+        if 'state_wide' in request.GET:
+            resource_list = resource_list.filter(sservices__city = '0')
+        if 'anchorage' in request.GET:
+            resource_list = resource_list.filter(sservices__city = '1')
+        if 'fairbanks' in request.GET:
+            resource_list = resource_list.filter(sservices__city = '2')
+        if 'juneau' in request.GET:
+            resource_list = resource_list.filter(sservices__city = '3')
     if 'diagnostic' in request.GET:
         resource_list = resource_list.filter(sservices__diagnostic = True)
         filter_url_addon += 'diagnostic=selected&'

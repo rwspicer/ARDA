@@ -10,6 +10,22 @@
 			{% block title %}
 			{% endblock %}
 		</title>
+
+		<script>
+			// --------------------------------------------- //
+			// Disables users from selecting multiple cities //
+			// --------------------------------------------- //
+			function selectOnlyThis(id) 
+			{
+			    document.getElementById("state_wide").checked = false;
+			    document.getElementById("anchorage").checked = false;
+			    document.getElementById("fairbanks").checked = false;
+			    document.getElementById("juneau").checked = false;
+
+			    document.getElementById(id).checked = true;
+			}
+
+		</script>
    	</head>
 	
 	<body>
@@ -120,6 +136,15 @@
 					<label for="referral">Referral</label><br>
 					<input type="checkbox" name="legal" value="selected" id="legal" />
 					<label for="legal">Legal</label><br>
+					<input type="checkbox" name="state_wide" value="selected" id="state_wide" onclick="selectOnlyThis(this.id)" />
+						<label for="state_wide">State Wide</label><br>
+						<input type="checkbox" name="anchorage" value="selected" id="anchorage" onclick="selectOnlyThis(this.id)" />
+						<label for="anchorage">Anchorage</label><br>
+						<input type="checkbox" name="fairbanks" value="selected" id="fairbanks" onclick="selectOnlyThis(this.id)" />
+						<label for="fairbanks">Fairbanks</label><br>
+						<input type="checkbox" name="juneau" value="selected" id="juneau" onclick="selectOnlyThis(this.id)" />
+						<label for="juneau">Juneau</label><br>
+
 				</div>
 				
 			    <label class="collapse" for="_additional">Additional</label>
@@ -142,7 +167,8 @@
 		
 			</form>
 		</div> <!-- closing sidebar tag -->
-		
+
+
 	    {% if error %}
 	    {% endif %}
 		
