@@ -10,22 +10,6 @@
 			{% block title %}
 			{% endblock %}
 		</title>
-
-		<script>
-			// --------------------------------------------- //
-			// Disables users from selecting multiple cities //
-			// --------------------------------------------- //
-			function selectOnlyThis(id) 
-			{
-			    document.getElementById("state_wide").checked = false;
-			    document.getElementById("anchorage").checked = false;
-			    document.getElementById("fairbanks").checked = false;
-			    document.getElementById("juneau").checked = false;
-
-			    document.getElementById(id).checked = true;
-			}
-
-		</script>
    	</head>
 	
 	<body>
@@ -121,22 +105,22 @@
 					<label for="nutrition">Nutrition</label><br>
 				</div>
 				
-			    <label class="collapse" for="_services">Services</label>
-			    <input id="_services" type="checkbox">
-				<div>
-					<input type="checkbox" name="diagnostic" value="selected" id="diagnostic" />
-					<label for="diagnostic">Diagnostic</label><br>
-					<input type="checkbox" name="resource" value="selected" id="resource" />
-					<label for="resource">Resource</label><br>
-					<input type="checkbox" name="therapy" value="selected" id="therapy" />
-					<label for="therapy">Therapy</label><br>
-					<input type="checkbox" name="educational" value="selected" id="educational" />
-					<label for="educational">Educational</label><br>
-					<input type="checkbox" name="referral" value="selected" id="referral" />
-					<label for="referral">Referral</label><br>
-					<input type="checkbox" name="legal" value="selected" id="legal" />
-					<label for="legal">Legal</label><br>
-					<input type="checkbox" name="state_wide" value="selected" id="state_wide" onclick="selectOnlyThis(this.id)" />
+				<div id="hide_services">
+				    <label class="collapse" for="_services">Services</label>
+					<div>
+						<input type="checkbox" name="diagnostic" value="selected" id="diagnostic" />
+						<label for="diagnostic">Diagnostic</label><br>
+						<input type="checkbox" name="resource" value="selected" id="resource" />
+						<label for="resource">Resource</label><br>
+						<input type="checkbox" name="therapy" value="selected" id="therapy" />
+						<label for="therapy">Therapy</label><br>
+						<input type="checkbox" name="educational" value="selected" id="educational" />
+						<label for="educational">Educational</label><br>
+						<input type="checkbox" name="referral" value="selected" id="referral" />
+						<label for="referral">Referral</label><br>
+						<input type="checkbox" name="legal" value="selected" id="legal" />
+						<label for="legal">Legal</label><br>
+						<input type="checkbox" name="state_wide" value="selected" id="state_wide" onclick="selectOnlyThis(this.id)" />
 						<label for="state_wide">State Wide</label><br>
 						<input type="checkbox" name="anchorage" value="selected" id="anchorage" onclick="selectOnlyThis(this.id)" />
 						<label for="anchorage">Anchorage</label><br>
@@ -144,7 +128,7 @@
 						<label for="fairbanks">Fairbanks</label><br>
 						<input type="checkbox" name="juneau" value="selected" id="juneau" onclick="selectOnlyThis(this.id)" />
 						<label for="juneau">Juneau</label><br>
-
+					</div>
 				</div>
 				
 			    <label class="collapse" for="_additional">Additional</label>
@@ -168,6 +152,34 @@
 			</form>
 		</div> <!-- closing sidebar tag -->
 
+		<script>
+			// ---------------------------------------------
+			// Displays service filter options if service
+			// is selected 
+			// ---------------------------------------------
+			var elem = document.getElementById('hide_services'),
+    		checkBox = document.getElementById('service');
+			checkBox.checked = false;
+			checkBox.onchange = function() {
+    		elem.style.display = this.checked ? 'block' : 'none';
+			};
+			checkBox.onchange();
+
+
+			// --------------------------------------------- 
+			// Disables users from selecting multiple cities 
+			// --------------------------------------------- 
+			function selectOnlyThis(id) 
+			{
+			    document.getElementById("state_wide").checked = false;
+			    document.getElementById("anchorage").checked = false;
+			    document.getElementById("fairbanks").checked = false;
+			    document.getElementById("juneau").checked = false;
+
+			    document.getElementById(id).checked = true;
+			}
+
+		</script>
 
 	    {% if error %}
 	    {% endif %}
