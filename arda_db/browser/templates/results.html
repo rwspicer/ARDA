@@ -44,18 +44,37 @@ Search Results Page
 					<li class="arrow"><a href="{{ page_url }}?page={{ content.previous_page_number }}&{{ filter_url_addon }}/">&laquo; Previous </a></li>
 				{% else %}
 					<li class="arrow_unavailable"><a href="">&laquo; Previous </a></li>
+
+					{% if content.has_next %}
+						<!-- Current page -->
+						{{ content.number }}
+
+						<!-- Next page -->
+						<li class="current"><a href="{{ page_url }}?page={{ content.next_page_number }}&{{ filter_url_addon }}">{{ content.next_page_number }}</a></li>
+					{% endif %}  
+
 				{% endif %}
-				{% for page in content.paginator.page_range %}
-					{% if page == content.number %}
-						<li class="current"><a href"{{ page_url }}?page={{ page }}&{{ filter_url_addon }}">{{ page }}</a></li>
-					{% else %}
-						<li><a href="{{ page_url }}?page={{ page }}&{{ filter_url_addon }}">{{ page }}</a></li>
-					{% endif %}
-				{% endfor %}
+
+				{% if content.has_previous and content.has_next %}
+					<!-- Previous page -->
+					<li class="current">  <a href="{{ page_url }}?page={{ content.previous_page_number }}&{{ filter_url_addon }}">{{ content.previous_page_number }}</a></li>					
+					<!-- Current page -->
+					{{ content.number }}
+					<!-- Next page -->
+					<li class="current"><a href="{{ page_url }}?page={{ content.next_page_number }}&{{ filter_url_addon }}">{{ content.next_page_number }}</a></li>  
+				{% endif %}
+
 				{% if content.has_next %}
 					<li class="arrow"><a href="{{ page_url }}?page={{ content.next_page_number }}&{{ filter_url_addon }}/"> Next &raquo;</a></li>
 				{% else %}
 					<li class="arrow_unavailable"><a href=""> Next &raquo;</a></li>
+
+					{% if content.has_previous %}
+						<!-- Previous page -->
+						<li class="current"><a href="{{ page_url }}?page={{ content.previous_page_number }}&{{ filter_url_addon }}">{{ content.previous_page_number }}</a></li>
+						<!-- Current page -->
+						{{ content.number }}
+					{% endif %}
 				{% endif %}
 			</ul> 
 		</div>
