@@ -7,7 +7,22 @@ updated 2015-04-09
 """
 from django.db import models
 from django.core.mail import send_mail, mail_admins
+from datetime import tzinfo, timedelta, datetime
+from threading import Thread 
 
+
+ZERO = timedelta(0)
+
+class UTC(tzinfo):
+  def utcoffset(self, dt):
+    return ZERO
+  def tzname(self, dt):
+    return "UTC"
+  def dst(self, dt):
+    return ZERO
+
+utc = UTC()  
+from time import sleep
 
 class Resource(models.Model):
     """
@@ -23,7 +38,7 @@ class Resource(models.Model):
     def __unicode__(self):
         return self.title
 
-
+from django.core.exceptions import ValidationError
 class RLibrary(Resource):
     """
         Library item database model
@@ -69,30 +84,48 @@ class RLibrary(Resource):
    
     # borrower info
     status = (
-        ('0', 'available'),
-        ('1', 'reservered'),
-        ('2', 'checked out'),
+        ('0', 'Available'),
+        ('1', 'Reservered'),
+        ('2', 'Checked out'),
     )
     status = models.CharField(max_length=1, choices=status, default="0")
-    borrower_name = models.CharField(max_length = 60, blank=True, 
+    borrower_name = models.CharField(max_length = 60, default='', blank = True,
                                                          verbose_name = 'name')
-    phone = models.CharField(max_length = 10, blank=True)
-    email = models.CharField(max_length = 50, blank=True)
+    phone = models.CharField(max_length = 10, default='',blank = True)
+    email = models.CharField(max_length = 50, default='',blank = True)
     checkout_date = models.DateTimeField(blank=True, null=True,
-                        verbose_name = "reserved until/check out appointment")
+                        verbose_name = "Check Out Appointment")
     return_date = models.DateTimeField(blank=True, null=True, 
-                        verbose_name = "return appointment")
+                        verbose_name = "Return Appointment")
     
     def clean(self):
         if self.status == '0':
             #~ self.checkout_date = self.return_date = ""
             self.email = self.phone = self.borrower_name = "" 
+        if self.status == '1' or self.status == '2':
+            if self.borrower_name == "":
+                raise ValidationError("Enter a borrower's Name, " +\
+                                        "to schedule an appointment")
+            if self.phone == "" and self.email == "":
+                raise ValidationError("Enter a phone number or email, " +\
+                                        "to schedule an appointment")
         if self.status == '1':
+            try:
+                if self.checkout_date < datetime.now(utc):
+                    raise TypeError
+            except TypeError:
+                raise ValidationError('The checkout date has past,' +\
+                                    'please update')
             # check for name & contact
             self.email_ar() # start up the admin reminder email thread
             if not self.email == "":
                 self.email_cr()
         if self.status == '2':
+            try:
+                if self.return_date < datetime.now(utc):
+                    raise TypeError
+            except TypeError:
+                raise ValidationError('The return date has past, please update')
             # check for name & contact
             self.email_aco() # start up the admin reminder email thread
             if not self.email == "":
@@ -104,8 +137,9 @@ class RLibrary(Resource):
         subject = "Checkout Appointment Reminder"
         msg = "Dear " + self.borrower_name + ',\n\n' +\
               "You have set up an appointment to check out " + self.title + \
-              ". Your appointment is at " + str(self.checkout_date) + \
-              ". Thank you \n\n The Autism Society of Alaska."
+              ". Your appointment is at " + str(self.checkout_date)[11:16] + \
+              " on " + str(self.checkout_date)[:10] +\
+              ". \nThank you, \n\n The Autism Society of Alaska."
         sender = 'from@example.com'
         send_mail(subject, msg, sender,[self.email], fail_silently=True)
         # claculete time to a date before & sleep
@@ -118,8 +152,9 @@ class RLibrary(Resource):
         subject = "Checkout Appointment Reminder"
         msg = self.borrower_name + " has set up an appointment to check out " \
               + self.title + ", the Physical ID is " + str(self.phys_id) +\
-              ". The appointment is at " + str(self.checkout_date) + \
-              ". Thank you \n\n The Autism Society of Alaska."
+              ". The appointment is at " + str(self.checkout_date)[11:16] + \
+              " on " + str(self.checkout_date)[:10] +\
+              ". \nThank you, \n\n The Autism Society of Alaska."
         sender = 'from@example.com'
         mail_admins(subject, msg, fail_silently=True)
         
@@ -135,8 +170,9 @@ class RLibrary(Resource):
               "You have checked out " + self.title + \
               " from The Autism Society of Alaska's Library. " +\
               ". Your appointment to return the book is at " + \
-              str(self.return_date) + \
-              ". Thank you \n\n The Autism Society of Alaska."
+              str(self.return_date)[11:16] + \
+              " on " + str(self.return_date)[:10] +\
+              ". \nThank you, \n\n The Autism Society of Alaska."
         sender = 'from@example.com'
         send_mail(subject, msg, sender,[self.email], fail_silently=True)
         # claculete time to a date before & sleep
@@ -150,8 +186,9 @@ class RLibrary(Resource):
         msg = self.borrower_name + 'has checked out ' + self.title + \
               ", the Physincal ID is " + str(self.phys_id) + \
               ". The appointment to return the book is at " + \
-              str(self.return_date) + \
-              ". Thank you \n\n The Autism Society of Alaska."
+              str(self.return_date)[11:16] + \
+              " on " + str(self.return_date)[:10] +\
+              ". \nThank you, \n\n The Autism Society of Alaska."
         sender = 'from@example.com'
         mail_admins(subject, msg, fail_silently=True)
         # claculete time to a date before & sleep
@@ -198,24 +235,10 @@ class ROnline(Resource):
     date = models.DateField()
     url = models.URLField(blank=True)
     class Meta:
-        verbose_name ='Online item'
+        verbose_name ='Online Item'
         
 
-from threading import Thread 
-from datetime import tzinfo, timedelta, datetime
 
-ZERO = timedelta(0)
-
-class UTC(tzinfo):
-  def utcoffset(self, dt):
-    return ZERO
-  def tzname(self, dt):
-    return "UTC"
-  def dst(self, dt):
-    return ZERO
-
-utc = UTC()  
-from time import sleep
 class REvent(Resource):
     """
     database model for events
@@ -278,9 +301,11 @@ class SBehaviour(models.Model):
     """
     resource = models.ForeignKey(Resource)
     sleep = models.BooleanField(default=False)
-    safety_home = models.BooleanField(default=False)
-    safety_public = models.BooleanField(default=False)
-    safety_travel = models.BooleanField(default=False)
+    safety_home = models.BooleanField(default=False, verbose_name="Safety Home")
+    safety_public = models.BooleanField(default=False, 
+                                            verbose_name="Safety Public")
+    safety_travel = models.BooleanField(default=False,
+                                            verbose_name="Safety Travel")
     repetition = models.BooleanField(default=False)
     aggression = models.BooleanField(default=False)
     communication = models.BooleanField(default=False)
@@ -334,7 +359,7 @@ class SServices(models.Model):
     educational = models.BooleanField(default=False)
     referral = models.BooleanField(default=False)
     legal = models.BooleanField(default=False)
-    city = models.CharField(max_length = 1, choices=cities, default = '0' )
+    city = models.CharField(max_length = 1, choices=cities)
     
     class Meta:
         verbose_name_plural = verbose_name = "Service Features"

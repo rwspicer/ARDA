@@ -5,7 +5,7 @@ updated 2015-04-09
 
     this file manages the admin pages
 """
-from django.contrib import admin
+from django.contrib import admin#, ModelAdmin
 from browser.models import Resource, RLibrary, ROnline, RService, \
                            REvent, SDemo, SBehaviour, SDisorder, SServices, \
                            SAdditional
@@ -62,8 +62,7 @@ class Additional(admin.TabularInline):
     #~ 
     #~ max_num = 1
 
-
-
+admin.ModelAdmin.list_per_page = 20 
 class LibraryAdmin(admin.ModelAdmin):
     """
     this class sets up what is displayed for the admin page for library items
@@ -73,12 +72,13 @@ class LibraryAdmin(admin.ModelAdmin):
     list_filter = ['status', 'catagory', 'item_type', ]
     list_display = ('title', 'phys_id', 'status' )
     ordering       = ('phys_id',)
+
     fieldsets = [
         (None, 			{'fields': ['title','author','phys_id','item_type'
                                                                 ,'catagory']}),
         (None,          {'fields': ['description']}),
-        ("Browser Options",    {'fields': ["homepage", ]}),#"show_in_browser"]}),
-        ("Borower Info",       {'classes': ('collapse', 'open'),
+        ("Browser Options",    {'fields': ["homepage", ]}),
+        ("Borrower Info",       {'classes': ('collapse', 'open'),
                                 'fields': ['status',
                                            'borrower_name',
                                            'email', 
@@ -102,7 +102,7 @@ class OnlineAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, 			{'fields': ['title','otype','date','url']}),
         (None,          {'fields': ['description']}),
-        ("Browser Options",   {'fields': ["homepage", ]}),#"show_in_browser"]}),
+        ("Browser Options",   {'fields': ["homepage", ]}),
     ]
 
 
@@ -112,11 +112,12 @@ class ServiceAdmin(admin.ModelAdmin):
     """
     inlines = [Service, Demo, Behaviour, Disorder, Additional]
     search_fields = ['title', 'description']
-    list_display = ('title',)
+    list_filter = ['sservices__city', ]
+    list_display = ('title', )
     fieldsets = [
         (None, 			{'fields': ['title','phone','email','address','url']}),
         (None,          {'fields': ['description']}),
-        ("Browser Options",   {'fields': ["homepage", ]}),#"show_in_browser"]}),
+        ("Browser Options",   {'fields': ["homepage", ]}),
     ]
 
 
