@@ -57,6 +57,7 @@ detail page
             </td>
         </tr> 
 		
+        
 		<br>        
 	{% endif %}
 	<!--TODO These need to be expanded-->
@@ -107,10 +108,33 @@ detail page
     </tr>
 
     {% endif %}
-	<!--END TODO These need to be expanded-->
+
     <tr>
         <td>Description</td>
         <td>{{item.description}}</td>
+        
     </tr>
+    {% if item.rlibrary %} <!-- status is at the bottom-->
+    <tr>
+            <td>Availability </td>
+            <td> 
+                {% if item.rlibrary.status == '0' %} {{item.rlibrary.statuses.0.1}} {% endif %}
+                {% if item.rlibrary.status == '1' %} {{item.rlibrary.statuses.1.1}} {% endif %}
+                {% if item.rlibrary.status == '2' %} {{item.rlibrary.statuses.2.1}} {% endif %}
+            </td>
+        </tr> 
+    {% endif %}
     </table>
+    {% if item.rlibrary %}
+    <p> 
+        If You would like to check this item out of our lending library contact 
+        us by phone at 1-877-374-4421 or by email at info@asagoldenheart.org 
+    </p>
+    {% endif %}
+    
+    <p>
+    Need a link back to this resource 
+    <a href="./{{ resource.r_id }}"> link </a>
+    </p>
+    
 {% endblock %}
