@@ -4,5 +4,5 @@ env
 *.DS_Store
 *.pyc
 /crap
-.sqlite3
+*.sqlite3
 
