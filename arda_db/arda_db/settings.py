@@ -96,4 +96,4 @@ STATIC_URL = '/static/'
 
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
-ADMINS = (('John', 'john@example.com'),)
+#~ ADMINS = (('Admin', 'info@sample.org'),)
