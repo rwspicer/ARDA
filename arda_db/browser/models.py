@@ -83,12 +83,12 @@ class RLibrary(Resource):
     catagory = models.CharField(max_length=1, choices=cats) #category col in xls
    
     # borrower info
-    status = (
+    statuses = (
         ('0', 'Available'),
         ('1', 'Reservered'),
         ('2', 'Checked out'),
     )
-    status = models.CharField(max_length=1, choices=status, default="0")
+    status = models.CharField(max_length=1, choices=statuses, default="0")
     borrower_name = models.CharField(max_length = 60, default='', blank = True,
                                                          verbose_name = 'name')
     phone = models.CharField(max_length = 10, default='',blank = True)
@@ -246,10 +246,21 @@ class REvent(Resource):
     # add types? fund raiser, meet and great, etc. 
     date_time = models.DateTimeField()
     location = models.TextField(blank=True)
+    archive = models.BooleanField(default = False, verbose_name="Archive Event")
     # what else?
     
     def clean(self):
         #~ self.show_in_browser = '1'
+        now = datetime.now(utc)
+        self.show_in_browser = True
+        self.save()
+        if  (self.date_time < now) and not self.archive:
+            raise ValidationError("The date & time for the event must be in"+\
+            "the future, or the event must be archived")
+        if self.archive:
+            self.show_in_browser = False
+            self.save()
+            return
         t = Thread(target = self.hide)
         t.start()
     
