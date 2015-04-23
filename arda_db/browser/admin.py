@@ -129,7 +129,7 @@ class EventAdmin(admin.ModelAdmin):
     search_fields = ['title', 'description']
     list_display = ('title',)
     fieldsets = [
-        (None, 			{'fields': ['title','date_time', 'location']}),
+        (None, 			{'fields': ['title','date_time','archive', 'location']}),
         (None,          {'fields': ['description']}),
         ("Browser Options",    {'fields': ["homepage", ]}),#"show_in_browser"]}),
     ]
