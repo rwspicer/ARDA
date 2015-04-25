@@ -1,4 +1,5 @@
 {% extends 'layouts/base.html' %}
+{% load staticfiles %}
 
 {% block title %}
 Search Results Page
@@ -40,13 +41,19 @@ Search Results Page
 	<div class="row">
 		<div class="columns">
 			<ul class="pagination">
+
 				{% if content.has_previous %}
-					<li class="arrow"><a href="{{ page_url }}?page={{ content.previous_page_number }}&{{ filter_url_addon }}/">&laquo; Previous </a></li>
+					<!-- First page -->
+					<li class="first"><a href="{{ page_url }}?page=1&{{ filter_url_addon }}/">first</a></li> 
+					
+					<!-- Previous page -->
+					<li class="arrow_f"><a href="{{ page_url }}?page={{ content.previous_page_number }}&{{ filter_url_addon }}/"> < </a></li> 
+
 				{% else %}
-					<li class="arrow_unavailable"><a href="">&laquo; Previous </a></li>
+					<li class="arrow_unavailable"><a href=""> < </a></li>
 
 					{% if content.has_next %}
-						<!-- Current page -->
+						<!-- Current page number -->
 						{{ content.number }}
 
 						<!-- Next page -->
@@ -65,9 +72,13 @@ Search Results Page
 				{% endif %}
 
 				{% if content.has_next %}
-					<li class="arrow"><a href="{{ page_url }}?page={{ content.next_page_number }}&{{ filter_url_addon }}/"> Next &raquo;</a></li>
+					<!-- Next page -->
+					<li class="arrow_b"><a href="{{ page_url }}?page={{ content.next_page_number }}&{{ filter_url_addon }}/"> > </a></li>
+
+					<!-- Last page -->
+					<li class="last"><a href="{{ page_url }}?page={{ content.paginator.num_pages }}&{{ filter_url_addon }}/"> last </a></li>
 				{% else %}
-					<li class="arrow_unavailable"><a href=""> Next &raquo;</a></li>
+					<li class="arrow_unavailable"><a href=""> > </a></li>
 
 					{% if content.has_previous %}
 						<!-- Previous page -->
@@ -76,9 +87,9 @@ Search Results Page
 						{{ content.number }}
 					{% endif %}
 				{% endif %}
-			</ul> 
-		</div>
-	</div>
+			</ul> <!-- /ul pagination  -->
+		</div> <!-- /div column  -->
+	</div> <!-- /div row  -->
 	
 	
 {% else %}
