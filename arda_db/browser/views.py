@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django import forms
 from models import Resource
@@ -22,27 +22,8 @@ def paginate(request, resource_list):
 
     return resources
 
-
-def home(request):
-    resource_list = Resource.objects.filter(homepage = True).order_by('r_id')
-    context = {
-        'resource_list': resource_list
-    }
-    return render_to_response('index.html', context)
-
-def events(request):
-    resource_list = REvent.objects.all()
-    context = {
-        "content" : paginate(request, resource_list),
-        "filter_url_addon" : "",
-        "page_url" : "/events/"
-    }
-    return render_to_response('results.html', context)
-
-def result(request):
-    resource_list = Resource.objects.all()
-    resource_type_list = []
-    filter_url_addon = ""
+# Filters resources by demographics
+def demographicsCat(request, resource_list, filter_url_addon):
     if 'male' in request.GET:
         resource_list = resource_list.filter(sdemo__gender_m = True)
         filter_url_addon += 'male=selected&'
@@ -58,6 +39,11 @@ def result(request):
     if 'age18+' in request.GET:
         resource_list = resource_list.filter(sdemo__age18plus = True)
         filter_url_addon += 'age18+=selected&'
+
+    return resource_list, filter_url_addon
+
+# Filters resources by disorders
+def disorderCat(request, resource_list, filter_url_addon):
     if 'Autism Spectrum Disorder' in request.GET:
         resource_list = resource_list.filter(sdisorder__asd = True)
         filter_url_addon += 'Autism+Spectrum+Disorder=selected&'
@@ -73,6 +59,11 @@ def result(request):
     if 'Cognative Development Disorder' in request.GET:
         resource_list = resource_list.filter(sdisorder__cdd = True)
         filter_url_addon += 'Cognative+Development+Disorder=selected&'
+
+    return resource_list, filter_url_addon
+
+# Filters resources by behaviors
+def behaviorCat(request, resource_list, filter_url_addon):
     if 'sleep' in request.GET:
         resource_list = resource_list.filter(sbehaviour__sleep = True)
         filter_url_addon += 'sleep=selected&'
@@ -113,33 +104,10 @@ def result(request):
         resource_list = resource_list.filter(sbehaviour__nutrition = True)
         filter_url_addon += 'change=selected&'
 
-    if 'service' in request.GET:
-        if 'diagnostic' in request.GET:
-            resource_list = resource_list.filter(sservices__diagnostic = True)
-            filter_url_addon += 'diagnostic=selected&'
-        if 'resource' in request.GET:
-            resource_list = resource_list.filter(sservices__resource = True)
-            filter_url_addon += 'resource=selected&'
-        if 'therapy' in request.GET:
-            resource_list = resource_list.filter(sservices__therapy = True)
-            filter_url_addon += 'therapy=selected&'
-        if 'educational' in request.GET:
-            resource_list = resource_list.filter(sservices__educational = True)
-            filter_url_addon += 'educational=selected&'
-        if 'referral' in request.GET:
-            resource_list = resource_list.filter(sservices__referral = True)
-            filter_url_addon += 'referral=selected&'
-        if 'legal' in request.GET:
-            resource_list = resource_list.filter(sservices__legal = True)
-            filter_url_addon += 'legal=selected&'
-        if 'state_wide' in request.GET:
-            resource_list = resource_list.filter(sservices__city = '0')
-        if 'anchorage' in request.GET:
-            resource_list = resource_list.filter(sservices__city = '1')
-        if 'fairbanks' in request.GET:
-            resource_list = resource_list.filter(sservices__city = '2')
-        if 'juneau' in request.GET:
-            resource_list = resource_list.filter(sservices__city = '3')
+    return resource_list, filter_url_addon
+
+# Filters resources by services
+def serviceCat(request, resource_list, filter_url_addon):
     if 'diagnostic' in request.GET:
         resource_list = resource_list.filter(sservices__diagnostic = True)
         filter_url_addon += 'diagnostic=selected&'
@@ -158,9 +126,23 @@ def result(request):
     if 'legal' in request.GET:
         resource_list = resource_list.filter(sservices__legal = True)
         filter_url_addon += 'legal=selected&'
-    if 'city' in request.GET:
-        resource_list = resource_list.filter(sservices__city = True)
-        filter_url_addon += 'city=selected&'
+    if 'state_wide' in request.GET:
+        resource_list = resource_list.filter(sservices__city = '0')
+        filter_url_addon += 'state_wide=selected&'
+    if 'anchorage' in request.GET:
+        resource_list = resource_list.filter(sservices__city = '1')
+        filter_url_addon += 'anchorage=selected&'
+    if 'fairbanks' in request.GET:
+        resource_list = resource_list.filter(sservices__city = '2')
+        filter_url_addon += 'fairbanks=selected&'
+    if 'juneau' in request.GET:
+        resource_list = resource_list.filter(sservices__city = '3')
+        filter_url_addon += 'juneau=selected&'
+
+    return resource_list, filter_url_addon
+
+# Filters resources by addtional 
+def additionalCat(request, resource_list, filter_url_addon):
     if 'parents' in request.GET:
         resource_list = resource_list.filter(sadditional__parents = True)
         filter_url_addon += 'parents=selected&'
@@ -176,22 +158,52 @@ def result(request):
     if 'teens' in request.GET:
         resource_list = resource_list.filter(sadditional__teens = True)
         filter_url_addon += 'teens=selected&'
-    
+
+    return resource_list, filter_url_addon
+
+
+def home(request):
+    resource_list = Resource.objects.filter(homepage = True).order_by('r_id')
+    context = {
+        'resource_list': resource_list
+    }
+    return render_to_response('index.html', context)
+
+def events(request):
+    resource_list = REvent.objects.all()
+    context = {
+        "content" : paginate(request, resource_list),
+        "filter_url_addon" : "",
+        "page_url" : "/events/"
+    }
+    return render_to_response('results.html', context)
+
+
+def result(request):
+    resource_list = Resource.objects.all()
+    resource_type_list = []
+    filter_url_addon = ""
+
+    resource_list, filter_url_addon = demographicsCat(request, resource_list, filter_url_addon)
+    resource_list, filter_url_addon = disorderCat(request, resource_list, filter_url_addon)
+    resource_list, filter_url_addon = behaviorCat(request, resource_list, filter_url_addon)    
+    resource_list, filter_url_addon = additionalCat(request, resource_list, filter_url_addon)        
+
     if 'library' in request.GET:
         resource_type_list.extend(list(resource_list.filter(r_id__in = RLibrary.objects.all())))
         filter_url_addon += 'library=selected&'
     if 'online' in request.GET:
         resource_type_list.extend(list(resource_list.filter(r_id__in = ROnline.objects.all())))
         filter_url_addon += 'online=selected&'
-    if 'service' in request.GET:
-        resource_type_list.extend(list(resource_list.filter(r_id__in = RService.objects.all())))
-        filter_url_addon += 'service=selected&'
     if 'event' in request.GET:
         resource_type_list.extend(list(resource_list.filter(r_id__in = REvent.objects.all())))
         filter_url_addon += 'event=selected&'
+    if 'service' in request.GET:
+        resource_list, filter_url_addon = serviceCat(request, resource_list, filter_url_addon)        
+        resource_type_list.extend(list(resource_list.filter(r_id__in = RService.objects.all())))
+        filter_url_addon += 'service=selected&'
     
-    
-    # Delete the last character & 
+    # Delete the last character '&' 
     filter_url_addon = filter_url_addon[:-1]
             
     context = {
