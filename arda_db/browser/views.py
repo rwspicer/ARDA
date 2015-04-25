@@ -170,7 +170,7 @@ def home(request):
     return render_to_response('index.html', context)
 
 def events(request):
-    resource_list = REvent.objects.all()
+    resource_list = REvent.objects.filter(show_in_browser = True)
     context = {
         "content" : paginate(request, resource_list),
         "filter_url_addon" : "",
@@ -180,7 +180,7 @@ def events(request):
 
 
 def result(request):
-    resource_list = Resource.objects.all()
+    resource_list = Resource.objects.filter(show_in_browser = True)
     resource_type_list = []
     filter_url_addon = ""
 
