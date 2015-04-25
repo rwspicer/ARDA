@@ -89,20 +89,20 @@ ul.header_links li {
 /* Beginning of collapse  */
 
 .collapse{
-  font-size: 18px;
-  display:  block;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  cursor: pointer;
+  	font-size: 18px;
+  	display:  block;
+  	padding-bottom: 10px;
+  	padding-top: 10px;
+  	cursor: pointer;
 }
 .collapse + input{
-  display:none;
+  	display:none;
 }
 .collapse + input + *{
-  display:none;
+  	display:none;
 }
 .collapse + input:checked + *{
-  display:block;
+  	display:block;
 }
 
 .collapse:hover{
@@ -140,13 +140,6 @@ p.content {
 .overview_heading {
 	font-weight: bold;
 }
-
-/*main img {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	padding-bottom: 10px;
-}*/
 
 .submit {
     width: 80px;
