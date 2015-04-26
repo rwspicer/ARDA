@@ -28,7 +28,7 @@ header h1 {
 	color: white;
 	display: inline-block;
 	position: absolute;
-	width: 770px;
+	width: 665px;
 }
 
 header img {
@@ -190,7 +190,7 @@ ul.pagination li {
 	display: inline-block;
     position: absolute;
 /*    float: right;*/
-	width: 255px;
+	width: 240px;
     margin-left: 525px;
 }
 
@@ -211,7 +211,7 @@ ul.pagination li {
 /* Beginning of user_guide main contents */
 
 .guide_images {
-    width: 250px;
+    width:400px;
     box-shadow: 0px 8px 10px #888888;
     margin-left: 10px;
 }
@@ -220,7 +220,7 @@ footer {
 	text-align: center;
 }
 
-a.hl {
+a.hl:link{
 	text-decoration: none !important;
 }
 
@@ -236,6 +236,11 @@ a.h:link {
 }
 a.h:visited {
     color: white;
+}
+
+p.guide {
+    font-size: 20px;
+    width: 820px;
 }
 
 
