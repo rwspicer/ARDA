@@ -6,21 +6,22 @@ detail page
 {% endblock %}
 
 {% block content %}
-	<h1> Details for {{item.title}} </h1>
+<!--    <h1> Details for {{item.title}} </h1>-->
+    <h1> Resource Details </h1>
     
-	<table border="1" width="800px" >
-        <tr>
-            <td>Title</td>
-            <td>{{item.title}}</td> 
+	<table class="details" border="1" width="800px" >
+        <tr class="details">
+            <td class="details">Title</td>
+            <td class="details">{{item.title}}</td> 
         </tr>
         {% if item.rlibrary %} 
-        <tr> 
-            <td>Author</td> 
-            <td>{{item.rlibrary.author}}</td>
+        <tr class="details"> 
+            <td class="details">Author</td> 
+            <td class="details">{{item.rlibrary.author}}</td>
         </tr>
-		<tr> 
-            <td>Type</td> 
-            <td>
+		<tr class="details"> 
+            <td class="details">Type</td> 
+            <td class="details">
                 {% if item.rlibrary.item_type == '0' %} {{item.rlibrary.types.0.1}} {% endif %}
                 {% if item.rlibrary.item_type == '1' %} {{item.rlibrary.types.1.1}} {% endif %}
                 {% if item.rlibrary.item_type == '2' %} {{item.rlibrary.types.2.1}} {% endif %}
@@ -40,9 +41,9 @@ detail page
             </td>
         </tr>
 
-		<tr>
-            <td>Catagory</td>
-            <td> 
+		<tr class="details">
+            <td class="details">Category</td>
+            <td class="details"> 
                 {% if item.rlibrary.catagory == '0' %} {{item.rlibrary.cats.0.1}} {% endif %}
                 {% if item.rlibrary.catagory == '1' %} {{item.rlibrary.cats.1.1}} {% endif %}
                 {% if item.rlibrary.catagory == '2' %} {{item.rlibrary.cats.2.1}} {% endif %}
@@ -62,62 +63,62 @@ detail page
 	{% endif %}
 	<!--TODO These need to be expanded-->
 	{% if item.ronline %}
-        <tr>
-            <td>Type</td>
-            <td> 
+        <tr class="details">
+            <td class="details">Type</td>
+            <td class="details"> 
                 {% if item.ronline.otype == '0' %} {{item.ronline.types.0.1}} {% endif %}
                 {% if item.ronline.otype == '1' %} {{item.ronline.types.1.1}} {% endif %}
                 {% if item.ronline.otype == '2' %} {{item.ronline.types.2.1}} {% endif %}
             </td>
         </tr>
-        <tr>
-            <td>Date</td>
-            <td>{{item.ronline.date}}</td>
+        <tr class="details">
+            <td class="details">Date</td>
+            <td class="details">{{item.ronline.date}}</td>
         </tr>
-        <tr>
-            <td>URL</td>
-            <td><a href="{{item.ronline.url}}">{{item.ronline.url}}</a></td>
+        <tr class="details">
+            <td class="details">URL</td>
+            <td class="details"><a href="{{item.ronline.url}}">{{item.ronline.url}}</a></td>
         </tr>		
 	{% endif %}
 	{% if item.rservice %}
-		<tr>
-            <td>Address</td>
-            <td>{{item.rservice.address}}</td>
+		<tr class="details">
+            <td class="details">Address</td>
+            <td class="details">{{item.rservice.address}}</td>
         </tr>
-        <tr>
-            <td>Phone</td>
-            <td>{{item.rservice.phone}}</td>
+        <tr class="details">
+            <td class="details">Phone</td>
+            <td class="details">{{item.rservice.phone}}</td>
         </tr>
-        <tr>
-            <td>Email</td>
-            <td>{{item.rservice.email}}</td>
+        <tr class="details">
+            <td class="details">Email</td>
+            <td class="details">{{item.rservice.email}}</td>
         </tr>
-        <tr>
-            <td>URL</td>
-            <td><a href="{{item.rservice.url}}">{{item.rservice.url}}</a></td>
+        <tr class="details">
+            <td class="details">URL</td>
+            <td class="details"><a href="{{item.rservice.url}}">{{item.rservice.url}}</a></td>
         </tr>
 	{% endif %}
     {% if item.revent %}
-    <tr>
-            <td>Location</td>
-            <td>{{item.revent.location}}</td>
+    <tr class="details">
+            <td class="details">Location</td>
+            <td class="details">{{item.revent.location}}</td>
     </tr>
-    <tr>
-            <td>Time</td>
-            <td>{{item.revent.date_time}}</td>
+    <tr class="details">
+            <td class="details">Time</td>
+            <td class="details">{{item.revent.date_time}}</td>
     </tr>
 
     {% endif %}
 
-    <tr>
-        <td>Description</td>
-        <td>{{item.description}}</td>
+    <tr class="details">
+        <td class="details">Description</td>
+        <td class="details">{{item.description}}</td>
         
     </tr>
     {% if item.rlibrary %} <!-- status is at the bottom-->
-    <tr>
-            <td>Availability </td>
-            <td> 
+    <tr class="details">
+            <td class="details">Availability </td>
+            <td class="details"> 
                 {% if item.rlibrary.status == '0' %} {{item.rlibrary.statuses.0.1}} {% endif %}
                 {% if item.rlibrary.status == '1' %} {{item.rlibrary.statuses.1.1}} {% endif %}
                 {% if item.rlibrary.status == '2' %} {{item.rlibrary.statuses.2.1}} {% endif %}
@@ -126,15 +127,15 @@ detail page
     {% endif %}
     </table>
     {% if item.rlibrary %}
-    <p> 
-        If You would like to check this item out of our lending library contact 
-        us by phone at 1-877-374-4421 or by email at info@asagoldenheart.org 
+    <p style="font-size: 18px;"> 
+        Interested in renting this item from our library?<br> 
+        Give us a call at 1-877-374-4421 or send us an email at info@asagoldenheart.org. 
     </p>
     {% endif %}
     
-    <p>
-    Need a link back to this resource 
-    <a href="./{{ resource.r_id }}"> link </a>
+    <p style="font-size: 14px;">
+    Need a link back to this resource detail page? 
+    <a href="./{{ resource.r_id }}"> Right-click here to copy link </a>
     </p>
     
 {% endblock %}
