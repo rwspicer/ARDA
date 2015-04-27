@@ -64,14 +64,24 @@ WSGI_APPLICATION = 'arda_db.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-DATABASES = {
+if DEBUG == False:
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'arda_db.sqlite3'),
-        #~ 'USER': 'arda-admin',
-		#~ 'PASSWORD': 'ICannotRememberTheLastTimeI8',
+        'NAME': os.path.join(BASE_DIR, 'arda_db_deployed.sqlite3'),
+        'USER': 'arda-admin',
+		'PASSWORD': 'ICannotRememberTheLastTimeI8',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'arda_db.sqlite3'),
+            #~ 'USER': 'arda-admin',
+            #~ 'PASSWORD': 'ICannotRememberTheLastTimeI8',
+        }
+    }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -92,20 +102,9 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
-if DEBUG == False:
-    ALLOWED_HOSTS = ['*']
-    DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'arda_db_deployed.sqlite3'),
-        'USER': 'arda-admin',
-		'PASSWORD': 'ICannotRememberTheLastTimeI8',
-        }
-    }
-    #~ SERVER_EMAIL = "mail@autismresourcesak.com"
 
-if DEBUG == True
-    EMAIL_HOST = 'localhost'
-    EMAIL_PORT = 1025
-
+#~ if DEBUG == True
+    #~ EMAIL_HOST = 'localhost'
+    #~ EMAIL_PORT = 1025
+    
 ADMINS = (('Admin', 'atupek@alaska.edu'),('ross', 'rwspicer@alaska.edu'))
