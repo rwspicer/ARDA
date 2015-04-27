@@ -20,11 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'wngfh!vr%wi8o5q7fej7ehl)lpjqtxe(+3_!f#@1r0ubve-z)n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = TEMPLATE_DEBUG = True
 
-TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = []
+# all the Nessa production values are set at the end of the file
 
 
 # Application definition
@@ -70,8 +68,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'arda_db.sqlite3'),
-        #'USER': 'arda-admin',
-		#'PASSWORD': 'ICannotRememberTheLastTimeI8',
+        #~ 'USER': 'arda-admin',
+		#~ 'PASSWORD': 'ICannotRememberTheLastTimeI8',
     }
 }
 
@@ -94,6 +92,16 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
+if DEBUG == False:
+    ALLOWED_HOSTS = ['*']
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join("~/website/", 'arda_db.sqlite3'),
+        'USER': 'arda-admin',
+		'PASSWORD': 'ICannotRememberTheLastTimeI8',
+    }
+}
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 #~ ADMINS = (('Admin', 'info@sample.org'),)
