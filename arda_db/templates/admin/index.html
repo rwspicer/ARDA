@@ -1,5 +1,7 @@
 {% extends "admin/base_site.html" %}
-{% load i18n admin_static %}
+{% load i18n admin_static %} 
+{% load static %}
+
 
 {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />{% endblock %}
 
@@ -46,6 +48,7 @@
 {% else %}
     <p>{% trans "You don't have permission to edit anything." %}</p>
 {% endif %}
+<p><a  href={% static "/admin/ARDAadmindoc.pdf" %} >Admin user Guide</a></p>
 </div>
 {% endblock %}
 
