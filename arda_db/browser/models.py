@@ -156,7 +156,8 @@ class RLibrary(Resource):
               " on " + str(self.checkout_date)[:10] +\
               ". \nThank you, \n\n The Autism Society of Alaska."
         sender = 'from@example.com'
-        mail_admins(subject, msg, fail_silently=True)
+        send_mail(subject, msg, sender, 'rspicer@alaska.edu',
+                                                    fail_silently=True)
         
         # claculete time to a date before & sleep
         # send email
@@ -190,7 +191,8 @@ class RLibrary(Resource):
               " on " + str(self.return_date)[:10] +\
               ". \nThank you, \n\n The Autism Society of Alaska."
         sender = 'from@example.com'
-        mail_admins(subject, msg, fail_silently=True)
+        send_mail(subject, msg, sender, 'rspicer@alaska.edu',
+                                                    fail_silently=True)
         # claculete time to a date before & sleep
         # send email
         # end thread
@@ -360,7 +362,7 @@ class SServices(models.Model):
         ('0', 'State Wide'),
         ('1', 'Anchorage'),
         ('2', 'Fairbanks'),
-        ('3', 'Juno'),
+        ('3', 'Juneau'),
     )
     
     resourceLink = models.ForeignKey(Resource)
