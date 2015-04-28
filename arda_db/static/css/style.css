@@ -28,7 +28,7 @@ header h1 {
 	color: white;
 	display: inline-block;
 	position: absolute;
-	width: 770px;
+	width: 665px;
 }
 
 header img {
@@ -89,20 +89,20 @@ ul.header_links li {
 /* Beginning of collapse  */
 
 .collapse{
-  font-size: 18px;
-  display:  block;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  cursor: pointer;
+  	font-size: 18px;
+  	display:  block;
+  	padding-bottom: 10px;
+  	padding-top: 10px;
+  	cursor: pointer;
 }
 .collapse + input{
-  display:none;
+  	display:none;
 }
 .collapse + input + *{
-  display:none;
+  	display:none;
 }
 .collapse + input:checked + *{
-  display:block;
+  	display:block;
 }
 
 .collapse:hover{
@@ -140,13 +140,6 @@ p.content {
 .overview_heading {
 	font-weight: bold;
 }
-
-/*main img {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	padding-bottom: 10px;
-}*/
 
 .submit {
     width: 80px;
@@ -197,7 +190,7 @@ ul.pagination li {
 	display: inline-block;
     position: absolute;
 /*    float: right;*/
-	width: 255px;
+	width: 240px;
     margin-left: 525px;
 }
 
@@ -218,7 +211,7 @@ ul.pagination li {
 /* Beginning of user_guide main contents */
 
 .guide_images {
-    width: 250px;
+    width:400px;
     box-shadow: 0px 8px 10px #888888;
     margin-left: 10px;
 }
@@ -227,7 +220,7 @@ footer {
 	text-align: center;
 }
 
-a.hl {
+a.hl:link{
 	text-decoration: none !important;
 }
 
@@ -245,4 +238,24 @@ a.h:visited {
     color: white;
 }
 
+p.guide {
+    font-size: 20px;
+    width: 800px;
+}
 
+table.details {
+    width: 800px;
+    background-color: white;
+    border: 4px solid #207cca;
+    box-shadow: 0px 4px 10px #888888;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+th.details, td.details {
+    padding: 7px 10px 10px 10px;
+}
+
+tr.details:hover {
+    background-color: #207cca;
+}
