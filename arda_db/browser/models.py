@@ -86,7 +86,7 @@ class RLibrary(Resource):
     statuses = (
         ('0', 'Available'),
         ('1', 'Reservered'),
-        ('2', 'Checked out'),
+        ('2', 'Checked Out'),
     )
     status = models.CharField(max_length=1, choices=statuses, default="0")
     borrower_name = models.CharField(max_length = 60, default='', blank = True,
