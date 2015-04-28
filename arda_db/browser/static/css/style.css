@@ -28,7 +28,8 @@ header h1 {
 	color: white;
 	display: inline-block;
 	position: absolute;
-	width: 665px;
+	width: 670px;
+    white-space: nowrap;
 }
 
 header img {
