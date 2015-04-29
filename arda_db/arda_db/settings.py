@@ -22,7 +22,7 @@ SECRET_KEY = 'wngfh!vr%wi8o5q7fej7ehl)lpjqtxe(+3_!f#@1r0ubve-z)n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = ['*']
-# all the Nessa production values are set at the end of the file
+# all the necessary production values are set at the end of the file
 
 
 # Application definition

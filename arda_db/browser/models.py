@@ -102,6 +102,7 @@ class RLibrary(Resource):
                         verbose_name = "Return Appointment")
     
     sender = "donotreply@autismresourcesak.com"
+    admin_emails = ["rwspicer@alaska.edu",]
     def clean(self):
         if self.status == '0':
             #~ self.checkout_date = self.return_date = ""
@@ -144,7 +145,8 @@ class RLibrary(Resource):
               ". Your appointment is at " + str(self.checkout_date)[11:16] + \
               " on " + str(self.checkout_date)[:10] +\
               ". \nThank you, \n\n The Autism Society of Alaska."
-        send_mail(subject, msg, self.sender,[self.email], fail_silently=True)
+        recpient = [self.email]
+        send_mail(subject, msg, self.sender,recpient, fail_silently=True)
 
         
     def email_ar(self):
@@ -159,7 +161,8 @@ class RLibrary(Resource):
               "Name:"  + self.borrower_name +'\n' +\
               "Email:"  + self.email +'\n' +\
               "Phone:"  + self.phone +'\n'
-        mail_admins(subject, msg, fail_silently=True)
+        recpient = self.admin_emails
+        send_mail(subject, msg, self.sender,recpient, fail_silently=True)
         
     def email_cco(self):
         #~ print "sending client check out email"
@@ -172,7 +175,8 @@ class RLibrary(Resource):
               str(self.return_date)[11:16] + \
               " on " + str(self.return_date)[:10] +\
               ". \nThank you, \n\n The Autism Society of Alaska."
-        send_mail(subject, msg, self.sender,[self.email], fail_silently=True)
+        recpient = [self.email]
+        send_mail(subject, msg, self.sender,recpient, fail_silently=True)
         
     def email_aco(self):
         #~ print "sending admin check out email"
@@ -189,7 +193,8 @@ class RLibrary(Resource):
               "Phone:"  + self.phone +'\n'
               
               
-        mail_admins(subject, msg, fail_silently=True)
+        recpient = self.admin_emails
+        send_mail(subject, msg, self.sender,recpient, fail_silently=True)
 
         
     class Meta:
