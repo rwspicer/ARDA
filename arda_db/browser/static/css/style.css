@@ -96,15 +96,22 @@ ul.header_links li {
   	padding-top: 10px;
   	cursor: pointer;
 }
+
+/* Hides checkboxes */
 .collapse + input{
   	display:none;
 }
+
+/* Collapses categories and filter */
 .collapse + input + *{
   	display:none;
 }
+
+/* Expands categories and filter */
 .collapse + input:checked + *{
   	display:block;
 }
+
 
 .collapse:hover{
 	color: #207cca;
@@ -119,7 +126,7 @@ main {
 	margin-left: 250px;
 	padding: 5px;
 	background-color: #FFFFFF;
-	min-height: 1300px;
+	min-height: 1375px;
 	font-family: Lato, Arial, sans-serif;
 	color: #333333;
 	max-width: 1500px;
