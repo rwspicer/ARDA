@@ -8,7 +8,7 @@ updated 2015-04-09
 from django.db import models
 from django.core.mail import send_mail, mail_admins
 from datetime import tzinfo, timedelta, datetime
-from threading import Thread 
+#~ from threading import Thread #didn't work on server
 
 
 ZERO = timedelta(0)
@@ -252,28 +252,25 @@ class REvent(Resource):
     # what else?
     
     def clean(self):
-        #~ self.show_in_browser = '1'
-        now = datetime.now(utc)
+        
+        #~ now = datetime.now(utc)
         self.show_in_browser = True
-        self.save()
-        if  (self.date_time < now) and not self.archive:
+        #~ self.save()
+        if  (self.date_time < now): #and not self.archive:
             raise ValidationError("The date & time for the event must be in"+\
             "the future, or the event must be archived")
         if self.archive:
             self.show_in_browser = False
-            self.save()
+            #~ self.save()
             return
-        t = Thread(target = self.hide)
-        t.start()
+        #~ t = Thread(target = self.hide)
+        #~ t.start()
     
-    def hide(self):
-        now = datetime.now(utc)
-        #~ print (self.date_time-now).seconds + 2*60*60
-        sleep((self.date_time-now).seconds + 2*60*60)
-        #~ print "false"
-        self.show_in_browser = False
-        #~ print self.show_in_browser
-        self.save()
+    #~ def hide(self):
+        #~ now = datetime.now(utc)
+        #~ sleep((self.date_time-now).seconds + 2*60*60)
+        #~ self.show_in_browser = False
+        #~ self.save()
         
     class Meta:
         verbose_name ='Event'
