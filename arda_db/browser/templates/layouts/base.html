@@ -31,7 +31,7 @@
 			    <label class="collapse" for="_types">Resource Types</label>
 			    <input id="_types" type="checkbox">
 				<div>
-					<input type="checkbox" name="library" value="selected" id="library" />
+					<input type="checkbox" name="library" value="selected" id="library" checked />
 					<label for="library">Library</label><br>
 					<input type="checkbox" name="online" value="selected" id="online" />
 					<label for="online">Online</label><br>
@@ -120,13 +120,13 @@
 						<label for="referral">Referral</label><br>
 						<input type="checkbox" name="legal" value="selected" id="legal" />
 						<label for="legal">Legal</label><br>
-						<input type="checkbox" name="state_wide" value="selected" id="state_wide" onclick="selectOnlyThis(this.id)" />
+						<input type="radio" name="state_wide" value="selected" id="state_wide" onclick="selectOnlyThis(this.id)" />
 						<label for="state_wide">State Wide</label><br>
-						<input type="checkbox" name="anchorage" value="selected" id="anchorage" onclick="selectOnlyThis(this.id)" />
+						<input type="radio" name="anchorage" value="selected" id="anchorage" onclick="selectOnlyThis(this.id)" />
 						<label for="anchorage">Anchorage</label><br>
-						<input type="checkbox" name="fairbanks" value="selected" id="fairbanks" onclick="selectOnlyThis(this.id)" />
+						<input type="radio" name="fairbanks" value="selected" id="fairbanks" onclick="selectOnlyThis(this.id)" />
 						<label for="fairbanks">Fairbanks</label><br>
-						<input type="checkbox" name="juneau" value="selected" id="juneau" onclick="selectOnlyThis(this.id)" />
+						<input type="radio" name="juneau" value="selected" id="juneau" onclick="selectOnlyThis(this.id)" />
 						<label for="juneau">Juneau</label><br>
 					</div>
 				</div>
