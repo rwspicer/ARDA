@@ -163,11 +163,13 @@ def additionalCat(request, resource_list, filter_url_addon):
 
 
 def home(request):
-    resource_list = Resource.objects.filter(homepage = True).order_by('r_id')
+    resource_list = Resource.objects.filter(homepage = True, show_in_browser = True).order_by('r_id')
     context = {
         'resource_list': resource_list
     }
+
     return render_to_response('index.html', context)
+
 
 def events(request):
     resource_list = REvent.objects.filter(show_in_browser = True)
@@ -176,6 +178,7 @@ def events(request):
         "filter_url_addon" : "",
         "page_url" : "/events/"
     }
+
     return render_to_response('results.html', context)
 
 
@@ -213,6 +216,7 @@ def result(request):
     }
     
     return render_to_response('results.html', context)  
+
 
 def detail(request, r_id):
     try:
