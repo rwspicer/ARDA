@@ -101,7 +101,7 @@ class RLibrary(Resource):
     return_date = models.DateTimeField(blank=True, null=True, 
                         verbose_name = "Return Appointment")
     
-    sender = "donotreply@autismresourcesak.com"
+    sender = "from@example.com"
     admin_emails = ["rwspicer@alaska.edu",]
     def clean(self):
         if self.status == '0':
@@ -152,15 +152,15 @@ class RLibrary(Resource):
     def email_ar(self):
         #~ print "sending admin resevered email"
         # send email
-        subject = "Checkout Appointment Reminder - ("+ self.borrower_name +')'
+        subject = "[ARDA] Checkout Reminder - ("+ self.borrower_name +')'
         msg = self.borrower_name + " has set up an appointment to check out " \
               + self.title + ", the Physical ID is " + str(self.phys_id) +\
               ". The appointment is at " + str(self.checkout_date)[11:16] + \
               " on " + str(self.checkout_date)[:10] + '\n\n'\
               "Borrower Contact Info:\n" +\
-              "Name:"  + self.borrower_name +'\n' +\
-              "Email:"  + self.email +'\n' +\
-              "Phone:"  + self.phone +'\n'
+              "Name: "  + self.borrower_name +'\n' +\
+              "Email: "  + self.email +'\n' +\
+              "Phone: "  + self.phone +'\n'
         recpient = self.admin_emails
         send_mail(subject, msg, self.sender,recpient, fail_silently=True)
         
@@ -181,16 +181,16 @@ class RLibrary(Resource):
     def email_aco(self):
         #~ print "sending admin check out email"
         # send email
-        subject = "Return Appointment Reminder- ("+ self.borrower_name +')'
+        subject = "[ARDA] Return Reminder - ("+ self.borrower_name +')'
         msg = self.borrower_name + 'has checked out ' + self.title + \
               ", the Physincal ID is " + str(self.phys_id) + \
               ". The appointment to return the book is at " + \
               str(self.return_date)[11:16] + \
               " on " + str(self.return_date)[:10] + '\n\n'\
               "Borrower Contact Info:\n" +\
-              "Name:"  + self.borrower_name +'\n' +\
-              "Email:"  + self.email +'\n' +\
-              "Phone:"  + self.phone +'\n'
+              "Name: "  + self.borrower_name +'\n' +\
+              "Email: "  + self.email +'\n' +\
+              "Phone: "  + self.phone +'\n'
               
               
         recpient = self.admin_emails
