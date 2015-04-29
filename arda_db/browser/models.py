@@ -1,16 +1,19 @@
 """
 models.py
 ross spicer
-updated 2015-04-09
+updated 2015-04-29
 
     contains the database models for the browser
 """
 from django.db import models
 from django.core.mail import send_mail, mail_admins
-from datetime import tzinfo, timedelta, datetime
+from django.core.exceptions import ValidationError
+
+#
 #~ from threading import Thread #didn't work on server
-
-
+#~ from time import sleep
+from datetime import tzinfo, timedelta, datetime
+# for comparing time zone sensitive datetimes
 ZERO = timedelta(0)
 
 class UTC(tzinfo):
@@ -22,7 +25,7 @@ class UTC(tzinfo):
     return ZERO
 
 utc = UTC()  
-from time import sleep
+
 
 class Resource(models.Model):
     """
@@ -38,7 +41,7 @@ class Resource(models.Model):
     def __unicode__(self):
         return self.title
 
-from django.core.exceptions import ValidationError
+
 class RLibrary(Resource):
     """
         Library item database model
@@ -98,6 +101,7 @@ class RLibrary(Resource):
     return_date = models.DateTimeField(blank=True, null=True, 
                         verbose_name = "Return Appointment")
     
+    sender = "donotreply@autismresourcesak.com"
     def clean(self):
         if self.status == '0':
             #~ self.checkout_date = self.return_date = ""
@@ -140,28 +144,22 @@ class RLibrary(Resource):
               ". Your appointment is at " + str(self.checkout_date)[11:16] + \
               " on " + str(self.checkout_date)[:10] +\
               ". \nThank you, \n\n The Autism Society of Alaska."
-        sender = 'from@example.com'
-        send_mail(subject, msg, sender,[self.email], fail_silently=True)
-        # claculete time to a date before & sleep
-        # send email
-        # end thread
+        send_mail(subject, msg, self.sender,[self.email], fail_silently=True)
+
         
     def email_ar(self):
         #~ print "sending admin resevered email"
         # send email
-        subject = "Checkout Appointment Reminder"
+        subject = "Checkout Appointment Reminder - ("+ self.borrower_name +')'
         msg = self.borrower_name + " has set up an appointment to check out " \
               + self.title + ", the Physical ID is " + str(self.phys_id) +\
               ". The appointment is at " + str(self.checkout_date)[11:16] + \
-              " on " + str(self.checkout_date)[:10] +\
-              ". \nThank you, \n\n The Autism Society of Alaska."
-        sender = 'from@example.com'
-        send_mail(subject, msg, sender, 'rspicer@alaska.edu',
-                                                    fail_silently=True)
-        
-        # claculete time to a date before & sleep
-        # send email
-        # end thread
+              " on " + str(self.checkout_date)[:10] + '\n\n'\
+              "Borrower Contact Info:\n" +\
+              "Name:"  + self.borrower_name +'\n' +\
+              "Email:"  + self.email +'\n' +\
+              "Phone:"  + self.phone +'\n'
+        mail_admins(subject, msg, fail_silently=True)
         
     def email_cco(self):
         #~ print "sending client check out email"
@@ -174,36 +172,33 @@ class RLibrary(Resource):
               str(self.return_date)[11:16] + \
               " on " + str(self.return_date)[:10] +\
               ". \nThank you, \n\n The Autism Society of Alaska."
-        sender = 'from@example.com'
-        send_mail(subject, msg, sender,[self.email], fail_silently=True)
-        # claculete time to a date before & sleep
-        # send email
-        # end thread
+        send_mail(subject, msg, self.sender,[self.email], fail_silently=True)
         
     def email_aco(self):
         #~ print "sending admin check out email"
         # send email
-        subject = "Return Appointment Reminder"
+        subject = "Return Appointment Reminder- ("+ self.borrower_name +')'
         msg = self.borrower_name + 'has checked out ' + self.title + \
               ", the Physincal ID is " + str(self.phys_id) + \
               ". The appointment to return the book is at " + \
               str(self.return_date)[11:16] + \
-              " on " + str(self.return_date)[:10] +\
-              ". \nThank you, \n\n The Autism Society of Alaska."
-        sender = 'from@example.com'
-        send_mail(subject, msg, sender, 'rspicer@alaska.edu',
-                                                    fail_silently=True)
-        # claculete time to a date before & sleep
-        # send email
-        # end thread
+              " on " + str(self.return_date)[:10] + '\n\n'\
+              "Borrower Contact Info:\n" +\
+              "Name:"  + self.borrower_name +'\n' +\
+              "Email:"  + self.email +'\n' +\
+              "Phone:"  + self.phone +'\n'
+              
+              
+        mail_admins(subject, msg, fail_silently=True)
+
         
     class Meta:
         verbose_name ='Library Item'
     
-
+# Merged with library item
 #~ class Borower(models.Model):
     #~ """
-        #~ borrower database model -- TODO merge with Library Item
+        #~ borrower database model 
     #~ """
     #~ types= (
         #~ ('0', 'Available'),
@@ -253,10 +248,10 @@ class REvent(Resource):
     
     def clean(self):
         
-        #~ now = datetime.now(utc)
+        now= datetime.now(utc)
         self.show_in_browser = True
         #~ self.save()
-        if  (self.date_time < now): #and not self.archive:
+        if  (self.date_time < now) and not self.archive:
             raise ValidationError("The date & time for the event must be in"+\
             "the future, or the event must be archived")
         if self.archive:

@@ -1,7 +1,7 @@
 """
 models.py
 ross spicer
-updated 2015-04-09
+updated 2015-04-29
 
     this file manages the admin pages
 """
@@ -56,7 +56,7 @@ class Additional(admin.TabularInline):
     max_num = 1
 
 
-# borrower has changed 
+# borrower has merged with library item
 #~ class BorowerClass(admin.TabularInline):
     #~ model = Borower
     #~ 

@@ -103,8 +103,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 
-#~ if DEBUG == True
-    #~ EMAIL_HOST = 'localhost'
-    #~ EMAIL_PORT = 1025
-    
-ADMINS = (('Admin', 'atupek@alaska.edu'),('ross', 'rwspicer@alaska.edu'))
+if DEBUG == True:
+    EMAIL_HOST = 'localhost'
+    EMAIL_PORT = 1025
+EMAIL_SUBJECT_PREFIX = "[ARDA]"
+ADMINS = (('ross', 'rwspicer@alaska.edu'),)
