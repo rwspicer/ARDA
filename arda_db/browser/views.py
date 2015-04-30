@@ -196,13 +196,13 @@ def result(request):
     resource_list, filter_url_addon = additionalCat(request, resource_list, filter_url_addon)        
 
     
-    if 'event' in request.GET:
-        resource_type_list.extend(list(resource_list.filter(r_id__in = REvent.objects.all())))
-        filter_url_addon += 'event=selected&'
     if 'service' in request.GET:
         resource_list, filter_url_addon = serviceCat(request, resource_list, filter_url_addon)        
         resource_type_list.extend(list(resource_list.filter(r_id__in = RService.objects.all())))
         filter_url_addon += 'service=selected&'
+    if 'event' in request.GET:
+        resource_type_list.extend(list(resource_list.filter(r_id__in = REvent.objects.all())))
+        filter_url_addon += 'event=selected&'
     if 'library' in request.GET:
         resource_type_list.extend(list(resource_list.filter(r_id__in = RLibrary.objects.all())))
         filter_url_addon += 'library=selected&'
