@@ -5,4 +5,4 @@ env
 *.pyc
 /crap
 *.sqlite3
-
+/arda_db/static/
