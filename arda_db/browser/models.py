@@ -182,7 +182,7 @@ class RLibrary(Resource):
         #~ print "sending admin check out email"
         # send email
         subject = "[ARDA] Return Reminder - ("+ self.borrower_name +')'
-        msg = self.borrower_name + 'has checked out ' + self.title + \
+        msg = self.borrower_name + ' has checked out ' + self.title + \
               ", the Physincal ID is " + str(self.phys_id) + \
               ". The appointment to return the book is at " + \
               str(self.return_date)[11:16] + \
