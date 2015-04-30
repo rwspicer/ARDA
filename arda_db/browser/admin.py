@@ -69,7 +69,7 @@ class LibraryAdmin(admin.ModelAdmin):
     """
     inlines = [Demo, Behaviour, Disorder, Additional]
     search_fields = ['title', 'description']
-    list_filter = ['status', 'catagory', 'item_type', ]
+    list_filter = ['status', 'homepage', 'catagory', 'item_type', ]
     list_display = ('title', 'phys_id', 'status' )
     ordering       = ('phys_id',)
 
@@ -97,7 +97,7 @@ class OnlineAdmin(admin.ModelAdmin):
     """
     inlines = [Demo, Behaviour, Disorder, Additional]
     search_fields = ['title', 'description']
-    list_filter = ['otype', ]
+    list_filter = ['otype', 'homepage',]
     list_display = ('title',)
     fieldsets = [
         (None, 			{'fields': ['title','otype','date','url']}),
@@ -112,7 +112,7 @@ class ServiceAdmin(admin.ModelAdmin):
     """
     inlines = [Service, Demo, Behaviour, Disorder, Additional]
     search_fields = ['title', 'description']
-    list_filter = ['sservices__city', ]
+    list_filter = ['homepage', 'sservices__city', ]
     list_display = ('title', )
     fieldsets = [
         (None, 			{'fields': ['title','phone','email','address','url']}),
@@ -127,6 +127,7 @@ class EventAdmin(admin.ModelAdmin):
     """
     inlines = [Demo, Behaviour, Disorder, Additional]
     search_fields = ['title', 'description']
+    list_filter = ['homepage', 'archive', ]
     list_display = ('title',)
     fieldsets = [
         (None, 			{'fields': ['title','date_time', 'location']}),
