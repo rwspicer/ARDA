@@ -101,8 +101,8 @@ class RLibrary(Resource):
     return_date = models.DateTimeField(blank=True, null=True, 
                         verbose_name = "Return Appointment")
     
-    sender = "from@example.com"
-    admin_emails = ["rwspicer@alaska.edu",]
+    sender = "autism@asagoldenheart.org"
+    admin_emails = ["autism@asagoldenheart.org",]
     def clean(self):
         if self.status == '0':
             #~ self.checkout_date = self.return_date = ""
