@@ -360,6 +360,7 @@ class SServices(models.Model):
         ('1', 'Anchorage'),
         ('2', 'Fairbanks'),
         ('3', 'Juneau'),
+        ('4', 'Valdez'),
     )
     
     resourceLink = models.ForeignKey(Resource)

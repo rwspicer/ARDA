@@ -128,6 +128,8 @@
 						<label for="fairbanks">Fairbanks</label><br>
 						<input type="radio" name="juneau" value="selected" id="juneau" onclick="selectOnlyThis(this.id)" />
 						<label for="juneau">Juneau</label><br>
+                        <input type="radio" name="valdez" value="selected" id="valdez" onclick="selectOnlyThis(this.id)" />
+						<label for="valdez">Valdez</label><br>
 					</div>
 				</div>
 				
@@ -175,6 +177,7 @@
 			    document.getElementById("anchorage").checked = false;
 			    document.getElementById("fairbanks").checked = false;
 			    document.getElementById("juneau").checked = false;
+                document.getElementById("valdez").checked = false;
 
 			    document.getElementById(id).checked = true;
 			}

@@ -138,6 +138,9 @@ def serviceCat(request, resource_list, filter_url_addon):
     if 'juneau' in request.GET:
         resource_list = resource_list.filter(sservices__city = '3')
         filter_url_addon += 'juneau=selected&'
+    if 'valdez' in request.GET:
+        resource_list = resource_list.filter(sservices__city = '4')
+        filter_url_addon += 'valdez=selected&'
 
     return resource_list, filter_url_addon
 
