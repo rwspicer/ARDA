@@ -195,12 +195,7 @@ def result(request):
     resource_list, filter_url_addon = behaviorCat(request, resource_list, filter_url_addon)    
     resource_list, filter_url_addon = additionalCat(request, resource_list, filter_url_addon)        
 
-    if 'library' in request.GET:
-        resource_type_list.extend(list(resource_list.filter(r_id__in = RLibrary.objects.all())))
-        filter_url_addon += 'library=selected&'
-    if 'online' in request.GET:
-        resource_type_list.extend(list(resource_list.filter(r_id__in = ROnline.objects.all())))
-        filter_url_addon += 'online=selected&'
+    
     if 'event' in request.GET:
         resource_type_list.extend(list(resource_list.filter(r_id__in = REvent.objects.all())))
         filter_url_addon += 'event=selected&'
@@ -208,6 +203,13 @@ def result(request):
         resource_list, filter_url_addon = serviceCat(request, resource_list, filter_url_addon)        
         resource_type_list.extend(list(resource_list.filter(r_id__in = RService.objects.all())))
         filter_url_addon += 'service=selected&'
+    if 'library' in request.GET:
+        resource_type_list.extend(list(resource_list.filter(r_id__in = RLibrary.objects.all())))
+        filter_url_addon += 'library=selected&'
+    if 'online' in request.GET:
+        resource_type_list.extend(list(resource_list.filter(r_id__in = ROnline.objects.all())))
+        filter_url_addon += 'online=selected&'
+    
     
     # Delete the last character '&' 
     filter_url_addon = filter_url_addon[:-1]
