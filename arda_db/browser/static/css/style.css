@@ -140,6 +140,7 @@ main p {
 
 p.header {
     font-size: 18px;
+    width: 520px;
 }
 
 p.content {
@@ -248,7 +249,7 @@ a.h:visited {
 
 p.guide {
     font-size: 20px;
-    width: 800px;
+    width: 750px;
 }
 
 table.details {
